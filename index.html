@@ -1406,6 +1406,39 @@ footer{
   }
 }
 
+
+/* ===== TIPOGRAFÍA VAPORA ===== */
+:root{
+  --font-display:"Arial Black","Avenir Next Heavy","Helvetica Neue",Arial,sans-serif;
+  --font-editorial:"Trebuchet MS","Avenir Next","Segoe UI",Arial,sans-serif;
+}
+
+/* Hero principal */
+.hero h1{
+  font-family:var(--font-display) !important;
+  font-weight:900 !important;
+  letter-spacing:-.065em !important;
+  line-height:.86 !important;
+  text-transform:uppercase;
+}
+
+/* Título de categorías */
+.flavor-heading h2{
+  font-family:var(--font-editorial) !important;
+  font-weight:700 !important;
+  letter-spacing:-.035em !important;
+}
+
+/* Eyebrows / subtítulos pequeños */
+.hero-kicker,
+.flavor-heading p,
+.content .eyebrow,
+.section-kicker{
+  font-family:var(--font-editorial) !important;
+  font-weight:700 !important;
+  letter-spacing:.24em !important;
+}
+
 </style>
 
 <script>
@@ -1463,7 +1496,7 @@ document.querySelectorAll(".flavor-card").forEach(card=>{
 
     <h1>
       ENCUENTRA<br>
-      <span>TU SABOR.</span>
+      <span>TU SABOR</span>
     </h1>
 
     <p class="hero-models">PULSE &nbsp; | &nbsp; PULSE X &nbsp; | &nbsp; DIGIFLAVOR</p>
