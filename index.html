@@ -950,6 +950,94 @@ footer{
   }
 }
 
+
+/* ===== COMMUNITY MARQUEE ===== */
+.community-strip{
+  width:100%;
+  overflow:hidden;
+  background:#050608;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.community-title-marquee{
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.community-title-track{
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:54px;
+  padding:22px 0;
+  animation:vaporaTitleMove 28s linear infinite;
+}
+.community-title-track span{
+  flex:0 0 auto;
+  color:#f3f3f5;
+  font-size:clamp(18px,1.65vw,28px);
+  font-weight:800;
+  letter-spacing:-.025em;
+  white-space:nowrap;
+}
+.community-title-track span::after{
+  content:"✦";
+  margin-left:54px;
+  color:#8d72ff;
+  font-size:.72em;
+}
+.community-gallery{
+  width:100%;
+  overflow:hidden;
+}
+.community-track{
+  width:max-content;
+  display:flex;
+  will-change:transform;
+  animation:vaporaGalleryMove 42s linear infinite;
+}
+.community-group{
+  flex:0 0 auto;
+  display:flex;
+  gap:0;
+}
+.community-group img{
+  display:block;
+  width:clamp(220px,19vw,310px);
+  height:clamp(220px,19vw,310px);
+  object-fit:cover;
+  flex:0 0 auto;
+  filter:saturate(.98) contrast(1.02);
+}
+.community-gallery:hover .community-track{
+  animation-play-state:paused;
+}
+@keyframes vaporaGalleryMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@keyframes vaporaTitleMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(-25%)}
+}
+@media(max-width:760px){
+  .community-title-track{
+    gap:34px;
+    padding:17px 0;
+  }
+  .community-title-track span::after{
+    margin-left:34px;
+  }
+  .community-group img{
+    width:240px;
+    height:240px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .community-track,
+  .community-title-track{
+    animation:none;
+  }
+}
+
 </style>
 
 <script>
@@ -1099,6 +1187,49 @@ footer{
 
 </main>
 
+
+
+<section class="community-strip" aria-label="Comunidad VAPORA">
+  <div class="community-title-marquee" aria-hidden="true">
+    <div class="community-title-track">
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+    </div>
+  </div>
+
+  <div class="community-gallery">
+    <div class="community-track">
+      <div class="community-group">
+        <img src="F1.webp" alt="Comunidad Geek Bar en evento" loading="lazy" decoding="async">
+        <img src="F2.webp" alt="Comunidad Geek Bar" loading="lazy" decoding="async">
+        <img src="F3.webp" alt="Evento Digiflavor" loading="lazy" decoding="async">
+        <img src="F4.webp" alt="Geek Bar en evento nocturno" loading="lazy" decoding="async">
+        <img src="F5.webp" alt="Accesorios Geek Bar" loading="lazy" decoding="async">
+        <img src="F6.webp" alt="Comunidad en evento" loading="lazy" decoding="async">
+        <img src="F7.webp" alt="Geek Bar en festival" loading="lazy" decoding="async">
+        <img src="F8.webp" alt="Comunidad Geek Bar" loading="lazy" decoding="async">
+        <img src="F9.webp" alt="Experiencia Geek Bar" loading="lazy" decoding="async">
+        <img src="F10.webp" alt="Accesorios de la comunidad Geek Bar" loading="lazy" decoding="async">
+      </div>
+      <div class="community-group" aria-hidden="true">
+        <img src="F1.webp" alt="">
+        <img src="F2.webp" alt="">
+        <img src="F3.webp" alt="">
+        <img src="F4.webp" alt="">
+        <img src="F5.webp" alt="">
+        <img src="F6.webp" alt="">
+        <img src="F7.webp" alt="">
+        <img src="F8.webp" alt="">
+        <img src="F9.webp" alt="">
+        <img src="F10.webp" alt="">
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="vapora-footer">
   <div class="vapora-footer-main">
