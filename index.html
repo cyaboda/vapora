@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="preload" as="image" href="BANNER.webp" fetchpriority="high">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VAPORA</title>
@@ -742,7 +743,7 @@ footer{
 <body>
 
 <header>
-  <a class="logo" href="#inicio" aria-label="VAPORA - Inicio"><img src="LOGO.png" alt="VAPORA"></a>
+  <a class="logo" href="#inicio" aria-label="VAPORA - Inicio"><img src="LOGO.png" alt="VAPORA" decoding="async"></a>
 
   <nav>
     <a href="#inicio">Inicio</a>
@@ -760,7 +761,7 @@ footer{
 
 <section class="hero" id="inicio">
   <div class="hero-bg">
-    <img src="BANNER.png" alt="Pulse, Pulse X y Digiflavor">
+    <img src="BANNER.webp" fetchpriority="high" decoding="async" alt="Pulse, Pulse X y Digiflavor">
   </div>
 
   <div class="hero-content">
@@ -832,7 +833,7 @@ footer{
 
   <div class="collections">
     <button class="collection collection-image" data-filter="Digiflavor">
-      <img src="DIGIFLAVOR.png" alt="Geek Bar Digiflavor">
+      <img src="DIGIFLAVOR.webp" loading="lazy" decoding="async" alt="Geek Bar Digiflavor">
       <div class="collection-shade"></div>
       <div class="collection-copy">
         <small>GEEK BAR</small>
@@ -843,7 +844,7 @@ footer{
     </button>
 
     <button class="collection collection-image" data-filter="Pulse">
-      <img src="PULSE.png" alt="Geek Bar Pulse">
+      <img src="PULSE.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse">
       <div class="collection-shade"></div>
       <div class="collection-copy">
         <small>GEEK BAR</small>
@@ -854,7 +855,7 @@ footer{
     </button>
 
     <button class="collection collection-image" data-filter="Pulse X">
-      <img src="PULSE%20X.png" alt="Geek Bar Pulse X">
+      <img src="PULSE-X.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse X">
       <div class="collection-shade"></div>
       <div class="collection-copy">
         <small>GEEK BAR</small>
@@ -898,7 +899,7 @@ footer{
 </main>
 
 <footer>
-  <div class="footer-logo"><img src="LOGO.png" alt="VAPORA"></div>
+  <div class="footer-logo"><img src="LOGO.png" alt="VAPORA" decoding="async"></div>
   <div>Pulse · Pulse X · Digiflavor</div>
   <div>© 2026 VAPORA</div>
 </footer>
