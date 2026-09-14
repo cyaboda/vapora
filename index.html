@@ -840,6 +840,116 @@ footer{
   }
 }
 
+
+/* ===== VAPORA FOOTER FINAL ===== */
+.vapora-footer{
+  width:100%;
+  border-top:1px solid rgba(255,255,255,.10);
+  background:#050608;
+  color:#fff;
+}
+.vapora-footer-main{
+  max-width:1440px;
+  margin:0 auto;
+  padding:38px 5vw 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:48px;
+}
+.vapora-footer-brand{
+  min-width:220px;
+}
+.vapora-footer-brand img{
+  display:block;
+  height:30px;
+  width:auto;
+  max-width:180px;
+  object-fit:contain;
+}
+.vapora-footer-brand p{
+  margin:11px 0 0;
+  color:#8f949e;
+  font-size:12px;
+  line-height:1.5;
+}
+.vapora-footer-nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:12px 28px;
+}
+.vapora-footer-nav a{
+  color:#dfe1e5;
+  text-decoration:none;
+  font-size:12px;
+  line-height:1;
+}
+.vapora-footer-nav a:hover{
+  color:#fff;
+}
+.vapora-warning{
+  width:100%;
+  padding:18px 5vw;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:#090a0d;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:12px;
+}
+.vapora-warning-icon{
+  flex:0 0 auto;
+  font-size:14px;
+  line-height:1.6;
+}
+.vapora-warning p{
+  margin:0;
+  max-width:1200px;
+  color:#9ea3ad;
+  font-size:10.5px;
+  line-height:1.65;
+  text-align:left;
+}
+.vapora-warning strong{
+  color:#eceef2;
+  font-weight:800;
+}
+.vapora-footer-bottom{
+  max-width:1440px;
+  margin:0 auto;
+  padding:16px 5vw 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#666b75;
+  font-size:10px;
+}
+@media(max-width:760px){
+  .vapora-footer-main{
+    padding:32px 24px 26px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:24px;
+  }
+  .vapora-footer-nav{
+    justify-content:flex-start;
+    gap:14px 22px;
+  }
+  .vapora-warning{
+    padding:18px 24px;
+  }
+  .vapora-footer-bottom{
+    padding:16px 24px 20px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+}
+
 </style>
 
 <script>
@@ -988,38 +1098,40 @@ footer{
 </section>
 
 </main>
-<footer class="site-footer">
-  <div class="footer-top">
-    <div class="footer-brand">
+
+
+<footer class="vapora-footer">
+  <div class="vapora-footer-main">
+    <div class="vapora-footer-brand">
       <img src="LOGO.png" alt="VAPORA" decoding="async">
-      <p>Encuentra tu sabor.<br>Elige tu vibe.</p>
+      <p>Encuentra tu sabor. Elige tu vibe.</p>
     </div>
 
-    <div class="footer-group">
-      <span class="footer-title">NAVEGACIÓN</span>
+    <nav class="vapora-footer-nav" aria-label="Navegación del pie de página">
       <a href="#inicio">Inicio</a>
       <a href="#productos">Productos</a>
-    </div>
-
-    <div class="footer-group">
-      <span class="footer-title">LÍNEAS</span>
       <a href="digiflavor.html">Digiflavor</a>
       <a href="pulse.html">Pulse</a>
       <a href="pulse-x.html">Pulse X</a>
-    </div>
-
-    <div class="footer-legal">
-      <span class="footer-title">VAPORA</span>
-      <p>Venta exclusiva para mayores de 18 años.</p>
-      <p>© 2026 VAPORA.<br>Todos los derechos reservados.</p>
-    </div>
+    </nav>
   </div>
 
-  <div class="nicotine-warning">
-    <div class="warning-icon">⚠️</div>
-    <p><strong>ADVERTENCIA:</strong> Este producto contiene nicotina, una sustancia altamente adictiva. Su consumo puede ser perjudicial para la salud y puede implicar la exposición a sustancias tóxicas y cancerígenas. <strong>PROHIBIDA SU VENTA A MENORES DE 18 AÑOS.</strong> Producto destinado exclusivamente para personas adultas. Manténgase fuera del alcance de niños y adolescentes.</p>
+  <div class="vapora-warning">
+    <span class="vapora-warning-icon" aria-hidden="true">⚠️</span>
+    <p>
+      <strong>ADVERTENCIA:</strong> Este producto contiene nicotina, una sustancia altamente adictiva.
+      Su consumo puede ser perjudicial para la salud y puede implicar la exposición a sustancias tóxicas y cancerígenas.
+      <strong>PROHIBIDA SU VENTA A MENORES DE 18 AÑOS.</strong>
+      Producto destinado exclusivamente para personas adultas. Manténgase fuera del alcance de niños y adolescentes.
+    </p>
+  </div>
+
+  <div class="vapora-footer-bottom">
+    <span>© 2026 VAPORA. Todos los derechos reservados.</span>
   </div>
 </footer>
+
+
 
 
 <div class="overlay" id="overlay"></div>
