@@ -278,6 +278,8 @@ section.content{
 
 .collection{
   position:relative;
+  display:block;
+  text-decoration:none;
   min-height:270px;
   overflow:hidden;
   padding:0;
@@ -371,6 +373,11 @@ section.content{
   color:#08090b;
   font-size:12px;
   font-weight:800;
+}
+
+.content#productos{
+  padding-bottom:72px;
+  border-bottom:0;
 }
 
 /* PRODUCTS */
@@ -748,8 +755,6 @@ footer{
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#productos">Productos</a>
-    <a href="#sabores">Sabores</a>
-    <a href="#nosotros">Nosotros</a>
   </nav>
 
   <button class="cart-button" id="cartButton">
@@ -774,7 +779,7 @@ footer{
 
     <p class="hero-models">PULSE &nbsp; | &nbsp; PULSE X &nbsp; | &nbsp; DIGIFLAVOR</p>
 
-    <a class="btn" href="#sabores">Explorar sabores&nbsp;&nbsp;→</a>
+    <a class="btn" href="#productos">Elegir dispositivo&nbsp;&nbsp;→</a>
 
     <p class="hero-note">
       MISMO PLACER.<br>
@@ -832,7 +837,7 @@ footer{
   </div>
 
   <div class="collections">
-    <button class="collection collection-image" data-filter="Digiflavor">
+    <a class="collection collection-image" href="digiflavor.html" aria-label="Ver sabores Digiflavor">
       <img src="DIGIFLAVOR.webp" loading="lazy" decoding="async" alt="Geek Bar Digiflavor">
       <div class="collection-shade"></div>
       <div class="collection-copy">
@@ -841,9 +846,9 @@ footer{
         <p>Una experiencia diferente.</p>
         <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
       </div>
-    </button>
+    </a>
 
-    <button class="collection collection-image" data-filter="Pulse">
+    <a class="collection collection-image" href="pulse.html" aria-label="Ver sabores Geek Bar Pulse">
       <img src="PULSE.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse">
       <div class="collection-shade"></div>
       <div class="collection-copy">
@@ -852,9 +857,9 @@ footer{
         <p>El clásico que no falla.</p>
         <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
       </div>
-    </button>
+    </a>
 
-    <button class="collection collection-image" data-filter="Pulse X">
+    <a class="collection collection-image" href="pulse-x.html" aria-label="Ver sabores Geek Bar Pulse X">
       <img src="PULSE-X.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse X">
       <div class="collection-shade"></div>
       <div class="collection-copy">
@@ -863,46 +868,11 @@ footer{
         <p>Más pantalla. Más modos. Más Pulse.</p>
         <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
       </div>
-    </button>
+    </a>
   </div>
-</section>
-
-<section class="content" id="sabores">
-  <div class="products-head">
-    <div class="section-title" style="margin-bottom:0">
-      <p>¿QUÉ SE TE ANTOJA HOY?</p>
-      <h2>Encuentra tu próximo favorito.</h2>
-    </div>
-
-    <div class="filters">
-      <button class="filter active" data-filter="Todos">Todos</button>
-      <button class="filter" data-filter="Pulse">Pulse</button>
-      <button class="filter" data-filter="Pulse X">Pulse X</button>
-      <button class="filter" data-filter="Digiflavor">Digiflavor</button>
-    </div>
-  </div>
-
-  <div class="product-grid" id="productGrid"></div>
-</section>
-
-<section class="about" id="nosotros">
-  <div>
-    <p class="eyebrow">VAPORA</p>
-    <h2>Pequeños detalles.<br><span>Grandes vibes.</span></h2>
-  </div>
-  <p>
-    Elige tu dispositivo, encuentra tu sabor y agrégalo al carrito.
-    VAPORA reúne Pulse, Pulse X y Digiflavor en una experiencia simple y visual.
-  </p>
 </section>
 
 </main>
-
-<footer>
-  <div class="footer-logo"><img src="LOGO.png" alt="VAPORA" decoding="async"></div>
-  <div>Pulse · Pulse X · Digiflavor</div>
-  <div>© 2026 VAPORA</div>
-</footer>
 
 <div class="overlay" id="overlay"></div>
 
@@ -954,10 +924,8 @@ const products=[
   {id:8,name:"Cool Mint",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#59d0b9,#11141b)"}
 ];
 
-let filter="Todos";
 let cart=JSON.parse(localStorage.getItem("vaporaCart")||"{}");
 
-const grid=document.getElementById("productGrid");
 const cartButton=document.getElementById("cartButton");
 const drawer=document.getElementById("drawer");
 const overlay=document.getElementById("overlay");
@@ -969,45 +937,6 @@ const cartCount=document.getElementById("cartCount");
 function money(n){
   return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(n);
 }
-
-function renderProducts(){
-  const list=filter==="Todos"?products:products.filter(p=>p.model===filter);
-
-  grid.innerHTML=list.map(p=>`
-    <article class="product">
-      <div class="product-visual">
-        <div class="fake-device" style="background:${p.tone}">
-          ${p.model.toUpperCase()}
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>${p.name}</h3>
-        <p class="model">${p.model}</p>
-        <div class="product-bottom">
-          <strong>${money(p.price)}</strong>
-          <button class="add" onclick="addToCart(${p.id})">+</button>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
-
-function setFilter(value){
-  filter=value;
-  document.querySelectorAll(".filter").forEach(b=>{
-    b.classList.toggle("active",b.dataset.filter===value);
-  });
-  renderProducts();
-  document.getElementById("sabores").scrollIntoView({behavior:"smooth"});
-}
-
-document.querySelectorAll(".filter").forEach(b=>{
-  b.addEventListener("click",()=>setFilter(b.dataset.filter));
-});
-
-document.querySelectorAll(".collection").forEach(b=>{
-  b.addEventListener("click",()=>setFilter(b.dataset.filter));
-});
 
 function addToCart(id){
   cart[id]=(cart[id]||0)+1;
@@ -1100,7 +1029,6 @@ document.getElementById("leaveSite").addEventListener("click",()=>{
   window.location.href="https://www.google.com";
 });
 
-renderProducts();
 renderCart();
 
 window.addToCart=addToCart;
