@@ -43,9 +43,16 @@ header{
   border-bottom:1px solid var(--line);
 }
 .logo{
-  font-size:21px;
-  font-weight:800;
-  letter-spacing:.20em;
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+.logo img{
+  display:block;
+  width:auto;
+  height:34px;
+  max-width:190px;
+  object-fit:contain;
 }
 nav{
   display:flex;
@@ -384,6 +391,14 @@ section.content{
 }
 
 /* FOOTER */
+.footer-logo img{
+  display:block;
+  width:auto;
+  height:30px;
+  max-width:180px;
+  object-fit:contain;
+}
+
 footer{
   min-height:100px;
   display:flex;
@@ -557,6 +572,7 @@ footer{
 
 @media(max-width:760px){
   header{height:64px}
+  .logo img{height:28px;max-width:155px}
   .hero{
     min-height:720px;
     align-items:flex-end;
@@ -608,7 +624,7 @@ footer{
 <body>
 
 <header>
-  <a class="logo" href="#inicio">VAPORA</a>
+  <a class="logo" href="#inicio" aria-label="VAPORA - Inicio"><img src="LOGO.png" alt="VAPORA"></a>
 
   <nav>
     <a href="#inicio">Inicio</a>
@@ -726,7 +742,7 @@ footer{
 </main>
 
 <footer>
-  <div class="logo">VAPORA</div>
+  <div class="footer-logo"><img src="LOGO.png" alt="VAPORA"></div>
   <div>Pulse · Pulse X · Digiflavor</div>
   <div>© 2026 VAPORA</div>
 </footer>
