@@ -1192,6 +1192,130 @@ footer{
   }
 }
 
+
+/* ===== FLAVOR EXPLORER COMPACT ===== */
+.flavor-explorer{
+  padding:34px 2.6vw 38px;
+  background:#07080b;
+  border-bottom:1px solid var(--line);
+}
+.flavor-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:14px;
+}
+.flavor-heading p{
+  margin:0 0 7px;
+  color:#a8abb3;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.30em;
+}
+.flavor-heading h2{
+  margin:0;
+  color:#f4f4f6;
+  font-size:clamp(25px,2.3vw,36px);
+  line-height:1;
+  letter-spacing:.01em;
+  font-weight:600;
+}
+.flavor-all-link{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding-bottom:5px;
+  color:#d7d9df;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.flavor-all-link span{
+  color:#aaa0ff;
+  font-size:16px;
+  line-height:1;
+}
+.flavor-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+}
+.flavor-card{
+  position:relative;
+  height:112px;
+  padding:10px 8px 9px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:7px;
+  background:linear-gradient(180deg,#14161a 0%,#111317 100%);
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.flavor-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.18);
+  background:linear-gradient(180deg,#181a1f 0%,#121419 100%);
+}
+.flavor-icon-wrap{
+  width:100%;
+  height:70px;
+  display:grid;
+  place-items:center;
+  margin:0 0 2px;
+}
+.flavor-icon-wrap img{
+  display:block;
+  width:66px;
+  height:66px;
+  object-fit:contain;
+  filter:none;
+  transition:transform .2s ease;
+}
+.flavor-card:hover .flavor-icon-wrap img{
+  transform:scale(1.04);
+}
+.flavor-card span{
+  color:#f0f1f4;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0;
+}
+.flavor-note{
+  display:none;
+}
+@media(max-width:900px){
+  .flavor-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(max-width:620px){
+  .flavor-explorer{
+    padding:28px 18px 32px;
+  }
+  .flavor-heading{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+  }
+  .flavor-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .flavor-card{
+    height:108px;
+  }
+}
+
+
+/* Ajuste solicitado: 3 líneas primero, categorías inmediatamente debajo */
+.flavor-explorer{padding-top:24px!important;padding-bottom:34px!important;}
+
 </style>
 
 <script>
@@ -1306,6 +1430,48 @@ document.querySelectorAll(".flavor-card").forEach(card=>{
 </section>
 
 
+
+
+<section class="content" id="productos">
+  <div class="section-title">
+    
+  </div>
+
+  <div class="collections">
+    <a class="collection collection-image" href="digiflavor.html" aria-label="Ver sabores Digiflavor">
+      <img src="DIGIFLAVOR.webp" loading="lazy" decoding="async" alt="Geek Bar Digiflavor">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>DIGIFLAVOR</strong>
+        <p>Una experiencia diferente.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
+    </a>
+
+    <a class="collection collection-image" href="pulse.html" aria-label="Ver sabores Geek Bar Pulse">
+      <img src="PULSE.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>PULSE</strong>
+        <p>El clásico que no falla.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
+    </a>
+
+    <a class="collection collection-image" href="pulse-x.html" aria-label="Ver sabores Geek Bar Pulse X">
+      <img src="PULSE-X.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse X">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>PULSE X</strong>
+        <p>Más pantalla. Más modos. Más Pulse.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
+    </a>
+  </div>
+</section>
 <section class="flavor-explorer" id="sabores">
   <div class="flavor-heading">
     <div>
@@ -1353,48 +1519,6 @@ document.querySelectorAll(".flavor-card").forEach(card=>{
   </div>
 
   <p class="flavor-note">Muy pronto podrás explorar todos nuestros sabores por categoría.</p>
-</section>
-
-<section class="content" id="productos">
-  <div class="section-title">
-    <p>ELIGE TU DISPOSITIVO</p>
-    <h2>Tres líneas. Un solo lugar.</h2>
-  </div>
-
-  <div class="collections">
-    <a class="collection collection-image" href="digiflavor.html" aria-label="Ver sabores Digiflavor">
-      <img src="DIGIFLAVOR.webp" loading="lazy" decoding="async" alt="Geek Bar Digiflavor">
-      <div class="collection-shade"></div>
-      <div class="collection-copy">
-        <small>GEEK BAR</small>
-        <strong>DIGIFLAVOR</strong>
-        <p>Una experiencia diferente.</p>
-        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
-      </div>
-    </a>
-
-    <a class="collection collection-image" href="pulse.html" aria-label="Ver sabores Geek Bar Pulse">
-      <img src="PULSE.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse">
-      <div class="collection-shade"></div>
-      <div class="collection-copy">
-        <small>GEEK BAR</small>
-        <strong>PULSE</strong>
-        <p>El clásico que no falla.</p>
-        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
-      </div>
-    </a>
-
-    <a class="collection collection-image" href="pulse-x.html" aria-label="Ver sabores Geek Bar Pulse X">
-      <img src="PULSE-X.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse X">
-      <div class="collection-shade"></div>
-      <div class="collection-copy">
-        <small>GEEK BAR</small>
-        <strong>PULSE X</strong>
-        <p>Más pantalla. Más modos. Más Pulse.</p>
-        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
-      </div>
-    </a>
-  </div>
 </section>
 
 </main>
