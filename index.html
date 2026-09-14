@@ -1,261 +1,881 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VAPORA - Pulse, Pulse X y Digiflavor. Encuentra tu sabor." />
-  <title>VAPORA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAPORA</title>
+<meta name="description" content="VAPORA - Pulse, Pulse X y Digiflavor. Encuentra tu sabor.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080b;
+  --panel:#101217;
+  --panel2:#151820;
+  --text:#f7f7f8;
+  --muted:#aeb2bd;
+  --line:rgba(255,255,255,.10);
+  --purple:#9b82ff;
+  --purple2:#d8ccff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
 
-  <link rel="stylesheet" href="styles.css" />
+/* HEADER */
+header{
+  height:72px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5vw;
+  background:rgba(7,8,11,.86);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:.20em;
+}
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  font-size:14px;
+  color:#d4d6dc;
+}
+nav a:hover{color:white}
+.cart-button{
+  color:white;
+  background:#12151b;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 15px;
+  cursor:pointer;
+}
+.cart-count{
+  display:inline-grid;
+  place-items:center;
+  min-width:23px;
+  height:23px;
+  margin-left:7px;
+  padding:0 6px;
+  border-radius:999px;
+  background:white;
+  color:black;
+  font-size:12px;
+  font-weight:800;
+}
 
-  <!-- Ajustes del hero para usar BANNER.png -->
-  <style>
-    .hero-banner {
-      position: relative;
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+/* HERO */
+.hero{
+  position:relative;
+  min-height:650px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:#06070a;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+}
+.hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+.hero-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,
+      rgba(5,6,8,.99) 0%,
+      rgba(5,6,8,.96) 25%,
+      rgba(5,6,8,.78) 38%,
+      rgba(5,6,8,.35) 52%,
+      rgba(5,6,8,.05) 68%,
+      rgba(5,6,8,0) 100%);
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:49%;
+  max-width:700px;
+  padding:70px 0 70px 5vw;
+}
+.eyebrow{
+  margin:0 0 18px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.35em;
+  color:#d7d9df;
+}
+.hero h1{
+  margin:0;
+  font-size:clamp(64px,7vw,112px);
+  line-height:.87;
+  letter-spacing:-.065em;
+  font-weight:800;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#fff 0%,#d7c9ff 45%,#9175ff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero-models{
+  margin:30px 0 0;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.24em;
+}
+.hero-description{
+  max-width:540px;
+  margin:24px 0 30px;
+  color:#c5c8d1;
+  font-size:16px;
+  line-height:1.7;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 23px;
+  border-radius:999px;
+  background:white;
+  color:#08090b;
+  font-weight:800;
+  border:0;
+  cursor:pointer;
+}
 
-    .hero-banner-img {
-      display: block;
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      object-position: center;
-    }
+/* TRUST */
+.trust{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--line);
+}
+.trust-item{
+  min-height:92px;
+  padding:24px 4vw;
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.trust-item:last-child{border-right:0}
+.trust-item strong{font-size:14px}
+.trust-item span{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:12px;
+}
 
-    @media (max-width: 980px) {
-      .hero-banner {
-        min-height: 420px;
-      }
+/* SECTIONS */
+section.content{
+  padding:78px 5vw;
+}
+.section-title{
+  margin-bottom:30px;
+}
+.section-title p{
+  margin:0 0 10px;
+  color:#b9bdc7;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.32em;
+}
+.section-title h2{
+  margin:0;
+  font-size:clamp(34px,4vw,62px);
+  letter-spacing:-.05em;
+}
 
-      .hero-banner-img {
-        height: 420px;
-        object-fit: contain;
-      }
-    }
+/* COLLECTIONS */
+.collections{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.collection{
+  position:relative;
+  min-height:260px;
+  overflow:hidden;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(255,255,255,.09),transparent 28%),
+    #111318;
+  color:white;
+  text-align:left;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.collection:hover{
+  transform:translateY(-4px);
+  border-color:rgba(155,130,255,.6);
+}
+.collection.purple{
+  background:
+    radial-gradient(circle at 75% 20%,rgba(155,130,255,.35),transparent 35%),
+    #111318;
+}
+.collection small{
+  display:block;
+  color:#aeb2bd;
+  letter-spacing:.16em;
+  font-size:11px;
+}
+.collection strong{
+  display:block;
+  margin:12px 0 9px;
+  font-size:36px;
+}
+.collection p{
+  margin:0;
+  color:#b9bdc7;
+  font-size:14px;
+}
 
-    @media (max-width: 620px) {
-      .hero-banner {
-        min-height: 300px;
-        width: 100%;
-        transform: none;
-      }
+/* PRODUCTS */
+.products-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:28px;
+}
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.filter{
+  padding:10px 15px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:#d3d5db;
+  cursor:pointer;
+}
+.filter.active{
+  background:white;
+  color:black;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.product{
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#101217;
+}
+.product-visual{
+  height:230px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(155,130,255,.18),transparent 35%),
+    #0b0d11;
+}
+.fake-device{
+  width:92px;
+  height:165px;
+  border-radius:25px;
+  display:grid;
+  place-items:center;
+  padding:10px;
+  text-align:center;
+  color:white;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.07em;
+  box-shadow:0 25px 50px rgba(0,0,0,.45);
+  transform:rotate(-4deg);
+}
+.product-info{padding:18px}
+.product-info h3{
+  margin:0;
+  font-size:16px;
+}
+.product-info .model{
+  margin:6px 0 18px;
+  color:var(--muted);
+  font-size:13px;
+}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.add{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:#1a1d24;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
 
-      .hero-banner-img {
-        width: 100%;
-        height: auto;
-        max-height: 360px;
-        object-fit: contain;
-      }
-    }
-  </style>
+/* ABOUT */
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+  padding:78px 5vw;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,rgba(255,255,255,.035),transparent);
+}
+.about h2{
+  margin:0;
+  font-size:clamp(38px,4vw,64px);
+  line-height:1;
+  letter-spacing:-.05em;
+}
+.about h2 span{color:var(--purple)}
+.about>p{
+  color:var(--muted);
+  line-height:1.8;
+  max-width:620px;
+}
+
+/* FOOTER */
+footer{
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:30px 5vw;
+  color:#9fa3ad;
+  font-size:13px;
+  border-top:1px solid var(--line);
+}
+
+/* CART */
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:70;
+  background:rgba(0,0,0,.65);
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+.overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:80;
+  width:min(440px,100%);
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding:25px;
+  background:#0c0e12;
+  border-left:1px solid var(--line);
+  transform:translateX(100%);
+  transition:.25s;
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.drawer-head h2{margin:0;font-size:32px}
+.close{
+  border:0;
+  background:none;
+  color:white;
+  font-size:32px;
+  cursor:pointer;
+}
+.cart-items{
+  flex:1;
+  overflow:auto;
+  padding:15px 0;
+}
+.cart-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+.cart-item p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.qty button{
+  width:29px;
+  height:29px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#171a21;
+  color:white;
+  cursor:pointer;
+}
+.drawer-footer{
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.total{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:16px;
+  font-size:18px;
+}
+.checkout{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(90deg,#a58cff,#fff);
+  color:#08090b;
+  font-weight:800;
+  cursor:pointer;
+}
+.note{
+  color:#8f939e;
+  text-align:center;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* AGE MODAL */
+.age-modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.88);
+}
+.age-modal.show{display:grid}
+.age-box{
+  width:min(500px,100%);
+  padding:35px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#0e1015;
+  text-align:center;
+}
+.age-box h2{
+  margin:0 0 15px;
+  font-size:46px;
+}
+.age-box p{
+  color:#aeb2bd;
+  line-height:1.6;
+}
+.age-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+.secondary{
+  padding:14px 22px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:transparent;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  nav{display:none}
+  .hero{min-height:610px}
+  .hero-bg img{object-position:65% center}
+  .hero-content{width:65%}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .collections{grid-template-columns:1fr}
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  header{height:64px}
+  .hero{
+    min-height:720px;
+    align-items:flex-end;
+  }
+  .hero-bg img{object-position:72% center}
+  .hero-bg:after{
+    background:linear-gradient(180deg,
+      rgba(5,6,8,.10) 0%,
+      rgba(5,6,8,.28) 38%,
+      rgba(5,6,8,.88) 67%,
+      rgba(5,6,8,1) 100%);
+  }
+  .hero-content{
+    width:100%;
+    padding:40px 24px 50px;
+  }
+  .hero h1{font-size:clamp(54px,16vw,82px)}
+  .trust{grid-template-columns:1fr}
+  .trust-item{border-right:0;border-bottom:1px solid var(--line)}
+  section.content{padding:60px 24px}
+  .products-head{align-items:flex-start;flex-direction:column}
+  .product-grid{grid-template-columns:1fr}
+  .about{padding:60px 24px}
+  footer{flex-direction:column;align-items:flex-start}
+}
+</style>
 </head>
 
 <body>
-  <header class="site-header">
-    <a class="logo" href="#inicio">VAPORA</a>
 
-    <nav class="nav">
-      <a href="#inicio">Inicio</a>
-      <a href="#productos">Productos</a>
-      <a href="#sabores">Sabores</a>
-      <a href="#nosotros">Nosotros</a>
-    </nav>
+<header>
+  <a class="logo" href="#inicio">VAPORA</a>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Productos</a>
+    <a href="#sabores">Sabores</a>
+    <a href="#nosotros">Nosotros</a>
+  </nav>
+  <button class="cart-button" id="cartButton">
+    Carrito <span class="cart-count" id="cartCount">0</span>
+  </button>
+</header>
 
-    <button class="cart-button" id="cartButton" aria-label="Abrir carrito">
-      Carrito <span id="cartCount">0</span>
+<main>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <img src="BANNER.png" alt="Pulse, Pulse X y Digiflavor">
+  </div>
+
+  <div class="hero-content">
+    <p class="eyebrow">VAPORA</p>
+    <h1>ENCUENTRA<br><span>TU SABOR.</span></h1>
+    <p class="hero-models">PULSE · PULSE X · DIGIFLAVOR</p>
+    <p class="hero-description">
+      Una tienda enfocada en tres líneas, muchos sabores y una experiencia de compra simple.
+    </p>
+    <a class="btn" href="#productos">Explorar productos</a>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-item">
+    <strong>Productos originales</strong>
+    <span>Compra con confianza</span>
+  </div>
+  <div class="trust-item">
+    <strong>Envíos</strong>
+    <span>Quito y todo Ecuador</span>
+  </div>
+  <div class="trust-item">
+    <strong>Pago seguro</strong>
+    <span>Checkout externo</span>
+  </div>
+  <div class="trust-item">
+    <strong>Atención</strong>
+    <span>Soporte personalizado</span>
+  </div>
+</section>
+
+<section class="content" id="productos">
+  <div class="section-title">
+    <p>ELIGE TU DISPOSITIVO</p>
+    <h2>Tres líneas. Un solo lugar.</h2>
+  </div>
+
+  <div class="collections">
+    <button class="collection" data-filter="Pulse">
+      <small>GEEK BAR</small>
+      <strong>PULSE</strong>
+      <p>El clásico que no falla.</p>
     </button>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-      <div class="hero-copy">
-        <p class="eyebrow">VAPORA</p>
+    <button class="collection purple" data-filter="Pulse X">
+      <small>GEEK BAR</small>
+      <strong>PULSE X</strong>
+      <p>Más pantalla. Más modos.</p>
+    </button>
 
-        <h1>
-          ENCUENTRA<br>
-          <span>TU SABOR.</span>
-        </h1>
+    <button class="collection" data-filter="Digiflavor">
+      <small>DIGIFLAVOR</small>
+      <strong>XPLO</strong>
+      <p>Una experiencia diferente.</p>
+    </button>
+  </div>
+</section>
 
-        <p class="hero-lines">PULSE · PULSE X · DIGIFLAVOR</p>
-
-        <p class="hero-text">
-          Una tienda enfocada en tres líneas, muchos sabores y una experiencia de compra simple.
-        </p>
-
-        <a class="primary-btn" href="#productos">Explorar productos</a>
-      </div>
-
-      <!-- BANNER REAL -->
-      <div class="hero-art hero-banner">
-        <img
-          src="BANNER.png"
-          alt="VAPORA - Pulse, Pulse X y Digiflavor"
-          class="hero-banner-img"
-        />
-      </div>
-    </section>
-
-    <!-- BENEFICIOS -->
-    <section class="trust-strip">
-      <div>
-        <strong>Productos originales</strong>
-        <span>Compra con confianza</span>
-      </div>
-
-      <div>
-        <strong>Envíos</strong>
-        <span>Quito y todo Ecuador</span>
-      </div>
-
-      <div>
-        <strong>Pago seguro</strong>
-        <span>Checkout externo</span>
-      </div>
-
-      <div>
-        <strong>Atención</strong>
-        <span>Soporte personalizado</span>
-      </div>
-    </section>
-
-    <!-- COLECCIONES -->
-    <section class="collection-section" id="productos">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">ELIGE TU DISPOSITIVO</p>
-          <h2>Tres líneas. Un solo lugar.</h2>
-        </div>
-      </div>
-
-      <div class="collection-grid">
-        <button class="collection-card" data-filter="Pulse">
-          <span>GEEK BAR</span>
-          <strong>PULSE</strong>
-          <small>El clásico que no falla.</small>
-        </button>
-
-        <button class="collection-card accent" data-filter="Pulse X">
-          <span>GEEK BAR</span>
-          <strong>PULSE X</strong>
-          <small>Más pantalla. Más modos.</small>
-        </button>
-
-        <button class="collection-card" data-filter="Digiflavor">
-          <span>DIGIFLAVOR</span>
-          <strong>XPLO</strong>
-          <small>Una experiencia diferente.</small>
-        </button>
-      </div>
-    </section>
-
-    <!-- PRODUCTOS / SABORES -->
-    <section class="products-section" id="sabores">
-      <div class="section-heading product-heading">
-        <div>
-          <p class="eyebrow">¿QUÉ SE TE ANTOJA HOY?</p>
-          <h2>Encuentra tu próximo favorito.</h2>
-        </div>
-
-        <div class="filters" id="filters">
-          <button class="filter active" data-filter="Todos">Todos</button>
-          <button class="filter" data-filter="Pulse">Pulse</button>
-          <button class="filter" data-filter="Pulse X">Pulse X</button>
-          <button class="filter" data-filter="Digiflavor">Digiflavor</button>
-        </div>
-      </div>
-
-      <div class="product-grid" id="productGrid"></div>
-    </section>
-
-    <!-- NOSOTROS -->
-    <section class="about" id="nosotros">
-      <div>
-        <p class="eyebrow">VAPORA</p>
-        <h2>
-          Pequeños detalles.<br>
-          <span>Grandes vibes.</span>
-        </h2>
-      </div>
-
-      <p>
-        Diseñamos una experiencia directa: eliges tu dispositivo, encuentras tu sabor,
-        agregas al carrito y finalizas tu compra en un checkout seguro.
-      </p>
-    </section>
-  </main>
-
-  <!-- CARRITO -->
-  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-    <div class="cart-header">
-      <div>
-        <p class="eyebrow">TU PEDIDO</p>
-        <h2>Carrito</h2>
-      </div>
-
-      <button id="closeCart" class="icon-btn" aria-label="Cerrar carrito">×</button>
+<section class="content" id="sabores">
+  <div class="products-head">
+    <div class="section-title" style="margin-bottom:0">
+      <p>¿QUÉ SE TE ANTOJA HOY?</p>
+      <h2>Encuentra tu próximo favorito.</h2>
     </div>
 
-    <div class="cart-items" id="cartItems"></div>
-
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Total</span>
-        <strong id="cartTotal">$0.00</strong>
-      </div>
-
-      <button class="checkout-btn" id="checkoutButton">
-        Finalizar compra
-      </button>
-
-      <p class="checkout-note">
-        Pago procesado mediante una pasarela externa segura.
-      </p>
-    </div>
-  </aside>
-
-  <div class="overlay" id="overlay"></div>
-
-  <!-- CONTROL DE ACCESO -->
-  <div class="age-modal" id="ageModal" aria-modal="true" role="dialog">
-    <div class="age-card">
-      <p class="eyebrow">ACCESO RESTRINGIDO</p>
-
-      <h2>VAPORA</h2>
-
-      <p>
-        Confirma que tienes la edad legal requerida para acceder a productos
-        regulados en tu jurisdicción.
-      </p>
-
-      <div class="age-actions">
-        <button id="confirmAge" class="primary-btn">
-          Confirmar
-        </button>
-
-        <button id="leaveSite" class="secondary-btn">
-          Salir
-        </button>
-      </div>
+    <div class="filters">
+      <button class="filter active" data-filter="Todos">Todos</button>
+      <button class="filter" data-filter="Pulse">Pulse</button>
+      <button class="filter" data-filter="Pulse X">Pulse X</button>
+      <button class="filter" data-filter="Digiflavor">Digiflavor</button>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">VAPORA</div>
-    <div class="footer-copy">Pulse · Pulse X · Digiflavor</div>
-    <div class="footer-copy">© 2026 VAPORA</div>
-  </footer>
+  <div class="product-grid" id="productGrid"></div>
+</section>
 
-  <script src="app.js"></script>
+<section class="about" id="nosotros">
+  <div>
+    <p class="eyebrow">VAPORA</p>
+    <h2>Pequeños detalles.<br><span>Grandes vibes.</span></h2>
+  </div>
+  <p>
+    Elige tu dispositivo, encuentra tu sabor y agrégalo al carrito.
+    VAPORA reúne Pulse, Pulse X y Digiflavor en una experiencia simple y visual.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo">VAPORA</div>
+  <div>Pulse · Pulse X · Digiflavor</div>
+  <div>© 2026 VAPORA</div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div>
+      <p class="eyebrow">TU PEDIDO</p>
+      <h2>Carrito</h2>
+    </div>
+    <button class="close" id="closeCart">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="drawer-footer">
+    <div class="total">
+      <span>Total</span>
+      <strong id="cartTotal">$0.00</strong>
+    </div>
+    <button class="checkout" id="checkoutButton">Finalizar compra</button>
+    <p class="note">El checkout seguro se conectará a una pasarela compatible.</p>
+  </div>
+</aside>
+
+<div class="age-modal" id="ageModal">
+  <div class="age-box">
+    <p class="eyebrow">ACCESO RESTRINGIDO</p>
+    <h2>VAPORA</h2>
+    <p>
+      Confirma que tienes la edad legal requerida para acceder a productos regulados
+      en tu jurisdicción.
+    </p>
+    <div class="age-actions">
+      <button class="btn" id="confirmAge">Confirmar</button>
+      <button class="secondary" id="leaveSite">Salir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const products=[
+  {id:1,name:"Blue Razz Ice",model:"Pulse X",price:17.99,tone:"linear-gradient(160deg,#355dff,#11141b)"},
+  {id:2,name:"Watermelon Ice",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#ff5f72,#55c576 58%,#11141b 58%)"},
+  {id:3,name:"Strawberry Banana",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#ff758a,#ffb14c 58%,#11141b 58%)"},
+  {id:4,name:"Miami Mint",model:"Digiflavor",price:18.99,tone:"linear-gradient(160deg,#293635,#82d4bc)"},
+  {id:5,name:"Sour Apple Ice",model:"Pulse X",price:17.99,tone:"linear-gradient(160deg,#4aa7ff,#11141b)"},
+  {id:6,name:"Grape Ice",model:"Digiflavor",price:18.99,tone:"linear-gradient(160deg,#825aff,#11141b)"},
+  {id:7,name:"Peach Mango",model:"Pulse X",price:17.99,tone:"linear-gradient(160deg,#ff9669,#ffd65a 58%,#11141b 58%)"},
+  {id:8,name:"Cool Mint",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#59d0b9,#11141b)"}
+];
+
+let filter="Todos";
+let cart=JSON.parse(localStorage.getItem("vaporaCart")||"{}");
+
+const grid=document.getElementById("productGrid");
+const cartButton=document.getElementById("cartButton");
+const drawer=document.getElementById("drawer");
+const overlay=document.getElementById("overlay");
+const closeCart=document.getElementById("closeCart");
+const cartItems=document.getElementById("cartItems");
+const cartTotal=document.getElementById("cartTotal");
+const cartCount=document.getElementById("cartCount");
+
+function money(n){
+  return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(n);
+}
+
+function renderProducts(){
+  const list=filter==="Todos"?products:products.filter(p=>p.model===filter);
+
+  grid.innerHTML=list.map(p=>`
+    <article class="product">
+      <div class="product-visual">
+        <div class="fake-device" style="background:${p.tone}">
+          ${p.model.toUpperCase()}
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p class="model">${p.model}</p>
+        <div class="product-bottom">
+          <strong>${money(p.price)}</strong>
+          <button class="add" onclick="addToCart(${p.id})">+</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function setFilter(value){
+  filter=value;
+  document.querySelectorAll(".filter").forEach(b=>{
+    b.classList.toggle("active",b.dataset.filter===value);
+  });
+  renderProducts();
+  document.getElementById("sabores").scrollIntoView({behavior:"smooth"});
+}
+
+document.querySelectorAll(".filter").forEach(b=>{
+  b.addEventListener("click",()=>setFilter(b.dataset.filter));
+});
+
+document.querySelectorAll(".collection").forEach(b=>{
+  b.addEventListener("click",()=>setFilter(b.dataset.filter));
+});
+
+function addToCart(id){
+  cart[id]=(cart[id]||0)+1;
+  saveCart();
+  openCart();
+}
+
+function changeQty(id,delta){
+  cart[id]=(cart[id]||0)+delta;
+  if(cart[id]<=0)delete cart[id];
+  saveCart();
+}
+
+function saveCart(){
+  localStorage.setItem("vaporaCart",JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart(){
+  const entries=Object.entries(cart);
+  let total=0;
+  let count=0;
+
+  if(!entries.length){
+    cartItems.innerHTML='<p style="color:#9fa3ad">Tu carrito está vacío.</p>';
+    cartTotal.textContent=money(0);
+    cartCount.textContent="0";
+    return;
+  }
+
+  cartItems.innerHTML=entries.map(([id,qty])=>{
+    const p=products.find(x=>x.id===Number(id));
+    total+=p.price*qty;
+    count+=qty;
+
+    return `
+      <div class="cart-item">
+        <div>
+          <strong>${p.name}</strong>
+          <p>${p.model} · ${money(p.price)}</p>
+        </div>
+        <div class="qty">
+          <button onclick="changeQty(${p.id},-1)">−</button>
+          <span>${qty}</span>
+          <button onclick="changeQty(${p.id},1)">+</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  cartTotal.textContent=money(total);
+  cartCount.textContent=count;
+}
+
+function openCart(){
+  drawer.classList.add("open");
+  overlay.classList.add("show");
+}
+function closeDrawer(){
+  drawer.classList.remove("open");
+  overlay.classList.remove("show");
+}
+
+cartButton.addEventListener("click",openCart);
+closeCart.addEventListener("click",closeDrawer);
+overlay.addEventListener("click",closeDrawer);
+
+document.getElementById("checkoutButton").addEventListener("click",()=>{
+  if(!Object.keys(cart).length){
+    alert("Tu carrito está vacío.");
+    return;
+  }
+  alert("El carrito está listo. El siguiente paso es conectar la pasarela de pago.");
+});
+
+/* Control de acceso */
+const ageModal=document.getElementById("ageModal");
+if(!localStorage.getItem("vaporaAgeConfirmed")){
+  ageModal.classList.add("show");
+}
+document.getElementById("confirmAge").addEventListener("click",()=>{
+  localStorage.setItem("vaporaAgeConfirmed","yes");
+  ageModal.classList.remove("show");
+});
+document.getElementById("leaveSite").addEventListener("click",()=>{
+  window.location.href="https://www.google.com";
+});
+
+renderProducts();
+renderCart();
+
+window.addToCart=addToCart;
+window.changeQty=changeQty;
+</script>
+
 </body>
 </html>
