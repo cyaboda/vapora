@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VAPORA - Pulse, Pulse X y Digiflavor. Encuentra tu sabor." />
+  <title>VAPORA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#inicio">VAPORA</a>
+
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#sabores">Sabores</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+
+    <button class="cart-button" id="cartButton" aria-label="Abrir carrito">
+      Carrito <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">VAPORA</p>
+        <h1>ENCUENTRA<br><span>TU SABOR.</span></h1>
+        <p class="hero-lines">PULSE · PULSE X · DIGIFLAVOR</p>
+        <p class="hero-text">
+          Una tienda enfocada en tres líneas, muchos sabores y una experiencia de compra simple.
+        </p>
+        <a class="primary-btn" href="#productos">Explorar productos</a>
+      </div>
+
+      <div class="hero-art">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="device-card device-a">PULSE</div>
+        <div class="device-card device-b">PULSE X</div>
+        <div class="device-card device-c">DIGIFLAVOR</div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div><strong>Productos originales</strong><span>Compra con confianza</span></div>
+      <div><strong>Envíos</strong><span>Quito y todo Ecuador</span></div>
+      <div><strong>Pago seguro</strong><span>Checkout externo</span></div>
+      <div><strong>Atención</strong><span>Soporte personalizado</span></div>
+    </section>
+
+    <section class="collection-section" id="productos">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ELIGE TU DISPOSITIVO</p>
+          <h2>Tres líneas. Un solo lugar.</h2>
+        </div>
+      </div>
+
+      <div class="collection-grid">
+        <button class="collection-card" data-filter="Pulse">
+          <span>GEEK BAR</span>
+          <strong>PULSE</strong>
+          <small>El clásico que no falla.</small>
+        </button>
+
+        <button class="collection-card accent" data-filter="Pulse X">
+          <span>GEEK BAR</span>
+          <strong>PULSE X</strong>
+          <small>Más pantalla. Más modos.</small>
+        </button>
+
+        <button class="collection-card" data-filter="Digiflavor">
+          <span>DIGIFLAVOR</span>
+          <strong>XPLO</strong>
+          <small>Una experiencia diferente.</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="products-section" id="sabores">
+      <div class="section-heading product-heading">
+        <div>
+          <p class="eyebrow">¿QUÉ SE TE ANTOJA HOY?</p>
+          <h2>Encuentra tu próximo favorito.</h2>
+        </div>
+
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="Todos">Todos</button>
+          <button class="filter" data-filter="Pulse">Pulse</button>
+          <button class="filter" data-filter="Pulse X">Pulse X</button>
+          <button class="filter" data-filter="Digiflavor">Digiflavor</button>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="about" id="nosotros">
+      <div>
+        <p class="eyebrow">VAPORA</p>
+        <h2>Pequeños detalles.<br><span>Grandes vibes.</span></h2>
+      </div>
+      <p>
+        Diseñamos una experiencia directa: eliges tu dispositivo, encuentras tu sabor,
+        agregas al carrito y finalizas tu compra en un checkout seguro.
+      </p>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-header">
+      <div>
+        <p class="eyebrow">TU PEDIDO</p>
+        <h2>Carrito</h2>
+      </div>
+      <button id="closeCart" class="icon-btn" aria-label="Cerrar carrito">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button class="checkout-btn" id="checkoutButton">Finalizar compra</button>
+      <p class="checkout-note">
+        El botón está listo para enlazarse después con PayPhone, Kushki, Datafast u otra pasarela compatible.
+      </p>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="age-modal" id="ageModal" aria-modal="true" role="dialog">
+    <div class="age-card">
+      <p class="eyebrow">ACCESO RESTRINGIDO</p>
+      <h2>VAPORA</h2>
+      <p>
+        Confirma que tienes la edad legal requerida para acceder a productos regulados en tu jurisdicción.
+      </p>
+      <div class="age-actions">
+        <button id="confirmAge" class="primary-btn">Confirmar</button>
+        <button id="leaveSite" class="secondary-btn">Salir</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">VAPORA</div>
+    <div class="footer-copy">Pulse · Pulse X · Digiflavor</div>
+    <div class="footer-copy">© 2026 VAPORA</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
