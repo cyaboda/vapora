@@ -272,47 +272,104 @@ section.content{
 .collections{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  gap:14px;
 }
+
 .collection{
   position:relative;
-  min-height:260px;
+  min-height:270px;
   overflow:hidden;
-  padding:28px;
+  padding:0;
   border:1px solid var(--line);
-  border-radius:20px;
-  background:
-    radial-gradient(circle at 80% 20%,rgba(255,255,255,.09),transparent 28%),
-    #111318;
+  border-radius:18px;
+  background:#101217;
   color:white;
   text-align:left;
   cursor:pointer;
-  transition:.2s ease;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
 }
+
 .collection:hover{
   transform:translateY(-4px);
-  border-color:rgba(155,130,255,.6);
+  border-color:rgba(255,255,255,.24);
+  box-shadow:0 20px 50px rgba(0,0,0,.32);
 }
-.collection.purple{
+
+.collection-image img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transition:transform .45s ease;
+}
+
+.collection:hover img{
+  transform:scale(1.025);
+}
+
+.collection-shade{
+  position:absolute;
+  inset:0;
   background:
-    radial-gradient(circle at 75% 20%,rgba(155,130,255,.35),transparent 35%),
-    #111318;
+    linear-gradient(90deg,
+      rgba(5,6,8,.94) 0%,
+      rgba(5,6,8,.82) 34%,
+      rgba(5,6,8,.42) 58%,
+      rgba(5,6,8,.08) 100%),
+    linear-gradient(0deg,rgba(5,6,8,.32),transparent 55%);
 }
+
+.collection-copy{
+  position:relative;
+  z-index:2;
+  width:58%;
+  min-height:270px;
+  padding:31px 0 27px 27px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+
 .collection small{
   display:block;
-  color:#aeb2bd;
+  margin-bottom:5px;
+  color:#e6e7eb;
   letter-spacing:.16em;
   font-size:11px;
+  font-weight:700;
 }
+
 .collection strong{
   display:block;
-  margin:12px 0 9px;
-  font-size:36px;
+  margin:0 0 10px;
+  font-size:30px;
+  line-height:1;
+  letter-spacing:-.035em;
 }
+
 .collection p{
   margin:0;
-  color:#b9bdc7;
-  font-size:14px;
+  min-height:35px;
+  color:#e2e3e7;
+  font-size:13px;
+  line-height:1.35;
+}
+
+.collection-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:20px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:#fff;
+  color:#08090b;
+  font-size:12px;
+  font-weight:800;
 }
 
 /* PRODUCTS */
@@ -606,6 +663,8 @@ footer{
   .hero-note{margin-top:48px}
   .trust{grid-template-columns:repeat(2,1fr)}
   .collections{grid-template-columns:1fr}
+  .collection,.collection-copy{min-height:235px}
+  .collection-copy{width:62%}
   .product-grid{grid-template-columns:repeat(2,1fr)}
   .about{grid-template-columns:1fr}
 }
@@ -772,22 +831,37 @@ footer{
   </div>
 
   <div class="collections">
-    <button class="collection" data-filter="Pulse">
-      <small>GEEK BAR</small>
-      <strong>PULSE</strong>
-      <p>El clásico que no falla.</p>
+    <button class="collection collection-image" data-filter="Digiflavor">
+      <img src="DIGIFLAVOR.png" alt="Geek Bar Digiflavor">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>DIGIFLAVOR</strong>
+        <p>Una experiencia diferente.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
     </button>
 
-    <button class="collection purple" data-filter="Pulse X">
-      <small>GEEK BAR</small>
-      <strong>PULSE X</strong>
-      <p>Más pantalla. Más modos.</p>
+    <button class="collection collection-image" data-filter="Pulse">
+      <img src="PULSE.png" alt="Geek Bar Pulse">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>PULSE</strong>
+        <p>El clásico que no falla.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
     </button>
 
-    <button class="collection" data-filter="Digiflavor">
-      <small>DIGIFLAVOR</small>
-      <strong>XPLO</strong>
-      <p>Una experiencia diferente.</p>
+    <button class="collection collection-image" data-filter="Pulse X">
+      <img src="PULSE%20X.png" alt="Geek Bar Pulse X">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>PULSE X</strong>
+        <p>Más pantalla. Más modos. Más Pulse.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
     </button>
   </div>
 </section>
