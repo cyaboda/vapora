@@ -1038,6 +1038,160 @@ footer{
   }
 }
 
+
+/* ===== FLAVOR EXPLORER ===== */
+.flavor-explorer{
+  padding:58px 5vw 62px;
+  background:
+    radial-gradient(circle at 50% -25%,rgba(122,92,255,.12),transparent 44%),
+    #07080b;
+  border-bottom:1px solid var(--line);
+}
+.flavor-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  margin-bottom:26px;
+}
+.flavor-heading p{
+  margin:0 0 10px;
+  color:#a6a9b2;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.28em;
+}
+.flavor-heading h2{
+  margin:0;
+  color:#f5f5f7;
+  font-size:clamp(36px,4vw,62px);
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+.flavor-all-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding-bottom:7px;
+  border-bottom:1px solid rgba(255,255,255,.28);
+  color:#d7d9df;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.flavor-all-link span{
+  color:#9c84ff;
+  font-size:18px;
+  line-height:1;
+}
+.flavor-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+.flavor-card{
+  position:relative;
+  min-height:208px;
+  padding:16px 14px 18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:16px;
+  background:
+    linear-gradient(180deg,rgba(22,24,30,.96),rgba(11,12,16,.96));
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+.flavor-card::before{
+  content:"";
+  position:absolute;
+  inset:-35% 10% 34%;
+  background:radial-gradient(circle,rgba(122,91,255,.17),transparent 68%);
+  opacity:0;
+  transition:opacity .25s ease;
+}
+.flavor-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(155,128,255,.48);
+  box-shadow:0 20px 45px rgba(0,0,0,.30),0 0 28px rgba(119,83,255,.10);
+}
+.flavor-card:hover::before{
+  opacity:1;
+}
+.flavor-icon-wrap{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:145px;
+  display:grid;
+  place-items:center;
+  margin-bottom:4px;
+}
+.flavor-icon-wrap img{
+  display:block;
+  width:150px;
+  height:150px;
+  max-width:90%;
+  object-fit:contain;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.36));
+  transition:transform .3s ease,filter .3s ease;
+}
+.flavor-card:hover .flavor-icon-wrap img{
+  transform:scale(1.055);
+  filter:drop-shadow(0 14px 22px rgba(76,49,170,.28));
+}
+.flavor-card span{
+  position:relative;
+  z-index:1;
+  color:#f0f1f4;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.20em;
+}
+.flavor-note{
+  margin:18px 0 0;
+  color:#666b75;
+  font-size:10px;
+  letter-spacing:.08em;
+}
+@media(max-width:1000px){
+  .flavor-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(max-width:680px){
+  .flavor-explorer{
+    padding:44px 24px 48px;
+  }
+  .flavor-heading{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:18px;
+  }
+  .flavor-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .flavor-card{
+    min-height:190px;
+  }
+  .flavor-icon-wrap{
+    height:132px;
+  }
+  .flavor-icon-wrap img{
+    width:138px;
+    height:138px;
+  }
+}
+
 </style>
 
 <script>
@@ -1056,6 +1210,13 @@ footer{
       window.scrollTo(0, 0);
     }, 0);
   });
+
+document.querySelectorAll(".flavor-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    document.getElementById("productos")?.scrollIntoView({behavior:"smooth"});
+  });
+});
+
 </script>
 
 </head>
@@ -1068,6 +1229,7 @@ footer{
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#productos">Productos</a>
+    <a href="#sabores">Sabores</a>
   </nav>
 
   <button class="cart-button" id="cartButton">
@@ -1141,6 +1303,56 @@ footer{
       <span>Te ayudamos a elegir</span>
     </div>
   </div>
+</section>
+
+
+<section class="flavor-explorer" id="sabores">
+  <div class="flavor-heading">
+    <div>
+      <p>ELIGE POR SABOR</p>
+      <h2>¿Qué se te antoja hoy?</h2>
+    </div>
+    <a class="flavor-all-link" href="#productos">Ver todos los sabores <span>→</span></a>
+  </div>
+
+  <div class="flavor-grid">
+    <button class="flavor-card" type="button" data-category="todos" aria-label="Ver todos los sabores">
+      <div class="flavor-icon-wrap">
+        <img src="TODOS.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>TODOS</span>
+    </button>
+
+    <button class="flavor-card" type="button" data-category="frutales" aria-label="Ver sabores frutales">
+      <div class="flavor-icon-wrap">
+        <img src="FRUTALES.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>FRUTALES</span>
+    </button>
+
+    <button class="flavor-card" type="button" data-category="ice" aria-label="Ver sabores ice">
+      <div class="flavor-icon-wrap">
+        <img src="ICE.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>ICE</span>
+    </button>
+
+    <button class="flavor-card" type="button" data-category="dulces" aria-label="Ver sabores dulces">
+      <div class="flavor-icon-wrap">
+        <img src="DULCES.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>DULCES</span>
+    </button>
+
+    <button class="flavor-card" type="button" data-category="postres" aria-label="Ver sabores de postres">
+      <div class="flavor-icon-wrap">
+        <img src="POSTRES.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>POSTRES</span>
+    </button>
+  </div>
+
+  <p class="flavor-note">Muy pronto podrás explorar todos nuestros sabores por categoría.</p>
 </section>
 
 <section class="content" id="productos">
