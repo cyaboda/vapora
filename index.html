@@ -5,11 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="VAPORA - Pulse, Pulse X y Digiflavor. Encuentra tu sabor." />
   <title>VAPORA</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Ajustes del hero para usar BANNER.png -->
+  <style>
+    .hero-banner {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-banner-img {
+      display: block;
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-banner {
+        min-height: 420px;
+      }
+
+      .hero-banner-img {
+        height: 420px;
+        object-fit: contain;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-banner {
+        min-height: 300px;
+        width: 100%;
+        transform: none;
+      }
+
+      .hero-banner-img {
+        width: 100%;
+        height: auto;
+        max-height: 360px;
+        object-fit: contain;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header class="site-header">
     <a class="logo" href="#inicio">VAPORA</a>
@@ -27,33 +76,59 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="hero-copy">
         <p class="eyebrow">VAPORA</p>
-        <h1>ENCUENTRA<br><span>TU SABOR.</span></h1>
+
+        <h1>
+          ENCUENTRA<br>
+          <span>TU SABOR.</span>
+        </h1>
+
         <p class="hero-lines">PULSE · PULSE X · DIGIFLAVOR</p>
+
         <p class="hero-text">
           Una tienda enfocada en tres líneas, muchos sabores y una experiencia de compra simple.
         </p>
+
         <a class="primary-btn" href="#productos">Explorar productos</a>
       </div>
 
-      <div class="hero-art">
-        <div class="glow glow-one"></div>
-        <div class="glow glow-two"></div>
-        <div class="device-card device-a">PULSE</div>
-        <div class="device-card device-b">PULSE X</div>
-        <div class="device-card device-c">DIGIFLAVOR</div>
+      <!-- BANNER REAL -->
+      <div class="hero-art hero-banner">
+        <img
+          src="BANNER.png"
+          alt="VAPORA - Pulse, Pulse X y Digiflavor"
+          class="hero-banner-img"
+        />
       </div>
     </section>
 
+    <!-- BENEFICIOS -->
     <section class="trust-strip">
-      <div><strong>Productos originales</strong><span>Compra con confianza</span></div>
-      <div><strong>Envíos</strong><span>Quito y todo Ecuador</span></div>
-      <div><strong>Pago seguro</strong><span>Checkout externo</span></div>
-      <div><strong>Atención</strong><span>Soporte personalizado</span></div>
+      <div>
+        <strong>Productos originales</strong>
+        <span>Compra con confianza</span>
+      </div>
+
+      <div>
+        <strong>Envíos</strong>
+        <span>Quito y todo Ecuador</span>
+      </div>
+
+      <div>
+        <strong>Pago seguro</strong>
+        <span>Checkout externo</span>
+      </div>
+
+      <div>
+        <strong>Atención</strong>
+        <span>Soporte personalizado</span>
+      </div>
     </section>
 
+    <!-- COLECCIONES -->
     <section class="collection-section" id="productos">
       <div class="section-heading">
         <div>
@@ -83,6 +158,7 @@
       </div>
     </section>
 
+    <!-- PRODUCTOS / SABORES -->
     <section class="products-section" id="sabores">
       <div class="section-heading product-heading">
         <div>
@@ -101,11 +177,16 @@
       <div class="product-grid" id="productGrid"></div>
     </section>
 
+    <!-- NOSOTROS -->
     <section class="about" id="nosotros">
       <div>
         <p class="eyebrow">VAPORA</p>
-        <h2>Pequeños detalles.<br><span>Grandes vibes.</span></h2>
+        <h2>
+          Pequeños detalles.<br>
+          <span>Grandes vibes.</span>
+        </h2>
       </div>
+
       <p>
         Diseñamos una experiencia directa: eliges tu dispositivo, encuentras tu sabor,
         agregas al carrito y finalizas tu compra en un checkout seguro.
@@ -113,12 +194,14 @@
     </section>
   </main>
 
+  <!-- CARRITO -->
   <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
     <div class="cart-header">
       <div>
         <p class="eyebrow">TU PEDIDO</p>
         <h2>Carrito</h2>
       </div>
+
       <button id="closeCart" class="icon-btn" aria-label="Cerrar carrito">×</button>
     </div>
 
@@ -129,29 +212,44 @@
         <span>Total</span>
         <strong id="cartTotal">$0.00</strong>
       </div>
-      <button class="checkout-btn" id="checkoutButton">Finalizar compra</button>
+
+      <button class="checkout-btn" id="checkoutButton">
+        Finalizar compra
+      </button>
+
       <p class="checkout-note">
-        El botón está listo para enlazarse después con PayPhone, Kushki, Datafast u otra pasarela compatible.
+        Pago procesado mediante una pasarela externa segura.
       </p>
     </div>
   </aside>
 
   <div class="overlay" id="overlay"></div>
 
+  <!-- CONTROL DE ACCESO -->
   <div class="age-modal" id="ageModal" aria-modal="true" role="dialog">
     <div class="age-card">
       <p class="eyebrow">ACCESO RESTRINGIDO</p>
+
       <h2>VAPORA</h2>
+
       <p>
-        Confirma que tienes la edad legal requerida para acceder a productos regulados en tu jurisdicción.
+        Confirma que tienes la edad legal requerida para acceder a productos
+        regulados en tu jurisdicción.
       </p>
+
       <div class="age-actions">
-        <button id="confirmAge" class="primary-btn">Confirmar</button>
-        <button id="leaveSite" class="secondary-btn">Salir</button>
+        <button id="confirmAge" class="primary-btn">
+          Confirmar
+        </button>
+
+        <button id="leaveSite" class="secondary-btn">
+          Salir
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-logo">VAPORA</div>
     <div class="footer-copy">Pulse · Pulse X · Digiflavor</div>
