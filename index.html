@@ -1783,6 +1783,181 @@ header.header-scrolled{
   header .liquid-glass-sheen{transition:none}
 }
 
+
+/* ===== VAPORA LIQUID GLASS — REFINED / LOW BLUR ===== */
+header{
+  --mx:50%;
+  --my:50%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  isolation:isolate;
+  overflow:hidden;
+  background:rgba(5,6,8,.93) !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+  transition:
+    background .32s ease,
+    border-color .32s ease,
+    box-shadow .32s ease;
+}
+
+/* Much clearer glass: preserve what is behind it */
+header.header-scrolled{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,20,26,.24) 0%,
+      rgba(8,9,13,.18) 100%
+    ) !important;
+  -webkit-backdrop-filter:
+    blur(10px)
+    saturate(155%)
+    contrast(108%)
+    brightness(104%);
+  backdrop-filter:
+    blur(10px)
+    saturate(155%)
+    contrast(108%)
+    brightness(104%);
+  border-bottom-color:rgba(255,255,255,.16) !important;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.035);
+}
+
+/* restrained color refraction */
+header::before{
+  content:"";
+  position:absolute;
+  inset:-24% -5%;
+  z-index:-2;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(circle at var(--mx) 18%,
+      rgba(255,255,255,.15) 0 3%,
+      rgba(178,156,255,.08) 8%,
+      transparent 21%),
+    radial-gradient(circle at calc(var(--mx) + 19%) 62%,
+      rgba(80,210,255,.07),
+      transparent 24%),
+    radial-gradient(circle at calc(var(--mx) - 20%) 60%,
+      rgba(184,94,255,.07),
+      transparent 23%),
+    linear-gradient(115deg,
+      rgba(255,255,255,.02),
+      rgba(142,110,255,.045) 30%,
+      rgba(83,202,255,.035) 50%,
+      rgba(255,255,255,.04) 58%,
+      rgba(255,100,214,.035) 77%,
+      transparent 100%);
+  filter:url(#vaporaLiquidWarpSoft) blur(4px);
+  transform:scale(1.035);
+  transition:opacity .3s ease;
+}
+header.header-scrolled::before{opacity:1}
+
+/* crisp liquid-glass edges */
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.17) 0,
+      rgba(255,255,255,.06) 1px,
+      rgba(255,255,255,.015) 10%,
+      transparent 32%,
+      transparent 74%,
+      rgba(255,255,255,.025) 90%,
+      rgba(255,255,255,.075) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(255,255,255,.07);
+  transition:opacity .3s ease;
+}
+header.header-scrolled::after{opacity:1}
+
+/* narrower, cleaner specular highlight */
+header .liquid-glass-sheen{
+  position:absolute;
+  top:-50%;
+  left:calc(var(--mx) - 9%);
+  width:18%;
+  height:200%;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  transform:rotate(12deg);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,.015) 20%,
+      rgba(255,255,255,.11) 48%,
+      rgba(255,255,255,.035) 66%,
+      transparent 100%
+    );
+  filter:blur(3px);
+  mix-blend-mode:screen;
+  transition:opacity .22s ease,left .1s linear;
+}
+header.header-scrolled .liquid-glass-sheen{opacity:.56}
+
+/* very subtle edge caustics */
+header .glass-edge-left,
+header .glass-edge-right{
+  position:absolute;
+  top:9px;
+  bottom:9px;
+  width:34px;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  filter:blur(4px);
+  transition:opacity .28s ease;
+}
+header .glass-edge-left{
+  left:-15px;
+  background:radial-gradient(circle at right,rgba(165,130,255,.10),transparent 66%);
+}
+header .glass-edge-right{
+  right:-15px;
+  background:radial-gradient(circle at left,rgba(92,217,255,.09),transparent 66%);
+}
+header.header-scrolled .glass-edge-left,
+header.header-scrolled .glass-edge-right{opacity:1}
+
+header.header-scrolled .cart-btn{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.028)
+    ) !important;
+  border-color:rgba(255,255,255,.15) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 7px 18px rgba(0,0,0,.13);
+  -webkit-backdrop-filter:blur(7px) saturate(130%);
+  backdrop-filter:blur(7px) saturate(130%);
+}
+
+@media (prefers-reduced-motion:reduce){
+  header,
+  header::before,
+  header::after,
+  header .liquid-glass-sheen{
+    transition:none !important;
+  }
+}
+
 </style>
 
 <script>
@@ -1813,6 +1988,20 @@ document.querySelectorAll(".flavor-card").forEach(card=>{
 </head>
 
 <body>
+
+<svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
+  <filter id="vaporaLiquidWarpSoft" x="-20%" y="-60%" width="140%" height="220%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.010 0.026" numOctaves="2" seed="7" result="noise">
+      <animate attributeName="baseFrequency"
+               dur="11s"
+               values="0.010 0.026;0.012 0.022;0.010 0.026"
+               repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="9"
+                       xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
 
 <svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
   <filter id="vaporaLiquidWarp" x="-30%" y="-80%" width="160%" height="260%">
