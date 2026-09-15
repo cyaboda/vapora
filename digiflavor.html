@@ -297,6 +297,129 @@ header .nav-products > .products-menu:hover{
   .hero-video{display:none}
 }
 
+
+/* ===== SUBBANNER DE ESPECIFICACIONES ===== */
+.specs-strip{
+  width:100%;
+  padding:26px clamp(18px,3vw,46px) 18px;
+  background:#050608;
+  border-top:1px solid rgba(255,255,255,.055);
+  border-bottom:1px solid rgba(255,255,255,.055);
+  overflow:hidden;
+}
+.specs-strip img{
+  display:block;
+  width:min(100%,1500px);
+  height:auto;
+  margin:0 auto;
+  object-fit:contain;
+}
+
+/* ===== PRODUCT CARDS V2 ===== */
+.products-grid{
+  gap:18px !important;
+}
+.product-card{
+  position:relative !important;
+  overflow:hidden !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:22px !important;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(121,83,255,.09),transparent 34%),
+    linear-gradient(180deg,#0c0e12 0%,#08090c 100%) !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.22) !important;
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease !important;
+}
+.product-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(125deg,rgba(255,255,255,.075),transparent 22%,transparent 75%,rgba(103,73,255,.06));
+  opacity:.8;
+}
+.product-card:hover{
+  transform:translateY(-5px) !important;
+  border-color:rgba(255,255,255,.20) !important;
+  box-shadow:0 24px 60px rgba(0,0,0,.36),0 0 32px rgba(93,68,255,.07) !important;
+}
+.product-visual.real-product{
+  height:300px !important;
+  padding:10px 10px 0 !important;
+  background:
+    radial-gradient(circle at 50% 70%,rgba(111,84,255,.13),transparent 44%),
+    #07080b !important;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.product-visual.real-product img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  transform:scale(.96) !important;
+  filter:drop-shadow(0 22px 24px rgba(0,0,0,.34));
+}
+.product-card:hover .product-visual.real-product img{
+  transform:scale(1.015) !important;
+}
+.product-info{
+  padding:20px 18px 18px !important;
+  position:relative;
+}
+.product-info .eyebrow{
+  font-size:10px !important;
+  letter-spacing:.15em !important;
+  opacity:.58 !important;
+}
+.product-info h3{
+  font-size:22px !important;
+  letter-spacing:-.035em !important;
+  margin:7px 0 18px !important;
+}
+.price-row{
+  align-items:flex-end !important;
+  margin-top:8px !important;
+  padding-top:16px !important;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.price{
+  font-size:25px !important;
+  letter-spacing:-.04em !important;
+}
+.stock{
+  padding:6px 9px !important;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  font-size:10px !important;
+}
+.add-btn{
+  margin-top:14px !important;
+  min-height:46px !important;
+  border-radius:14px !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+  background:rgba(255,255,255,.94) !important;
+  color:#090a0d !important;
+  transition:transform .2s ease,background .2s ease !important;
+}
+.add-btn:hover{
+  transform:translateY(-1px);
+  background:#fff !important;
+}
+@media(max-width:760px){
+  .specs-strip{
+    padding:18px 14px 12px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .specs-strip::-webkit-scrollbar{display:none}
+  .specs-strip img{
+    width:1000px;
+    max-width:none;
+  }
+  .product-visual.real-product{height:270px !important}
+}
+
 </style>
 </head>
 <body>
@@ -326,10 +449,17 @@ header .nav-products > .products-menu:hover{
   </div>
 </section>
 
+<section class="specs-strip" aria-label="Características de Digiflavor">
+  <img src="SubBanner.png"
+       alt="Características Digiflavor: 3 modos de uso, pantalla inteligente de 1.8 pulgadas, hasta 25.000 caladas, doble malla de resistencia, tecnología VPU integrada, batería de 800 mAh, 5% de nicotina y 16 mL de e-líquido"
+       loading="eager" decoding="async">
+</section>
+
+
 <main class="catalog">
   <div class="catalog-head">
     <p>Sabores disponibles</p>
-    <strong>5 sabores</strong>
+    
   </div>
   <div class="grid">
         <article class="product-card">
