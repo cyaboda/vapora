@@ -420,6 +420,133 @@ header .nav-products > .products-menu:hover{
   .product-visual.real-product{height:270px !important}
 }
 
+
+/* ===== DIGIFLAVOR APPROVED LOOK ===== */
+.hero{
+  min-height:330px !important;
+}
+.hero-content{
+  padding:62px 5vw 46px !important;
+}
+.hero h1{
+  font-size:clamp(58px,7.2vw,108px) !important;
+  margin:26px 0 14px !important;
+}
+.hero-slogan{
+  color:#f1f2f5 !important;
+  font-size:clamp(12px,1.05vw,16px) !important;
+  font-weight:500 !important;
+  letter-spacing:.34em !important;
+  text-transform:uppercase;
+}
+
+/* Compact specs row */
+.specs-strip{
+  padding:10px clamp(20px,3.5vw,54px) 12px !important;
+  min-height:0 !important;
+  display:flex;
+  align-items:center;
+}
+.specs-strip img{
+  width:min(100%,1450px) !important;
+  max-height:190px !important;
+  object-fit:contain !important;
+}
+
+/* Five cards on desktop, like the approved concept */
+.catalog{
+  padding-top:28px !important;
+}
+.grid{
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+.product-card{
+  border-radius:18px !important;
+  background:
+    linear-gradient(180deg,rgba(11,13,17,.98),rgba(8,10,14,.98)) !important;
+  border:1px solid rgba(255,255,255,.13) !important;
+  box-shadow:0 14px 34px rgba(0,0,0,.28) !important;
+}
+.product-visual.real-product{
+  height:255px !important;
+  padding:0 !important;
+  background:
+    radial-gradient(circle at 50% 72%,rgba(60,190,255,.09),transparent 48%),
+    #07090c !important;
+}
+.product-visual.real-product img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  transform:scale(1.01) !important;
+  filter:none !important;
+}
+.product-card:hover .product-visual.real-product img{
+  transform:scale(1.045) !important;
+}
+.product-info{
+  padding:16px 17px 17px !important;
+  min-height:214px;
+  display:flex;
+  flex-direction:column;
+}
+.product-info h2{
+  font-size:16px !important;
+  line-height:1.04 !important;
+  min-height:34px !important;
+  margin:0 0 8px !important;
+  letter-spacing:-.025em;
+}
+.flavor-copy{
+  margin:0 0 16px;
+  min-height:34px;
+  color:#aeb2bb;
+  font-size:11px;
+  line-height:1.45;
+}
+.meta{
+  margin-top:auto !important;
+  margin-bottom:13px !important;
+  padding-top:12px !important;
+  border-top:1px solid rgba(255,255,255,.065);
+}
+.meta strong{
+  font-size:21px !important;
+}
+.stock{
+  white-space:nowrap;
+  font-size:8px !important;
+  padding:6px 8px !important;
+}
+.add{
+  border-radius:999px !important;
+  min-height:42px;
+  padding:11px 14px !important;
+}
+@media(max-width:1200px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+}
+@media(max-width:760px){
+  .hero{min-height:300px !important}
+  .hero-content{padding:50px 5vw 38px !important}
+  .specs-strip{
+    overflow-x:auto !important;
+    padding:8px 12px !important;
+  }
+  .specs-strip img{
+    width:920px !important;
+    max-width:none !important;
+    max-height:145px !important;
+  }
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .product-visual.real-product{height:230px !important}
+}
+@media(max-width:520px){
+  .grid{grid-template-columns:1fr !important}
+  .product-visual.real-product{height:300px !important}
+}
+
 </style>
 </head>
 <body>
@@ -445,7 +572,7 @@ header .nav-products > .products-menu:hover{
   <div class="hero-content">
     <a class="back" href="index.html#productos">← Volver a dispositivos</a>
     <h1>DIGIFLAVOR</h1>
-    <p>25.000 PUFF · <b>USD 25,00</b></p>
+    <p class="hero-slogan">MÁS SABOR. MÁS ACTITUD.</p>
   </div>
 </section>
 
@@ -467,6 +594,7 @@ header .nav-products > .products-menu:hover{
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Miami Mint</h2>
+            <p class="flavor-copy">Menta fresca, limpia y refrescante.</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">6 unidades disponibles</span>
@@ -480,6 +608,7 @@ header .nav-products > .products-menu:hover{
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Sky Strawberry Banana</h2>
+            <p class="flavor-copy">Fresa y banana en un perfil dulce y cremoso.</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">4 unidades disponibles</span>
@@ -493,6 +622,7 @@ header .nav-products > .products-menu:hover{
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Sour Watermelon Razz Ice</h2>
+            <p class="flavor-copy">Sandía ácida, frutos azules y un toque ice.</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">6 unidades disponibles</span>
@@ -506,6 +636,7 @@ header .nav-products > .products-menu:hover{
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Strawberry Watermelon Coconut</h2>
+            <p class="flavor-copy">Fresa, sandía y coco en una mezcla tropical.</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock low">2 unidades disponibles</span>
@@ -519,6 +650,7 @@ header .nav-products > .products-menu:hover{
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Twisted B Pop</h2>
+            <p class="flavor-copy">Dulce, intenso y con vibra de candy pop.</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">4 unidades disponibles</span>
