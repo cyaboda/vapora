@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VAPORA</title>
 <meta name="description" content="VAPORA - Pulse, Pulse X y Digiflavor. Encuentra tu sabor.">
+<link rel="canonical" href="https://vapora.com.ec/">
 
 <style>
 :root{
@@ -2285,6 +2286,30 @@ header .nav-products > .products-menu:hover{
   visibility:visible !important;
   pointer-events:auto !important;
   transform:translate(-50%,0) !important;
+}
+
+
+/* ===== FIX SCROLL HORIZONTAL ===== */
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+body > svg[width="0"][height="0"]{
+  position:absolute !important;
+  width:0 !important;
+  height:0 !important;
+  overflow:hidden !important;
+  pointer-events:none !important;
+}
+header, main, .hero, .trust, .content, .flavor-explorer,
+.community-strip, .community-gallery, .vapora-footer{
+  max-width:100%;
+}
+.community-title-marquee,
+.community-gallery{
+  overflow:hidden !important;
+  contain:paint;
 }
 
 </style>
