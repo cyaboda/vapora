@@ -2478,16 +2478,7 @@ document.querySelectorAll(".flavor-card").forEach(card=>{
 </div>
 
 <script>
-const products=[
-  {id:1,name:"Blue Razz Ice",model:"Pulse X",price:17.99,tone:"linear-gradient(160deg,#355dff,#11141b)"},
-  {id:2,name:"Watermelon Ice",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#ff5f72,#55c576 58%,#11141b 58%)"},
-  {id:3,name:"Strawberry Banana",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#ff758a,#ffb14c 58%,#11141b 58%)"},
-  {id:4,name:"Miami Mint",model:"Digiflavor",price:18.99,tone:"linear-gradient(160deg,#293635,#82d4bc)"},
-  {id:5,name:"Sour Apple Ice",model:"Pulse X",price:17.99,tone:"linear-gradient(160deg,#4aa7ff,#11141b)"},
-  {id:6,name:"Grape Ice",model:"Digiflavor",price:18.99,tone:"linear-gradient(160deg,#825aff,#11141b)"},
-  {id:7,name:"Peach Mango",model:"Pulse X",price:17.99,tone:"linear-gradient(160deg,#ff9669,#ffd65a 58%,#11141b 58%)"},
-  {id:8,name:"Cool Mint",model:"Pulse",price:16.99,tone:"linear-gradient(160deg,#59d0b9,#11141b)"}
-];
+const products=[{id:100,name:"Miami Mint",model:"DIGIFLAVOR",price:25.00,stock:6},{id:101,name:"Sky Strawberry Banana",model:"DIGIFLAVOR",price:25.00,stock:4},{id:102,name:"Sour Watermelon Razz Ice",model:"DIGIFLAVOR",price:25.00,stock:6},{id:103,name:"Strawberry Watermelon Coconut",model:"DIGIFLAVOR",price:25.00,stock:2},{id:104,name:"Twisted B Pop",model:"DIGIFLAVOR",price:25.00,stock:4},{id:105,name:"Blackberry Blueberry",model:"PULSE X",price:30.00,stock:4},{id:106,name:"Blue Rancher",model:"PULSE X",price:30.00,stock:6},{id:107,name:"Blue Razz Ice",model:"PULSE X",price:30.00,stock:4},{id:108,name:"Lemon Heads",model:"PULSE X",price:30.00,stock:1},{id:109,name:"Miami Mint",model:"PULSE X",price:30.00,stock:4},{id:110,name:"Orange Fcuking",model:"PULSE X",price:30.00,stock:2},{id:111,name:"Pink & Blue",model:"PULSE X",price:30.00,stock:6},{id:112,name:"Sour Apple Ice",model:"PULSE X",price:30.00,stock:7},{id:113,name:"Strawberry Kiwi Ice",model:"PULSE X",price:30.00,stock:4},{id:114,name:"Banana Taffy Freeze",model:"PULSE X",price:30.00,stock:2},{id:115,name:"Strawberry Watermelon",model:"PULSE X",price:30.00,stock:4},{id:116,name:"Black Cherry",model:"PULSE",price:23.00,stock:2},{id:117,name:"Blue Razz Ice",model:"PULSE",price:23.00,stock:3},{id:118,name:"Cherry Bomb",model:"PULSE",price:23.00,stock:2},{id:119,name:"Frozen Blackberry Fab",model:"PULSE",price:23.00,stock:2},{id:120,name:"Sour Watermelon Drop",model:"PULSE",price:23.00,stock:2},{id:121,name:"Stone Freeze",model:"PULSE",price:23.00,stock:1},{id:122,name:"Watermelon Ice",model:"PULSE",price:23.00,stock:4}]
 
 let cart=JSON.parse(localStorage.getItem("vaporaCart")||"{}");
 
