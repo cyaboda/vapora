@@ -855,6 +855,144 @@ header .nav-products > .products-menu:hover{
 .feature-icon.mesh svg{width:24px;height:24px}
 .feature-icon.vpu svg{width:27px;height:27px}
 
+
+/* ===== VAPORA FLAVOR CARDS V4 ===== */
+.grid{
+  gap:14px !important;
+}
+.product-card{
+  --accent: 120,190,255;
+  position:relative !important;
+  overflow:hidden !important;
+  border-radius:20px !important;
+  border:1px solid rgba(255,255,255,.11) !important;
+  background:linear-gradient(180deg,#090b0f 0%,#07090d 100%) !important;
+  box-shadow:0 16px 40px rgba(0,0,0,.24) !important;
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease !important;
+}
+.product-card:nth-child(1){--accent:84,255,170}
+.product-card:nth-child(2){--accent:255,191,70}
+.product-card:nth-child(3){--accent:70,196,255}
+.product-card:nth-child(4){--accent:255,110,95}
+.product-card:nth-child(5){--accent:255,105,135}
+.product-card::after{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  top:42%;
+  height:32%;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse,rgba(var(--accent),.10),transparent 68%);
+  filter:blur(20px);
+}
+.product-card:hover{
+  transform:translateY(-5px) !important;
+  border-color:rgba(var(--accent),.28) !important;
+  box-shadow:0 22px 55px rgba(0,0,0,.38),0 0 26px rgba(var(--accent),.055) !important;
+}
+.product-visual.real-product{
+  position:relative;
+  z-index:1;
+  height:255px !important;
+  padding:0 !important;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 72%,rgba(var(--accent),.09),transparent 46%),
+    #07090c !important;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.product-visual.real-product img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  transform:scale(1.01) !important;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1) !important;
+}
+.product-card:hover .product-visual.real-product img{
+  transform:scale(1.045) !important;
+}
+.product-info{
+  position:relative;
+  z-index:2;
+  min-height:218px !important;
+  padding:16px 17px 17px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  background:linear-gradient(180deg,rgba(10,12,16,.93),rgba(8,10,14,.98));
+}
+.product-info .eyebrow,
+.product-eyebrow{
+  width:max-content;
+  margin:0 0 8px !important;
+  padding:5px 8px !important;
+  border:1px solid rgba(var(--accent),.18);
+  border-radius:999px;
+  background:rgba(var(--accent),.055);
+  color:rgba(235,240,247,.72) !important;
+  font-size:8px !important;
+  font-weight:650 !important;
+  line-height:1 !important;
+  letter-spacing:.13em !important;
+}
+.product-info h2{
+  min-height:0 !important;
+  margin:0 0 6px !important;
+  color:#f6f7f9;
+  font-size:16px !important;
+  line-height:1.04 !important;
+  font-weight:800 !important;
+  letter-spacing:-.025em !important;
+}
+.flavor-copy{
+  min-height:30px !important;
+  margin:0 0 13px !important;
+  color:#9298a3 !important;
+  font-size:10px !important;
+  line-height:1.45 !important;
+}
+.meta{
+  margin-top:auto !important;
+  margin-bottom:12px !important;
+  padding-top:12px !important;
+  border-top:1px solid rgba(255,255,255,.065) !important;
+}
+.meta strong{
+  font-size:21px !important;
+  letter-spacing:-.035em !important;
+}
+.stock{
+  padding:6px 8px !important;
+  border-radius:999px !important;
+  border:1px solid rgba(255,255,255,.09) !important;
+  background:rgba(255,255,255,.035) !important;
+  color:#aeb3bd !important;
+  font-size:8px !important;
+}
+.add{
+  min-height:42px !important;
+  padding:10px 14px !important;
+  border-radius:999px !important;
+  background:#f5f6f8 !important;
+  color:#090a0d !important;
+  border:1px solid rgba(255,255,255,.9) !important;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease !important;
+}
+.add:hover{
+  transform:translateY(-1px);
+  background:#fff !important;
+  box-shadow:0 7px 20px rgba(255,255,255,.08);
+}
+.add.added{
+  background:rgba(var(--accent),.12) !important;
+  color:#f7f8fa !important;
+  border-color:rgba(var(--accent),.32) !important;
+}
+@media(max-width:760px){
+  .product-visual.real-product{height:250px !important}
+}
+
 </style>
 </head>
 <body>
@@ -909,9 +1047,9 @@ header .nav-products > .products-menu:hover{
         <article class="product-card">
           <div class="product-visual real-product" aria-label="Miami Mint"><img src="MiamiMint.png" alt="Digiflavor Miami Mint" loading="lazy" decoding="async"></div>
           <div class="product-info">
-            <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
+            <p class="eyebrow">MENTA · ICE</p>
             <h2>Miami Mint</h2>
-            <p class="flavor-copy">Menta fresca, limpia y refrescante.</p>
+            <p class="flavor-copy">Menta fresca · toque helado</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">6 unidades disponibles</span>
@@ -923,9 +1061,9 @@ header .nav-products > .products-menu:hover{
         <article class="product-card">
           <div class="product-visual real-product" aria-label="Sky Strawberry Banana"><img src="StrawberryBanana.png" alt="Digiflavor Sky Strawberry Banana" loading="lazy" decoding="async"></div>
           <div class="product-info">
-            <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
+            <p class="eyebrow">FRUTAL · DULCE</p>
             <h2>Sky Strawberry Banana</h2>
-            <p class="flavor-copy">Fresa y banana en un perfil dulce y cremoso.</p>
+            <p class="flavor-copy">Fresa dulce · banana cremosa</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">4 unidades disponibles</span>
@@ -937,9 +1075,9 @@ header .nav-products > .products-menu:hover{
         <article class="product-card">
           <div class="product-visual real-product" aria-label="Sour Watermelon Razz Ice"><img src="SourWatermelonBlueRazz.png" alt="Digiflavor Sour Watermelon Razz Ice" loading="lazy" decoding="async"></div>
           <div class="product-info">
-            <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
+            <p class="eyebrow">FRUTAL · ICE</p>
             <h2>Sour Watermelon Razz Ice</h2>
-            <p class="flavor-copy">Sandía ácida, frutos azules y un toque ice.</p>
+            <p class="flavor-copy">Sandía ácida · blue razz · ice</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">6 unidades disponibles</span>
@@ -951,9 +1089,9 @@ header .nav-products > .products-menu:hover{
         <article class="product-card">
           <div class="product-visual real-product" aria-label="Strawberry Watermelon Coconut"><img src="StrawberryWatermelonCoconut.png" alt="Digiflavor Strawberry Watermelon Coconut" loading="lazy" decoding="async"></div>
           <div class="product-info">
-            <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
+            <p class="eyebrow">FRUTAL · TROPICAL</p>
             <h2>Strawberry Watermelon Coconut</h2>
-            <p class="flavor-copy">Fresa, sandía y coco en una mezcla tropical.</p>
+            <p class="flavor-copy">Fresa · sandía · coco</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock low">2 unidades disponibles</span>
@@ -965,9 +1103,9 @@ header .nav-products > .products-menu:hover{
         <article class="product-card">
           <div class="product-visual real-product" aria-label="Twisted B Pop"><img src="TwistedB-Pop.png" alt="Digiflavor Twisted B Pop" loading="lazy" decoding="async"></div>
           <div class="product-info">
-            <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
+            <p class="eyebrow">DULCE · CANDY</p>
             <h2>Twisted B Pop</h2>
-            <p class="flavor-copy">Dulce, intenso y con vibra de candy pop.</p>
+            <p class="flavor-copy">Dulce intenso · candy pop</p>
             <div class="meta">
               <strong>$25.00</strong>
               <span class="stock">4 unidades disponibles</span>
@@ -1022,5 +1160,22 @@ function openCart(){drawer.classList.add("open");overlay.classList.add("open")}
 function closeDrawer(){drawer.classList.remove("open");overlay.classList.remove("open")}
 document.getElementById("cartButton").onclick=openCart;document.getElementById("closeCart").onclick=closeDrawer;overlay.onclick=closeDrawer;renderCart();
 </script>
+
+<script>
+document.addEventListener('click', function(e){
+  const btn = e.target.closest('.add');
+  if(!btn) return;
+  const original = btn.innerHTML;
+  setTimeout(function(){
+    btn.classList.add('added');
+    btn.innerHTML = '<span>✓ Agregado</span><span>✓</span>';
+    setTimeout(function(){
+      btn.classList.remove('added');
+      btn.innerHTML = original;
+    }, 1100);
+  }, 0);
+});
+</script>
+
 </body>
 </html>
