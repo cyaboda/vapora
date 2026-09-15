@@ -713,6 +713,110 @@ header .nav-products > .products-menu:hover{
   .catalog{padding-top:24px !important}
 }
 
+
+/* ===== DIGIFLAVOR COMPACT FEATURE STRIP ===== */
+.feature-strip{
+  background:#06070a;
+  border-top:1px solid rgba(255,255,255,.055);
+  border-bottom:1px solid rgba(255,255,255,.055);
+  padding:22px clamp(24px,4vw,64px);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.feature-strip::-webkit-scrollbar{display:none}
+.feature-track{
+  width:min(100%,1320px);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.feature-item{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#f4f5f7;
+  white-space:nowrap;
+}
+.feature-icon{
+  width:46px;
+  height:46px;
+  flex:0 0 46px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+  color:#eef4ff;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:-.04em;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(255,255,255,.15),transparent 34%),
+    linear-gradient(145deg,rgba(25,31,40,.96),rgba(10,13,18,.98));
+  border:1px solid rgba(175,205,255,.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 0 14px rgba(80,160,255,.10);
+}
+.feature-icon::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow:inset 0 -1px 5px rgba(116,78,255,.22);
+}
+.feature-icon.vpu{
+  font-size:12px;
+  letter-spacing:.01em;
+}
+.feature-icon.mesh{font-size:25px;font-weight:400}
+.feature-icon.screen,
+.feature-icon.battery{font-size:22px;font-weight:400}
+.feature-icon.nicotine{font-size:17px}
+.feature-item b{
+  display:block;
+  font-size:12px;
+  line-height:1.15;
+  font-weight:650;
+  letter-spacing:-.01em;
+}
+.feature-item small{
+  display:block;
+  margin-top:3px;
+  color:#9298a3;
+  font-size:10px;
+  line-height:1.1;
+  font-weight:400;
+}
+.catalog{
+  padding-top:30px !important;
+}
+@media(max-width:1100px){
+  .feature-track{
+    width:max-content;
+    justify-content:flex-start;
+    padding-right:20px;
+  }
+}
+@media(max-width:760px){
+  .feature-strip{
+    padding:16px 16px;
+  }
+  .feature-track{gap:20px}
+  .feature-icon{
+    width:42px;
+    height:42px;
+    flex-basis:42px;
+  }
+  .feature-item b{font-size:11px}
+  .feature-item small{font-size:9px}
+  .catalog{padding-top:24px !important}
+}
+
 </style>
 </head>
 <body>
@@ -742,11 +846,20 @@ header .nav-products > .products-menu:hover{
   </div>
 </section>
 
-<section class="specs-strip" aria-label="Características de Digiflavor">
-  <img src="SubBanner.png?v=2"
-       alt="Características Digiflavor: 3 modos de uso, pantalla inteligente de 1.8 pulgadas, hasta 25.000 caladas, doble malla de resistencia, tecnología VPU integrada, batería de 800 mAh, 5% de nicotina y 16 mL de e-líquido"
-       loading="eager" decoding="async">
+
+<section class="feature-strip" aria-label="Características de Digiflavor">
+  <div class="feature-track">
+    <div class="feature-item"><span class="feature-icon mode">Ⅱ</span><span><b>3 modos</b><small>de uso</small></span></div>
+    <div class="feature-item"><span class="feature-icon screen">▣</span><span><b>Pantalla 1.8"</b><small>inteligente</small></span></div>
+    <div class="feature-item"><span class="feature-icon puff">◌</span><span><b>Hasta 25.000</b><small>caladas</small></span></div>
+    <div class="feature-item"><span class="feature-icon mesh">≋</span><span><b>Doble malla</b><small>de resistencia</small></span></div>
+    <div class="feature-item"><span class="feature-icon vpu">VPU</span><span><b>Tecnología VPU</b><small>integrada</small></span></div>
+    <div class="feature-item"><span class="feature-icon battery">▯</span><span><b>800 mAh</b><small>batería</small></span></div>
+    <div class="feature-item"><span class="feature-icon nicotine">N</span><span><b>5% nicotina</b><small>concentración</small></span></div>
+    <div class="feature-item"><span class="feature-icon liquid">◉</span><span><b>16 mL</b><small>de e-líquido</small></span></div>
+  </div>
 </section>
+
 
 
 <main class="catalog">
