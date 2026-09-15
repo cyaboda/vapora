@@ -671,6 +671,48 @@ header .nav-products > .products-menu:hover{
   .catalog{padding-top:24px !important}
 }
 
+
+/* ===== SUBBANNER FINAL CLEAN FIX ===== */
+.specs-strip{
+  height:auto !important;
+  min-height:0 !important;
+  padding:28px 32px 30px !important;
+  margin:0 !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.specs-strip img{
+  position:static !important;
+  display:block !important;
+  width:min(88vw,1240px) !important;
+  max-width:1240px !important;
+  height:auto !important;
+  max-height:none !important;
+  margin:0 auto !important;
+  transform:none !important;
+}
+.catalog{
+  padding-top:28px !important;
+}
+@media(max-width:760px){
+  .specs-strip{
+    height:auto !important;
+    min-height:0 !important;
+    padding:22px 14px 24px !important;
+    overflow-x:auto !important;
+    justify-content:flex-start !important;
+  }
+  .specs-strip img{
+    position:static !important;
+    width:820px !important;
+    max-width:none !important;
+    transform:none !important;
+  }
+  .catalog{padding-top:24px !important}
+}
+
 </style>
 </head>
 <body>
