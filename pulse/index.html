@@ -1053,6 +1053,38 @@ header .nav-products > .products-menu:hover{
   }
 }
 
+
+/* ===== PULSE PRODUCT IMAGE FIT FIX ===== */
+.product-visual.real-product{
+  height:255px !important;
+  padding:12px 14px 8px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  background:
+    radial-gradient(circle at 50% 62%,rgba(var(--accent),.075),transparent 48%),
+    #07090c !important;
+}
+.product-visual.real-product img{
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  transform:none !important;
+}
+.product-card:hover .product-visual.real-product img{
+  transform:scale(1.025) !important;
+}
+@media(max-width:760px){
+  .product-visual.real-product{
+    height:250px !important;
+    padding:10px !important;
+  }
+}
+
 </style>
 </head>
 <body>
