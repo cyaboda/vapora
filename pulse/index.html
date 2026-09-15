@@ -1112,9 +1112,30 @@ body{
   background-size:181px 181px,263px 263px;
   background-position:21px 37px,103px 131px;
 }
-body > *:not(.pulse-constellation-bg){
+/* Keep normal page content above the cosmic layer, but NEVER touch fixed UI */
+body > *:not(.pulse-constellation-bg):not(.drawer):not(.drawer-overlay){
   position:relative;
   z-index:1;
+}
+
+/* Cart must remain a true off-canvas fixed drawer */
+body > .drawer-overlay{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:10020 !important;
+}
+body > .drawer{
+  position:fixed !important;
+  top:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  left:auto !important;
+  height:100dvh !important;
+  z-index:10021 !important;
+  transform:translateX(105%) !important;
+}
+body > .drawer.open{
+  transform:translateX(0) !important;
 }
 main,.catalog,.products-section{
   background:rgba(5,7,10,.72) !important;
