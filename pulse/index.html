@@ -1085,6 +1085,121 @@ header .nav-products > .products-menu:hover{
   }
 }
 
+
+/* ===== PULSE SUBTLE COSMIC BACKGROUND ===== */
+/* Ambientación espacial muy sutil, sin imágenes externas */
+body{
+  background:#05070a !important;
+  position:relative;
+}
+
+/* Nebulosas apenas perceptibles detrás del contenido */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 32%, rgba(74,105,255,.055), transparent 25%),
+    radial-gradient(circle at 88% 58%, rgba(157,76,255,.045), transparent 27%),
+    radial-gradient(circle at 55% 92%, rgba(36,177,255,.035), transparent 24%),
+    linear-gradient(180deg,#05070a 0%,#06080c 52%,#040609 100%);
+}
+
+/* Campo de estrellas extremadamente discreto */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.38;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.42) 0 1px,transparent 1.2px),
+    radial-gradient(circle,rgba(133,174,255,.30) 0 1px,transparent 1.2px),
+    radial-gradient(circle,rgba(190,151,255,.24) 0 1px,transparent 1.1px);
+  background-size:137px 137px,211px 211px,293px 293px;
+  background-position:17px 31px,71px 103px,143px 57px;
+}
+
+/* El catálogo deja respirar el fondo sin perder legibilidad */
+.catalog,
+.products-section,
+main{
+  background:transparent !important;
+}
+
+/* Constelaciones abstractas y suaves solo alrededor del catálogo */
+.grid{
+  position:relative;
+  isolation:isolate;
+}
+.grid::before,
+.grid::after{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:130px;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.16;
+  background:
+    radial-gradient(circle at 12% 72%,#9ebcff 0 1.5px,transparent 2px),
+    radial-gradient(circle at 34% 38%,#9ebcff 0 1.5px,transparent 2px),
+    radial-gradient(circle at 57% 61%,#c1a8ff 0 1.5px,transparent 2px),
+    radial-gradient(circle at 78% 25%,#9ebcff 0 1.5px,transparent 2px),
+    radial-gradient(circle at 91% 54%,#c1a8ff 0 1.5px,transparent 2px);
+  filter:drop-shadow(0 0 4px rgba(125,157,255,.25));
+}
+.grid::before{
+  left:-18px;
+  top:9%;
+  transform:rotate(-13deg);
+}
+.grid::after{
+  right:-12px;
+  top:58%;
+  transform:rotate(18deg) scale(.9);
+}
+
+/* Un pequeño planeta ambiental, casi escondido */
+.products-section::after,
+.catalog::after{
+  content:"";
+  position:absolute;
+  right:4vw;
+  top:34%;
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.10;
+  background:
+    radial-gradient(circle at 34% 30%,rgba(179,204,255,.9),rgba(73,100,183,.55) 34%,rgba(30,39,80,.28) 62%,transparent 70%);
+  box-shadow:0 0 50px rgba(87,115,255,.15);
+}
+
+/* Evita que el efecto espacial invada el hero/video y la franja técnica */
+.hero,
+.feature-strip,
+header{
+  position:relative;
+  z-index:2;
+}
+
+/* Movimiento casi imperceptible */
+@media (prefers-reduced-motion:no-preference){
+  body::after{
+    animation:pulseStars 18s ease-in-out infinite alternate;
+  }
+}
+@keyframes pulseStars{
+  from{opacity:.29}
+  to{opacity:.40}
+}
+
 </style>
 </head>
 <body>
