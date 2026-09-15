@@ -1180,29 +1180,45 @@ main,.catalog,.products-section{
   .pc-4{right:-55px}
 }
 
+
+/* ===== PULSE LIVE STARFIELD V3 =====
+   Animated stars + constellations drawn progressively.
+   Background only: never overlays hero/cards/header/drawer.
+*/
+#pulse-space-canvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:0;
+  opacity:1;
+}
+body{
+  background:#05070a !important;
+}
+body > *:not(#pulse-space-canvas):not(.drawer):not(.drawer-overlay){
+  position:relative;
+  z-index:1;
+}
+header,.hero,.product-card,.feature-strip,.drawer,.drawer-overlay{
+  position:relative;
+  z-index:3;
+}
+.product-card,
+.feature-strip{
+  background-color:#07090c;
+}
+/* Disable the previous constellation implementation if any CSS remains */
+.pulse-constellation-bg,.pc{display:none!important}
+@media(prefers-reduced-motion:reduce){
+  #pulse-space-canvas{opacity:.55}
+}
+
 </style>
 </head>
 <body>
-
-<div class="pulse-constellation-bg" aria-hidden="true">
-  <svg class="pc pc-1" viewBox="0 0 300 190">
-    <path d="M22 135L72 78L126 104L173 48L242 73L278 31M126 104L154 158"/>
-    <g><circle cx="22" cy="135" r="2"/><circle cx="72" cy="78" r="2.5"/><circle cx="126" cy="104" r="2"/><circle cx="173" cy="48" r="2.6"/><circle cx="242" cy="73" r="2"/><circle cx="278" cy="31" r="2.3"/><circle cx="154" cy="158" r="2"/></g>
-  </svg>
-  <svg class="pc pc-2" viewBox="0 0 280 190">
-    <path d="M25 45L73 86L118 57L162 119L225 92L259 143M118 57L145 20"/>
-    <g><circle cx="25" cy="45" r="2"/><circle cx="73" cy="86" r="2.5"/><circle cx="118" cy="57" r="2.2"/><circle cx="162" cy="119" r="2.5"/><circle cx="225" cy="92" r="2"/><circle cx="259" cy="143" r="2.3"/><circle cx="145" cy="20" r="2"/></g>
-  </svg>
-  <svg class="pc pc-3" viewBox="0 0 320 210">
-    <path d="M31 160L82 118L112 55L174 82L213 34L278 66M174 82L196 154L257 179"/>
-    <g><circle cx="31" cy="160" r="2"/><circle cx="82" cy="118" r="2.2"/><circle cx="112" cy="55" r="2.5"/><circle cx="174" cy="82" r="2"/><circle cx="213" cy="34" r="2.4"/><circle cx="278" cy="66" r="2"/><circle cx="196" cy="154" r="2.3"/><circle cx="257" cy="179" r="2"/></g>
-  </svg>
-  <svg class="pc pc-4" viewBox="0 0 260 180">
-    <path d="M20 91L63 43L105 73L151 35L189 91L238 61M105 73L129 142"/>
-    <g><circle cx="20" cy="91" r="2"/><circle cx="63" cy="43" r="2.5"/><circle cx="105" cy="73" r="2"/><circle cx="151" cy="35" r="2.4"/><circle cx="189" cy="91" r="2.2"/><circle cx="238" cy="61" r="2"/><circle cx="129" cy="142" r="2.3"/></g>
-  </svg>
-</div>
-
+<canvas id="pulse-space-canvas" aria-hidden="true"></canvas>
 <header>
   <a href="../index.html"><img class="logo" src="../LOGO.png" alt="VAPORA"></a>
   <nav><a href="../index.html">Inicio</a><div class="nav-products">
@@ -1487,6 +1503,167 @@ document.addEventListener('click', function(e){
     }, 1100);
   }, 0);
 });
+</script>
+
+
+<script>
+(() => {
+  const canvas = document.getElementById('pulse-space-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha:true });
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0,H=0,DPR=1, stars=[], constellations=[], exclusions=[];
+
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+  function resize(){
+    DPR=Math.min(devicePixelRatio||1,2);
+    W=innerWidth; H=innerHeight;
+    canvas.width=Math.round(W*DPR);
+    canvas.height=Math.round(H*DPR);
+    canvas.style.width=W+'px';
+    canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    makeStars();
+    updateExclusions();
+  }
+
+  function updateExclusions(){
+    const selectors=[
+      'header','.hero','.product-card','.feature-strip',
+      '.drawer','.drawer-overlay'
+    ];
+    exclusions=[...document.querySelectorAll(selectors)]
+      .filter(el=>{
+        const s=getComputedStyle(el);
+        return s.display!=='none' && s.visibility!=='hidden';
+      })
+      .map(el=>{
+        const r=el.getBoundingClientRect();
+        return {x:r.left-12,y:r.top-12,w:r.width+24,h:r.height+24};
+      });
+  }
+
+  function blocked(x,y){
+    return exclusions.some(r=>x>r.x&&x<r.x+r.w&&y>r.y&&y<r.y+r.h);
+  }
+
+  function makeStars(){
+    const count=Math.max(45,Math.floor((W*H)/18000));
+    stars=Array.from({length:count},()=>({
+      x:Math.random()*W,y:Math.random()*H,
+      r:rand(.45,1.25), phase:rand(0,Math.PI*2),
+      speed:rand(.00045,.00125), max:rand(.18,.58)
+    }));
+  }
+
+  const shapes=[
+    [[0,.55],[.18,.28],[.38,.43],[.57,.12],[.78,.34],[1,.18],[.58,.72]],
+    [[0,.18],[.20,.43],[.40,.24],[.59,.62],[.82,.47],[1,.72],[.47,0]],
+    [[0,.70],[.18,.48],[.31,.10],[.53,.29],[.67,0],[.91,.20],[.60,.68],[.88,.84]],
+    [[0,.42],[.21,.08],[.41,.30],[.61,.04],[.78,.42],[1,.24],[.50,.82]]
+  ];
+
+  function spawnConstellation(now){
+    updateExclusions();
+    const shape=shapes[Math.floor(Math.random()*shapes.length)];
+    const cw=rand(150,260), ch=rand(95,165);
+    let ox,oy,tries=0;
+    do{
+      ox=rand(20,Math.max(21,W-cw-20));
+      oy=rand(90,Math.max(91,H-ch-25));
+      tries++;
+    }while(tries<40 && shape.some(p=>blocked(ox+p[0]*cw,oy+p[1]*ch)));
+    if(tries>=40) return;
+
+    const pts=shape.map(p=>({x:ox+p[0]*cw,y:oy+p[1]*ch}));
+    constellations.push({
+      pts,start:now,
+      draw:rand(1800,2600),
+      hold:rand(2500,4200),
+      fade:rand(1600,2400),
+      alpha:rand(.24,.42)
+    });
+  }
+
+  function drawBackgroundStars(t){
+    for(const s of stars){
+      if(blocked(s.x,s.y)) continue;
+      const tw=(Math.sin(t*s.speed+s.phase)+1)/2;
+      const a=.06+tw*s.max;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(214,226,255,${a})`;
+      ctx.fill();
+      if(s.r>1){
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r*3.2,0,Math.PI*2);
+        ctx.fillStyle=`rgba(104,145,255,${a*.08})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  function drawConstellation(c,t){
+    const age=t-c.start;
+    const total=c.draw+c.hold+c.fade;
+    if(age>=total) return false;
+
+    let alpha=1;
+    if(age<c.draw) alpha=clamp(age/700,0,1);
+    else if(age>c.draw+c.hold) alpha=1-(age-c.draw-c.hold)/c.fade;
+
+    // Stars appear one after another.
+    c.pts.forEach((p,i)=>{
+      const pa=clamp((age-i*170)/500,0,1)*alpha;
+      if(pa<=0||blocked(p.x,p.y)) return;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,2.0,0,Math.PI*2);
+      ctx.fillStyle=`rgba(235,241,255,${pa*.78})`;
+      ctx.shadowBlur=7;
+      ctx.shadowColor='rgba(125,160,255,.65)';
+      ctx.fill();
+      ctx.shadowBlur=0;
+    });
+
+    // Lines are progressively "connected" after the stars.
+    const segs=c.pts.length-1;
+    const lineProgress=clamp((age-450)/(c.draw-450),0,1)*segs;
+    for(let i=0;i<segs;i++){
+      const local=clamp(lineProgress-i,0,1);
+      if(local<=0) continue;
+      const a=c.pts[i],b=c.pts[i+1];
+      if(blocked(a.x,a.y)||blocked(b.x,b.y)) continue;
+      const ex=a.x+(b.x-a.x)*local, ey=a.y+(b.y-a.y)*local;
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y); ctx.lineTo(ex,ey);
+      ctx.strokeStyle=`rgba(125,155,230,${c.alpha*alpha})`;
+      ctx.lineWidth=.75;
+      ctx.stroke();
+    }
+    return true;
+  }
+
+  let lastSpawn=0, nextSpawn=1200;
+  function frame(t){
+    ctx.clearRect(0,0,W,H);
+    drawBackgroundStars(t);
+
+    if(!reduceMotion && t-lastSpawn>nextSpawn && constellations.length<3){
+      spawnConstellation(t);
+      lastSpawn=t;
+      nextSpawn=rand(2600,4800);
+    }
+    constellations=constellations.filter(c=>drawConstellation(c,t));
+    requestAnimationFrame(frame);
+  }
+
+  addEventListener('resize',resize,{passive:true});
+  addEventListener('scroll',()=>updateExclusions(),{passive:true});
+  resize();
+  requestAnimationFrame(frame);
+})();
 </script>
 
 </body>
