@@ -2217,6 +2217,76 @@ main,
   z-index:1;
 }
 
+
+/* ===== FIX PUENTE DE HOVER DEL DROPDOWN ===== */
+/* Crea una zona invisible entre "Productos" y el panel para que
+   el cursor pueda bajar sin perder el estado :hover. */
+header .nav-products::before{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  width:235px;
+  height:24px;
+  background:transparent;
+  pointer-events:auto;
+  z-index:10049;
+}
+
+/* Acercamos ligeramente el panel al enlace. */
+header .nav-products .products-menu{
+  top:calc(100% + 10px) !important;
+}
+
+/* Mantener abierto tanto al pasar por el enlace como por el puente/panel. */
+header .nav-products:hover .products-menu,
+header .nav-products:focus-within .products-menu,
+header .nav-products .products-menu:hover{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  transform:translate(-50%,0) !important;
+}
+
+
+/* ===== DROPDOWN HOVER FIX V2 ===== */
+/* Sin hueco físico: el panel empieza exactamente donde termina Productos. */
+header .nav-products{
+  position:relative !important;
+  padding:18px 0 !important;
+  margin:-18px 0 !important;
+}
+
+header .nav-products .products-menu{
+  top:100% !important;
+  margin-top:0 !important;
+}
+
+/* Zona de tolerancia adicional, ahora dentro del mismo área continua. */
+header .nav-products::before{
+  content:"" !important;
+  position:absolute !important;
+  top:100% !important;
+  left:-55px !important;
+  width:calc(100% + 110px) !important;
+  height:16px !important;
+  transform:none !important;
+  background:transparent !important;
+  pointer-events:auto !important;
+}
+
+/* El menú no se cierra mientras el cursor esté en cualquier parte
+   del bloque Productos + desplegable. */
+header .nav-products:hover > .products-menu,
+header .nav-products:focus-within > .products-menu,
+header .nav-products > .products-menu:hover{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  transform:translate(-50%,0) !important;
+}
+
 </style>
 
 <script>
