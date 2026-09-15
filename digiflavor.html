@@ -225,6 +225,78 @@ header .nav-products > .products-menu:hover{
   transform:translate(-50%,0) !important;
 }
 
+
+/* ===== DIGIFLAVOR VIDEO HERO ===== */
+.hero{
+  min-height:430px !important;
+  padding:0 !important;
+  display:flex;
+  align-items:flex-end;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:#050608;
+}
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-3;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(5,6,8,.92) 0%,rgba(5,6,8,.55) 43%,rgba(5,6,8,.12) 72%,rgba(5,6,8,.30) 100%),
+    linear-gradient(180deg,rgba(5,6,8,.12),rgba(5,6,8,.16) 52%,#050608 100%) !important;
+  filter:none !important;
+  opacity:1 !important;
+  width:auto !important;
+  height:auto !important;
+  right:0 !important;
+  top:0 !important;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:72px 5vw 58px;
+}
+.hero h1{
+  margin:25px 0 18px !important;
+  text-shadow:0 12px 40px rgba(0,0,0,.32);
+}
+.hero p{
+  color:#e1e2e6 !important;
+}
+.product-visual.real-product{
+  background:#08090c !important;
+  height:255px !important;
+}
+.product-visual.real-product img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  transform:scale(.94);
+  transition:transform .28s ease;
+}
+.product-card:hover .product-visual.real-product img{
+  transform:scale(.985);
+}
+@media(max-width:760px){
+  .hero{min-height:360px !important}
+  .hero-content{padding:58px 5vw 42px}
+  .product-visual.real-product{height:210px !important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-video{display:none}
+}
+
 </style>
 </head>
 <body>
@@ -244,9 +316,14 @@ header .nav-products > .products-menu:hover{
 </header>
 
 <section class="hero">
-  <a class="back" href="index.html#productos">← Volver a dispositivos</a>
-  <h1>DIGIFLAVOR</h1>
-  <p>25.000 PUFF · <b>USD 25,00</b></p>
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="VIDEO%20BANNER.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <a class="back" href="index.html#productos">← Volver a dispositivos</a>
+    <h1>DIGIFLAVOR</h1>
+    <p>25.000 PUFF · <b>USD 25,00</b></p>
+  </div>
 </section>
 
 <main class="catalog">
@@ -256,10 +333,7 @@ header .nav-products > .products-menu:hover{
   </div>
   <div class="grid">
         <article class="product-card">
-          <div class="product-visual" aria-label="Espacio reservado para imagen de Miami Mint">
-            <div class="visual-orb"></div>
-            <span>IMAGEN<br>PRÓXIMAMENTE</span>
-          </div>
+          <div class="product-visual real-product" aria-label="Miami Mint"><img src="MiamiMint.png" alt="Digiflavor Miami Mint" loading="lazy" decoding="async"></div>
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Miami Mint</h2>
@@ -272,10 +346,7 @@ header .nav-products > .products-menu:hover{
         </article>
 
         <article class="product-card">
-          <div class="product-visual" aria-label="Espacio reservado para imagen de Sky Strawberry Banana">
-            <div class="visual-orb"></div>
-            <span>IMAGEN<br>PRÓXIMAMENTE</span>
-          </div>
+          <div class="product-visual real-product" aria-label="Sky Strawberry Banana"><img src="StrawberryBanana.png" alt="Digiflavor Sky Strawberry Banana" loading="lazy" decoding="async"></div>
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Sky Strawberry Banana</h2>
@@ -288,10 +359,7 @@ header .nav-products > .products-menu:hover{
         </article>
 
         <article class="product-card">
-          <div class="product-visual" aria-label="Espacio reservado para imagen de Sour Watermelon Razz Ice">
-            <div class="visual-orb"></div>
-            <span>IMAGEN<br>PRÓXIMAMENTE</span>
-          </div>
+          <div class="product-visual real-product" aria-label="Sour Watermelon Razz Ice"><img src="SourWatermelonBlueRazz.png" alt="Digiflavor Sour Watermelon Razz Ice" loading="lazy" decoding="async"></div>
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Sour Watermelon Razz Ice</h2>
@@ -304,10 +372,7 @@ header .nav-products > .products-menu:hover{
         </article>
 
         <article class="product-card">
-          <div class="product-visual" aria-label="Espacio reservado para imagen de Strawberry Watermelon Coconut">
-            <div class="visual-orb"></div>
-            <span>IMAGEN<br>PRÓXIMAMENTE</span>
-          </div>
+          <div class="product-visual real-product" aria-label="Strawberry Watermelon Coconut"><img src="StrawberryWatermelonCoconut.png" alt="Digiflavor Strawberry Watermelon Coconut" loading="lazy" decoding="async"></div>
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Strawberry Watermelon Coconut</h2>
@@ -320,10 +385,7 @@ header .nav-products > .products-menu:hover{
         </article>
 
         <article class="product-card">
-          <div class="product-visual" aria-label="Espacio reservado para imagen de Twisted B Pop">
-            <div class="visual-orb"></div>
-            <span>IMAGEN<br>PRÓXIMAMENTE</span>
-          </div>
+          <div class="product-visual real-product" aria-label="Twisted B Pop"><img src="TwistedB-Pop.png" alt="Digiflavor Twisted B Pop" loading="lazy" decoding="async"></div>
           <div class="product-info">
             <p class="eyebrow">GEEK BAR · DIGIFLAVOR</p>
             <h2>Twisted B Pop</h2>
