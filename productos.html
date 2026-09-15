@@ -1,0 +1,174 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Todos los productos | VAPORA</title><link rel="icon" type="image/png" href="favicon.png">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050608;color:#f7f7f8;font-family:Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}
+header{height:68px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 4.5vw;background:rgba(6,7,10,.70);border-bottom:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.logo{height:23px}nav{display:flex;gap:34px;font-size:13px;color:#d8d9df}
+.hero{padding:72px 5vw 42px;border-bottom:1px solid #24262d}.hero small{letter-spacing:.16em;color:#858994}.hero h1{font-size:clamp(48px,7vw,96px);letter-spacing:-.065em;line-height:.9;margin:18px 0 12px}.hero p{color:#9ca0aa}
+.wrap{padding:28px 4.5vw 80px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.filters button{border:1px solid #2c2f36;background:#111318;color:#d9dbe0;border-radius:999px;padding:10px 15px;cursor:pointer;font-size:11px}.filters button.active{background:white;color:#07080a;border-color:white}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.pcard{background:#101216;border:1px solid #292c33;border-radius:12px;overflow:hidden}.visual{height:190px;display:grid;place-items:center;background:radial-gradient(circle,#24283a,transparent 55%),#0a0b0f}.visual span{font-size:9px;line-height:1.5;letter-spacing:.18em;color:#5e626d;text-align:center}.info{padding:16px}.info small{font-size:8px;letter-spacing:.12em;color:#747984}.info h2{font-size:16px;text-transform:uppercase;min-height:38px;margin:8px 0}.info p{font-size:9px;color:#7e828b}.bottom{display:flex;justify-content:space-between;align-items:end;margin:18px 0}.bottom strong{font-size:20px}.bottom span{font-size:9px;color:#999da5}.info>a{display:block;background:white;color:#08090b;border-radius:999px;text-align:center;padding:12px;font-size:11px;font-weight:800}
+
+/* ===== PRODUCTOS DROPDOWN ===== */
+nav .nav-products{position:relative;display:flex;align-items:center}
+nav .nav-products>a{display:flex;align-items:center;gap:6px}
+nav .nav-products>a::after{content:"⌄";font-size:10px;opacity:.65;transform:translateY(-1px)}
+nav .products-menu{
+  position:absolute;top:calc(100% + 17px);left:50%;transform:translate(-50%,8px);
+  min-width:205px;padding:7px;background:rgba(10,11,15,.90);
+  border:1px solid rgba(255,255,255,.11);border-radius:12px;
+  box-shadow:0 18px 45px rgba(0,0,0,.35);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  opacity:0;visibility:hidden;pointer-events:none;transition:.18s ease;
+}
+nav .nav-products:hover .products-menu,
+nav .nav-products:focus-within .products-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0);
+}
+nav .products-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+nav .products-menu a{
+  display:block;padding:11px 12px;border-radius:8px;color:#cfd1d7!important;
+  font-size:12px!important;white-space:nowrap;
+}
+nav .products-menu a:hover{background:rgba(255,255,255,.075);color:#fff!important}
+nav .products-menu .all-products{color:#fff!important;font-weight:700}
+nav .products-menu .divider{height:1px;background:rgba(255,255,255,.09);margin:5px 7px}
+@media(max-width:760px){nav .products-menu{display:none}}
+
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:760px){nav{display:none}.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><a href="index.html"><img class="logo" src="LOGO.png" alt="VAPORA"></a>
+<nav><a href="index.html">Inicio</a><div class="nav-products">
+<a href="productos.html">Productos</a>
+<div class="products-menu">
+<a class="all-products" href="productos.html">Todos los productos</a>
+<div class="divider"></div>
+<a href="digiflavor.html">Digiflavor</a>
+<a href="pulse.html">Geek Bar Pulse</a>
+<a href="pulse-x.html">Geek Bar Pulse X</a>
+</div>
+</div><a href="index.html#sabores">Sabores</a></nav>
+<div></div></header>
+<section class="hero"><small>CATÁLOGO VAPORA</small><h1>TODOS LOS PRODUCTOS</h1><p>23 sabores disponibles entre Digiflavor, Pulse y Pulse X.</p></section>
+<main class="wrap"><div class="filters">
+<button class="active" data-filter="all">Todos</button><button data-filter="digiflavor">Digiflavor</button><button data-filter="pulse">Pulse</button><button data-filter="pulse-x">Pulse X</button>
+</div><div class="grid"><article class="pcard" data-model="digiflavor">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
+<h2>Miami Mint</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$25.00</strong><span>6 unidades</span></div>
+<a href="digiflavor.html">Ver producto →</a></div></article><article class="pcard" data-model="digiflavor">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
+<h2>Sky Strawberry Banana</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$25.00</strong><span>4 unidades</span></div>
+<a href="digiflavor.html">Ver producto →</a></div></article><article class="pcard" data-model="digiflavor">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
+<h2>Sour Watermelon Razz Ice</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$25.00</strong><span>6 unidades</span></div>
+<a href="digiflavor.html">Ver producto →</a></div></article><article class="pcard" data-model="digiflavor">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
+<h2>Strawberry Watermelon Coconut</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$25.00</strong><span>2 unidades</span></div>
+<a href="digiflavor.html">Ver producto →</a></div></article><article class="pcard" data-model="digiflavor">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
+<h2>Twisted B Pop</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$25.00</strong><span>4 unidades</span></div>
+<a href="digiflavor.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Black Cherry</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Blue Razz Ice</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>3 unidades</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Cherry Bomb</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Frozen Blackberry Fab</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Sour Watermelon Drop</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Stone Freeze</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>1 unidad</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE</small>
+<h2>Watermelon Ice</h2><p>15.000 PUFF</p>
+<div class="bottom"><strong>$23.00</strong><span>4 unidades</span></div>
+<a href="pulse.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Blackberry Blueberry</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Blue Rancher</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>6 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Blue Razz Ice</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Lemon Heads</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>1 unidad</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Miami Mint</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Orange Fcuking</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>2 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Pink &amp; Blue</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>6 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Sour Apple Ice</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>7 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Strawberry Kiwi Ice</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Banana Taffy Freeze</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>2 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article><article class="pcard" data-model="pulse-x">
+<div class="visual"><span>IMAGEN<br>PRÓXIMAMENTE</span></div>
+<div class="info"><small>GEEK BAR · PULSE X</small>
+<h2>Strawberry Watermelon</h2><p>25.000 PUFF</p>
+<div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
+<a href="pulse-x.html">Ver producto →</a></div></article></div></main>
+<script>
+const buttons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".pcard");
+buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");const f=b.dataset.filter;cards.forEach(c=>c.style.display=(f==="all"||c.dataset.model===f)?"":"none")})
+</script></body></html>
