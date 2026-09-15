@@ -1018,6 +1018,41 @@ header .nav-products > .products-menu:hover{
   .grid{grid-template-columns:1fr !important}
 }
 
+
+/* ===== PULSE 5-FEATURE LAYOUT ===== */
+.pulse-features .feature-track{
+  width:min(100%,1240px) !important;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:32px !important;
+}
+.pulse-features .feature-item{
+  justify-content:center !important;
+}
+.feature-icon.chip svg{
+  width:25px;
+  height:25px;
+}
+.feature-icon.chip svg path,
+.feature-icon.chip svg rect{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+@media(max-width:900px){
+  .pulse-features .feature-track{
+    width:max-content !important;
+    display:flex !important;
+    gap:28px !important;
+    padding-right:18px;
+  }
+  .pulse-features .feature-item{
+    justify-content:flex-start !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1048,18 +1083,67 @@ header .nav-products > .products-menu:hover{
 </section>
 
 
-<section class="feature-strip" aria-label="Características de Pulse">
+
+<section class="feature-strip pulse-features" aria-label="Características de Geek Bar Pulse">
   <div class="feature-track">
-    <div class="feature-item"><span class="feature-icon mode"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 7v18M16 7v18M24 7v18"/><path d="M5.5 11H10.5M13.5 20H18.5M21.5 14H26.5"/></svg></span><span><b>Modo Pulse</b><small>potencia extra</small></span></div>
-    <div class="feature-item"><span class="feature-icon screen"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="6.5" width="14" height="19" rx="2"/><path d="M6 11V7h4M22 7h4v4M26 21v4h-4M10 25H6v-4"/></svg></span><span><b>Pantalla LED</b><small>indicadores en vivo</small></span></div>
-    <div class="feature-item"><span class="feature-icon puff"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 19c-3.5 0-4-5.5-.4-6.4A6.3 6.3 0 0 1 19 10.8a4.7 4.7 0 0 1 5.2 4.6c0 2.6-2.1 4.6-4.7 4.6H8Z"/><path d="M6 23h10M10 26h8"/></svg></span><span><b>Hasta 15.000</b><small>caladas</small></span></div>
-    <div class="feature-item"><span class="feature-icon mesh"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 9c2.5-4 5 4 7.5 0s5 4 7.5 0 5 4 5 4M6 16c2.5-4 5 4 7.5 0s5 4 7.5 0 5 4 5 4M6 23c2.5-4 5 4 7.5 0s5 4 7.5 0 5 4 5 4"/></svg></span><span><b>Dual Mesh</b><small>sabor consistente</small></span></div>
-    <div class="feature-item"><span class="feature-icon vpu"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><text x="16" y="19" text-anchor="middle">VPU</text></svg></span><span><b>Control inteligente</b><small>de potencia</small></span></div>
-    <div class="feature-item"><span class="feature-icon battery"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="10" y="7" width="12" height="19" rx="2"/><path d="M14 4.5h4V7M17.5 11l-4 7h4l-3 5 6-8h-4l1-4Z"/></svg></span><span><b>650 mAh</b><small>recargable USB-C</small></span></div>
-    <div class="feature-item"><span class="feature-icon nicotine"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 8h10l2 4v13H9V12l2-4Z"/><path d="M12 5h8v3"/><text x="16" y="21" text-anchor="middle">N</text></svg></span><span><b>5% nicotina</b><small>concentración</small></span></div>
-    <div class="feature-item"><span class="feature-icon liquid"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5S9 13.2 9 18.2a7 7 0 0 0 14 0C23 13.2 16 5 16 5Z"/><path d="M12.5 19.5c.7 2 2 3 4 3"/></svg></span><span><b>16 mL</b><small>de e-líquido</small></span></div>
+
+    <div class="feature-item">
+      <span class="feature-icon screen">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="10" y="5.5" width="12" height="21" rx="3"/>
+          <path d="M7 10V7h3M22 7h3v3M25 22v3h-3M10 25H7v-3"/>
+          <path d="M5.5 16H9M23 16h3.5"/>
+        </svg>
+      </span>
+      <span><b>Pantalla completa</b><small>primera en su categoría</small></span>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-icon mesh">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M6 9c2.5-4 5 4 7.5 0s5 4 7.5 0 5 4 5 4"/>
+          <path d="M6 16c2.5-4 5 4 7.5 0s5 4 7.5 0 5 4 5 4"/>
+          <path d="M6 23c2.5-4 5 4 7.5 0s5 4 7.5 0 5 4 5 4"/>
+        </svg>
+      </span>
+      <span><b>Dual Mesh Coil</b><small>doble malla</small></span>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-icon chip">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="9" y="9" width="14" height="14" rx="2"/>
+          <rect x="12.5" y="12.5" width="7" height="7" rx="1"/>
+          <path d="M12 5v4M16 5v4M20 5v4M12 23v4M16 23v4M20 23v4M5 12h4M5 16h4M5 20h4M23 12h4M23 16h4M23 20h4"/>
+        </svg>
+      </span>
+      <span><b>Dual Core</b><small>doble núcleo</small></span>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-icon puff">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M8 19c-3.5 0-4-5.5-.4-6.4A6.3 6.3 0 0 1 19 10.8a4.7 4.7 0 0 1 5.2 4.6c0 2.6-2.1 4.6-4.7 4.6H8Z"/>
+          <path d="M6 23h10M10 26h8"/>
+        </svg>
+      </span>
+      <span><b>15.000 caladas</b><small>7.500 en modo Pulse</small></span>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-icon nicotine">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M11 8h10l2 4v13H9V12l2-4Z"/>
+          <path d="M12 5h8v3"/>
+          <text x="16" y="21" text-anchor="middle">N</text>
+        </svg>
+      </span>
+      <span><b>5% nicotina</b><small>concentración</small></span>
+    </div>
+
   </div>
 </section>
+
 
 
 
