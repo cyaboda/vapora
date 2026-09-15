@@ -628,6 +628,49 @@ header .nav-products > .products-menu:hover{
   }
 }
 
+
+/* ===== SUBBANNER CANVAS FIX ===== */
+.specs-strip{
+  height:245px !important;
+  min-height:245px !important;
+  padding:0 24px !important;
+  margin:0 !important;
+  position:relative !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.specs-strip img{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:min(86vw,1190px) !important;
+  max-width:1190px !important;
+  height:auto !important;
+  max-height:none !important;
+  margin:0 !important;
+  transform:translate(-50%,-50%) scale(1.62) !important;
+  transform-origin:center center !important;
+}
+.catalog{
+  padding-top:28px !important;
+}
+@media(max-width:760px){
+  .specs-strip{
+    height:205px !important;
+    min-height:205px !important;
+    padding:0 !important;
+    overflow-x:hidden !important;
+  }
+  .specs-strip img{
+    width:760px !important;
+    max-width:none !important;
+    transform:translate(-50%,-50%) scale(1.42) !important;
+  }
+  .catalog{padding-top:24px !important}
+}
+
 </style>
 </head>
 <body>
@@ -658,7 +701,7 @@ header .nav-products > .products-menu:hover{
 </section>
 
 <section class="specs-strip" aria-label="Características de Digiflavor">
-  <img src="SubBanner.png"
+  <img src="SubBanner.png?v=2"
        alt="Características Digiflavor: 3 modos de uso, pantalla inteligente de 1.8 pulgadas, hasta 25.000 caladas, doble malla de resistencia, tecnología VPU integrada, batería de 800 mAh, 5% de nicotina y 16 mL de e-líquido"
        loading="eager" decoding="async">
 </section>
