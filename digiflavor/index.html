@@ -547,6 +547,47 @@ header .nav-products > .products-menu:hover{
   .product-visual.real-product{height:300px !important}
 }
 
+
+/* ===== SPACING + SPECS SIZE FIX ===== */
+.hero{
+  min-height:300px !important;
+}
+.specs-strip{
+  height:auto !important;
+  min-height:0 !important;
+  padding:8px 24px 10px !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.specs-strip img{
+  display:block !important;
+  width:min(94vw,1320px) !important;
+  max-width:1320px !important;
+  max-height:none !important;
+  height:auto !important;
+  margin:0 auto !important;
+}
+.catalog{
+  padding-top:18px !important;
+}
+.catalog-head{
+  margin-bottom:16px !important;
+}
+@media(max-width:760px){
+  .specs-strip{
+    padding:6px 12px 8px !important;
+    justify-content:flex-start !important;
+    overflow-x:auto !important;
+  }
+  .specs-strip img{
+    width:900px !important;
+    max-width:none !important;
+  }
+  .catalog{padding-top:14px !important}
+}
+
 </style>
 </head>
 <body>
