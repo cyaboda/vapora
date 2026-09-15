@@ -1516,7 +1516,7 @@ document.addEventListener('click', function(e){
   }
 
   function buildStars(){
-    const n=Math.min(260,Math.max(110,Math.floor(W*H/17000)));
+    const n=Math.min(390,Math.max(165,Math.floor(W*H/11500)));
     stars=Array.from({length:n},()=>({
       x:rand(18,W-18),y:rand(40,H-30),
       r:rand(.7,1.65),phase:rand(0,6.28),speed:rand(.0005,.0015)
@@ -1542,13 +1542,11 @@ document.addEventListener('click', function(e){
   function spawn(t){
     const rs=rects(), shape=shapes[Math.floor(rand(0,shapes.length))];
     const sw=rand(180,310),sh=rand(105,190);
-    let x,y,ok=false;
-    for(let k=0;k<80&&!ok;k++){
-      x=rand(20,Math.max(21,W-sw-20));
-      y=rand(Math.min(500,H*.28),Math.max(501,H-sh-40));
-      ok=shape.every(p=>!inside(x+p[0]*sw,y+p[1]*sh,rs));
-    }
-    if(!ok)return;
+    let x,y;
+    /* Spawn across the FULL page width, including gutters and spaces between cards.
+       Overlapping portions are clipped at draw time, so cards stay clean. */
+    x=rand(12,Math.max(13,W-sw-12));
+    y=rand(Math.min(360,H*.18),Math.max(361,H-sh-24));
     systems.push({
       pts:shape.map(p=>({x:x+p[0]*sw,y:y+p[1]*sh})),
       born:t,build:2300,hold:3200,fade:1800
@@ -1582,9 +1580,19 @@ document.addEventListener('click', function(e){
     for(let i=0;i<c.pts.length-1;i++){
       const q=clamp(progress-i,0,1); if(q<=0)continue;
       const a=c.pts[i],b=c.pts[i+1];
-      if(inside(a.x,a.y,rs)||inside(b.x,b.y,rs))continue;
-      ctx.beginPath();ctx.moveTo(a.x,a.y);
-      ctx.lineTo(a.x+(b.x-a.x)*q,a.y+(b.y-a.y)*q);
+      const ex=a.x+(b.x-a.x)*q, ey=a.y+(b.y-a.y)*q;
+      const steps=18;
+      let drawing=false;
+      ctx.beginPath();
+      for(let s=0;s<=steps;s++){
+        const f=s/steps;
+        const px=a.x+(ex-a.x)*f, py=a.y+(ey-a.y)*f;
+        const hide=inside(px,py,rs);
+        if(!hide){
+          if(!drawing){ctx.moveTo(px,py);drawing=true}
+          else ctx.lineTo(px,py);
+        }else drawing=false;
+      }
       ctx.strokeStyle=`rgba(150,177,255,${.58*fade})`;
       ctx.lineWidth=1.15;ctx.stroke();
     }
@@ -1596,8 +1604,8 @@ document.addEventListener('click', function(e){
     const rs=rects();
     ctx.clearRect(0,0,W,H);
     starfield(t,rs);
-    if(t-last>next && systems.length<4){
-      spawn(t);last=t;next=rand(1800,3300);
+    if(t-last>next && systems.length<6){
+      spawn(t);last=t;next=rand(1400,2600);
     }
     systems=systems.filter(c=>constellation(c,t,rs));
     requestAnimationFrame(loop);
