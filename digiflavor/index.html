@@ -994,73 +994,53 @@ header .nav-products > .products-menu:hover{
 }
 
 
-/* ===== VAPORA DROPDOWN STRUCTURE FIX ===== */
-header nav{overflow:visible !important}
+/* ===== DROPDOWN VAPORA: ESTRUCTURA CANÓNICA ===== */
+header{overflow:visible!important;z-index:9999!important}
+header nav{overflow:visible!important}
 header .nav-products{
-  position:relative !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  padding:18px 0 !important;
-  margin:-18px 0 !important;
-  overflow:visible !important;
+ position:relative!important;display:inline-flex!important;align-items:center!important;
+ padding:18px 0!important;margin:-18px 0!important;overflow:visible!important
 }
-header .nav-products > .products-trigger{
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:4px !important;
-}
+header .nav-products>a:first-child{display:inline-flex!important;align-items:center!important;gap:5px!important}
+header .nav-products>a:first-child::after{content:"⌄";font-size:10px;opacity:.65}
 header .nav-products .products-menu{
-  position:absolute !important;
-  top:100% !important;
-  left:50% !important;
-  margin-top:0 !important;
-  min-width:220px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  opacity:0 !important;
-  visibility:hidden !important;
-  pointer-events:none !important;
-  transform:translate(-50%,8px) !important;
-  z-index:10050 !important;
+ position:absolute!important;top:100%!important;left:50%!important;margin-top:0!important;
+ min-width:225px!important;display:flex!important;flex-direction:column!important;
+ opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+ transform:translate(-50%,8px)!important;z-index:10050!important
 }
 header .nav-products::before{
-  content:"" !important;
-  position:absolute !important;
-  top:100% !important;
-  left:-55px !important;
-  width:calc(100% + 110px) !important;
-  height:16px !important;
-  background:transparent !important;
-  pointer-events:auto !important;
+ content:""!important;position:absolute!important;top:100%!important;left:-55px!important;
+ width:calc(100% + 110px)!important;height:16px!important;background:transparent!important;
+ pointer-events:auto!important
 }
-header .nav-products:hover > .products-menu,
-header .nav-products:focus-within > .products-menu,
-header .nav-products > .products-menu:hover{
-  opacity:1 !important;
-  visibility:visible !important;
-  pointer-events:auto !important;
-  transform:translate(-50%,0) !important;
+header .nav-products:hover>.products-menu,
+header .nav-products:focus-within>.products-menu,
+header .nav-products>.products-menu:hover{
+ opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+ transform:translate(-50%,0)!important
 }
-header .products-menu > a{
-  display:block !important;
-  width:100% !important;
-}
+header .products-menu>a{display:block!important;width:100%!important}
 
 </style>
 </head>
 <body>
 <header>
   <a href="../index.html"><img class="logo" src="../LOGO.png" alt="VAPORA"></a>
-  <nav><a href="../index.html">Inicio</a><div class="nav-products">
-<a class="products-trigger" href="../productos.html">Productos <span class="chevron">⌄</span></a>
-<div class="products-menu">
-<a class="all-products" href="../productos.html">Todos los productos</a>
-<div class="divider"></div>
-<a href="../digiflavor/">Digiflavor</a>
-<a href="../pulse/">Geek Bar Pulse</a>
-<a href="../pulse-x/">Geek Bar Pulse X</a>
+  <nav>
+<a href="../index.html">Inicio</a>
+<div class="nav-products">
+  <a href="../productos.html">Productos</a>
+  <div class="products-menu">
+    <a class="all-products" href="../productos.html">Todos los productos</a>
+    <div class="divider"></div>
+    <a href="../digiflavor/">Digiflavor</a>
+    <a href="../pulse/">Geek Bar Pulse</a>
+    <a href="../pulse-x/">Geek Bar Pulse X</a>
+  </div>
 </div>
-</div><a href="../index.html#sabores">Sabores</a></nav>
+<a href="../index.html#sabores">Sabores</a>
+</nav>
   <button class="cart-button" id="cartButton">Carrito <span class="cart-count" id="cartCount">0</span></button>
 </header>
 
