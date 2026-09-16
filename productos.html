@@ -234,6 +234,26 @@ header .nav-products>.products-menu:hover{
 }
 header .products-menu>a{display:block!important;width:100%!important}
 
+
+/* ===== TARJETAS PREMIUM VAPORA ===== */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+.pcard{--accent:#a9b5cb;--accent-rgb:169,181,203;position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:20px;border:1px solid rgba(var(--accent-rgb),.36);background:radial-gradient(circle at 50% 16%,rgba(var(--accent-rgb),.105),transparent 37%),linear-gradient(180deg,#090b0f,#07090c);box-shadow:0 18px 42px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.045);transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
+.pcard::before{content:"";position:absolute;z-index:3;left:14%;right:14%;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.78;pointer-events:none}
+.pcard:hover{transform:translateY(-5px);border-color:rgba(var(--accent-rgb),.72);box-shadow:0 22px 54px rgba(0,0,0,.34),0 0 28px rgba(var(--accent-rgb),.10),inset 0 1px 0 rgba(255,255,255,.065)}
+.visual{position:relative;height:265px!important;padding:10px 12px 0!important;display:grid!important;place-items:center!important;overflow:hidden!important;background:radial-gradient(circle at 50% 46%,rgba(var(--accent-rgb),.14),transparent 40%),transparent!important}
+.visual::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--accent-rgb),.28),transparent)}
+.visual img{position:relative;z-index:1;width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;transform:scale(1.035);filter:drop-shadow(0 18px 24px rgba(0,0,0,.38)) drop-shadow(0 0 12px rgba(var(--accent-rgb),.07))!important;transition:transform .28s ease,filter .28s ease}
+.pcard:hover .visual img{transform:scale(1.065);filter:drop-shadow(0 20px 28px rgba(0,0,0,.42)) drop-shadow(0 0 17px rgba(var(--accent-rgb),.13))!important}
+.info{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:17px 18px 18px;background:linear-gradient(180deg,rgba(14,17,22,.78),rgba(8,10,14,.96));border-top:1px solid rgba(255,255,255,.045)}
+.info small{font-size:8px;letter-spacing:.16em;color:rgba(var(--accent-rgb),.78);font-weight:700}
+.info h2{min-height:42px;margin:9px 0 4px;font-size:15px;line-height:1.18;letter-spacing:-.025em;text-transform:uppercase}
+.info p{margin:0;font-size:9px;letter-spacing:.08em;color:#858b96}
+.bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:17px 0 15px}.bottom strong{font-size:21px;line-height:1;letter-spacing:-.035em}.bottom span{font-size:9px;color:#9197a2;text-align:right}
+.info>a{margin-top:auto;display:block;padding:11px 14px;border-radius:999px;border:1px solid rgba(var(--accent-rgb),.24);background:rgba(var(--accent-rgb),.075);color:#f6f7fa;text-align:center;font-size:10px;font-weight:800;transition:.2s ease}
+.info>a:hover{border-color:rgba(var(--accent-rgb),.58);background:rgba(var(--accent-rgb),.15);box-shadow:0 0 20px rgba(var(--accent-rgb),.09)}
+.pcard[data-accent="mint"]{--accent:#65f0b0;--accent-rgb:101,240,176}.pcard[data-accent="yellow"]{--accent:#ffd85a;--accent-rgb:255,216,90}.pcard[data-accent="cyan"]{--accent:#65e7ef;--accent-rgb:101,231,239}.pcard[data-accent="lime"]{--accent:#b8f15c;--accent-rgb:184,241,92}.pcard[data-accent="coral"]{--accent:#ff777c;--accent-rgb:255,119,124}.pcard[data-accent="cherry"]{--accent:#e85b82;--accent-rgb:232,91,130}.pcard[data-accent="blue"]{--accent:#68a7ff;--accent-rgb:104,167,255}.pcard[data-accent="red"]{--accent:#ff656b;--accent-rgb:255,101,107}.pcard[data-accent="purple"]{--accent:#a982ff;--accent-rgb:169,130,255}.pcard[data-accent="watermelon"]{--accent:#ff7b70;--accent-rgb:255,123,112}.pcard[data-accent="ice"]{--accent:#9bdff5;--accent-rgb:155,223,245}.pcard[data-accent="berry"]{--accent:#8f7cff;--accent-rgb:143,124,255}.pcard[data-accent="rancher"]{--accent:#4fc7ff;--accent-rgb:79,199,255}.pcard[data-accent="lemon"]{--accent:#ffe064;--accent-rgb:255,224,100}.pcard[data-accent="orange"]{--accent:#ff9a54;--accent-rgb:255,154,84}.pcard[data-accent="pinkblue"]{--accent:#df83e9;--accent-rgb:223,131,233}.pcard[data-accent="apple"]{--accent:#8ce36d;--accent-rgb:140,227,109}.pcard[data-accent="kiwi"]{--accent:#7fdf9a;--accent-rgb:127,223,154}.pcard[data-accent="banana"]{--accent:#f6cf69;--accent-rgb:246,207,105}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.visual{height:235px!important}}@media(max-width:480px){.grid{grid-template-columns:1fr}.visual{height:270px!important}.pcard{border-radius:18px}}
+
 </style></head><body>
 <header><a href="index.html"><img class="logo" src="LOGO.png" alt="VAPORA"></a>
 <nav>
@@ -254,117 +274,117 @@ header .products-menu>a{display:block!important;width:100%!important}
 <section class="hero"><small>CATÁLOGO VAPORA</small><h1>TODOS LOS PRODUCTOS</h1><p>23 sabores disponibles entre Digiflavor, Pulse y Pulse X.</p></section>
 <main class="wrap"><div class="filters">
 <button class="active" data-filter="all">Todos</button><button data-filter="digiflavor">Digiflavor</button><button data-filter="pulse">Pulse</button><button data-filter="pulse-x">Pulse X</button><span class="filter-separator"></span><button data-category-filter="frutales">Frutales</button><button data-category-filter="ice">Ice</button><button data-category-filter="dulces">Dulces</button><button data-category-filter="postres">Postres</button>
-</div><div class="grid"><article class="pcard" data-categories="ice" data-model="digiflavor">
+</div><div class="grid"><article class="pcard" data-accent="mint" data-categories="ice" data-model="digiflavor">
 <div class="visual"><img src="digiflavor/MiamiMint.png" alt="Miami Mint" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
 <h2>Miami Mint</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$25.00</strong><span>6 unidades</span></div>
-<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces postres" data-model="digiflavor">
+<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-accent="yellow" data-categories="frutales dulces postres" data-model="digiflavor">
 <div class="visual"><img src="digiflavor/StrawberryBanana.png" alt="Sky Strawberry Banana" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
 <h2>Sky Strawberry Banana</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$25.00</strong><span>4 unidades</span></div>
-<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="digiflavor">
+<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-accent="cyan" data-categories="frutales ice" data-model="digiflavor">
 <div class="visual"><img src="digiflavor/SourWatermelonBlueRazz.png" alt="Sour Watermelon Razz Ice" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
 <h2>Sour Watermelon Razz Ice</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$25.00</strong><span>6 unidades</span></div>
-<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="digiflavor">
+<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-accent="lime" data-categories="frutales dulces" data-model="digiflavor">
 <div class="visual"><img src="digiflavor/StrawberryWatermelonCoconut.png" alt="Strawberry Watermelon Coconut" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
 <h2>Strawberry Watermelon Coconut</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$25.00</strong><span>2 unidades</span></div>
-<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-categories="dulces" data-model="digiflavor">
+<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-accent="coral" data-categories="dulces" data-model="digiflavor">
 <div class="visual"><img src="digiflavor/TwistedB-Pop.png" alt="Twisted B Pop" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · DIGIFLAVOR</small>
 <h2>Twisted B Pop</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$25.00</strong><span>4 unidades</span></div>
-<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse">
+<a href="digiflavor/">Ver producto →</a></div></article><article class="pcard" data-accent="cherry" data-categories="frutales dulces" data-model="pulse">
 <div class="visual"><img src="pulse/BlackCherry.webp" alt="Black Cherry" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Black Cherry</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="pulse">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="blue" data-categories="frutales ice" data-model="pulse">
 <div class="visual"><img src="pulse/BlueRazzIce.webp" alt="Blue Razz Ice" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Blue Razz Ice</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>3 unidades</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="red" data-categories="frutales dulces" data-model="pulse">
 <div class="visual"><img src="pulse/CherryBomb.webp" alt="Cherry Bomb" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Cherry Bomb</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="pulse">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="purple" data-categories="frutales ice" data-model="pulse">
 <div class="visual"><img src="pulse/FrozenBlackberryFab.webp" alt="Frozen Blackberry Fab" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Frozen Blackberry Fab</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="watermelon" data-categories="frutales dulces" data-model="pulse">
 <div class="visual"><img src="pulse/SourWatermelonDrop.webp" alt="Sour Watermelon Drop" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Sour Watermelon Drop</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>2 unidades</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="ice" data-model="pulse">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="ice" data-categories="ice" data-model="pulse">
 <div class="visual"><img src="pulse/StoneFreeze.webp" alt="Stone Freeze" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Stone Freeze</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>1 unidad</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="pulse">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="watermelon" data-categories="frutales ice" data-model="pulse">
 <div class="visual"><img src="pulse/WatermelonIce.webp" alt="Watermelon Ice" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE</small>
 <h2>Watermelon Ice</h2><p>15.000 PUFF</p>
 <div class="bottom"><strong>$23.00</strong><span>4 unidades</span></div>
-<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales" data-model="pulse-x">
+<a href="pulse/">Ver producto →</a></div></article><article class="pcard" data-accent="berry" data-categories="frutales" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/BlackberryBlueberry.webp" alt="Blackberry Blueberry" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Blackberry Blueberry</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="rancher" data-categories="frutales dulces" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/BlueRancher.webp" alt="Blue Rancher" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Blue Rancher</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>6 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="blue" data-categories="frutales ice" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/BlueRazzIce.webp" alt="Blue Razz Ice" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Blue Razz Ice</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="lemon" data-categories="frutales dulces" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/LemonHeads.webp" alt="Lemon Heads" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Lemon Heads</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>1 unidad</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="ice" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="mint" data-categories="ice" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/MiamiMint.webp" alt="Miami Mint" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Miami Mint</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="orange" data-categories="frutales" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/OrangeFcukingFab.webp" alt="Orange Fcuking" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Orange Fcuking</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>2 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="pinkblue" data-categories="frutales dulces" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/PinkAndBlue.webp" alt="Pink &amp; Blue" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Pink &amp; Blue</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>6 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="apple" data-categories="frutales ice" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/SourAppleIce.webp" alt="Sour Apple Ice" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Sour Apple Ice</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>7 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales ice" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="kiwi" data-categories="frutales ice" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/StrawberryKiwiIce.webp" alt="Strawberry Kiwi Ice" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Strawberry Kiwi Ice</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>4 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="dulces postres ice" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="banana" data-categories="dulces postres ice" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/BananaTaffyFreeze.webp" alt="Banana Taffy Freeze" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Banana Taffy Freeze</h2><p>25.000 PUFF</p>
 <div class="bottom"><strong>$30.00</strong><span>2 unidades</span></div>
-<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-categories="frutales dulces" data-model="pulse-x">
+<a href="pulse-x/">Ver producto →</a></div></article><article class="pcard" data-accent="watermelon" data-categories="frutales dulces" data-model="pulse-x">
 <div class="visual"><img src="pulse-x/StrawberryWatermelon.webp" alt="Strawberry Watermelon" loading="lazy" decoding="async"></div>
 <div class="info"><small>GEEK BAR · PULSE X</small>
 <h2>Strawberry Watermelon</h2><p>25.000 PUFF</p>
