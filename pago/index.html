@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confirmando pago | VAPORA</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 25%,#151b2a 0,#07090d 38%,#030406 75%);color:#f7f7f8;font-family:Arial,Helvetica,sans-serif;padding:24px}.box{width:min(560px,100%);padding:34px;border:1px solid rgba(255,255,255,.12);border-radius:26px;background:rgba(10,12,17,.9);box-shadow:0 30px 90px rgba(0,0,0,.45);text-align:center}.logo{width:145px;height:auto;margin-bottom:30px}.icon{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;border:1px solid rgba(255,255,255,.14);font-size:28px}.spin{animation:s 1s linear infinite}@keyframes s{to{transform:rotate(360deg)}}h1{font-size:28px;margin:0 0 10px}p{color:#a8adb6;line-height:1.55;font-size:14px;margin:0 auto 22px}.details{margin:22px 0;padding:16px;border-radius:15px;background:rgba(255,255,255,.04);font-size:12px;color:#c9ccd2;text-align:left;display:none}.btn{display:inline-block;border-radius:999px;background:#fff;color:#07080a;padding:13px 20px;font-weight:800;font-size:12px;text-decoration:none}.small{font-size:10px;color:#6f747d;margin-top:18px}
+</style>
+</head>
+<body>
+<main class="box">
+<img class="logo" src="../LOGO.png" alt="VAPORA">
+<div class="icon spin" id="icon">◌</div>
+<h1 id="title">Confirmando tu pago</h1>
+<p id="message">Estamos verificando la transacción con PayPhone. No cierres esta ventana.</p>
+<div class="details" id="details"></div>
+<a class="btn" id="home" href="../" style="display:none">Volver a VAPORA</a>
+<div class="small">El carrito se elimina únicamente después de una confirmación aprobada.</div>
+</main>
+<script>
+(async()=>{
+ const API='https://vapora-payments.dalexmendoza20.workers.dev';
+ const q=new URLSearchParams(location.search);
+ const id=q.get('id'), clientTransactionId=q.get('clientTransactionId');
+ const icon=document.getElementById('icon'),title=document.getElementById('title'),message=document.getElementById('message'),details=document.getElementById('details'),home=document.getElementById('home');
+ function finish(ok,t,m){icon.classList.remove('spin');icon.textContent=ok?'✓':'!';title.textContent=t;message.textContent=m;home.style.display='inline-block'}
+ if(!id||!clientTransactionId){finish(false,'No pudimos verificar el pago','Faltan los datos de confirmación enviados por PayPhone. Tu carrito no fue eliminado.');return}
+ try{
+  const r=await fetch(API+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,clientTransactionId})});
+  const d=await r.json();
+  if(!r.ok||!d.ok)throw new Error(d.error||'No fue posible confirmar la transacción.');
+  if(d.approved){
+    localStorage.removeItem('vaporaCart');sessionStorage.removeItem('vaporaPendingPayment');
+    finish(true,'Pago aprobado','Tu pago fue confirmado correctamente. Gracias por comprar en VAPORA.');
+    details.style.display='block';
+    const amount=Number(d.amount||0)/100;
+    details.innerHTML='<strong>Transacción:</strong> '+(d.transactionId||'Confirmada')+'<br><strong>Total:</strong> $'+amount.toFixed(2)+' USD'+(d.authorizationCode?'<br><strong>Autorización:</strong> '+d.authorizationCode:'');
+  }else{finish(false,'Pago no aprobado','PayPhone no confirmó la transacción como aprobada. Tu carrito permanece intacto.');}
+ }catch(e){finish(false,'No pudimos confirmar el pago',e.message+' Tu carrito permanece intacto.');}
+})();
+</script>
+</body>
+</html>
