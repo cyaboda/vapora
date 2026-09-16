@@ -2287,6 +2287,30 @@ header .nav-products > .products-menu:hover{
   transform:translate(-50%,0) !important;
 }
 
+
+/* ===== VAPORA CHECKOUT PREMIUM ===== */
+.vapora-pay-overlay{position:fixed!important;inset:0!important;z-index:2147483647!important;display:grid!important;place-items:center!important;padding:20px!important;background:rgba(2,4,8,.80)!important;-webkit-backdrop-filter:blur(18px) saturate(120%)!important;backdrop-filter:blur(18px) saturate(120%)!important;animation:vaporaPayFade .22s ease both}
+.vapora-pay-box{position:relative!important;width:min(510px,100%)!important;color:#f7f8fb;background:radial-gradient(circle at 85% 5%,rgba(133,157,202,.13),transparent 34%),linear-gradient(145deg,rgba(21,25,33,.97),rgba(7,9,13,.98));border:1px solid rgba(218,229,255,.24);border-radius:30px;padding:30px;box-shadow:0 35px 100px rgba(0,0,0,.68),inset 0 1px 0 rgba(255,255,255,.14);animation:vaporaPayPop .28s cubic-bezier(.2,.8,.2,1) both}
+.vapora-pay-brand{font-size:11px;font-weight:800;letter-spacing:.34em;color:#dce4f2;margin-bottom:24px}
+.vapora-pay-close{position:absolute;right:22px;top:20px;width:38px;height:38px;border:0;background:transparent;color:#aeb7c7;font-size:29px;cursor:pointer;border-radius:50%}
+.vapora-pay-close:hover{background:rgba(255,255,255,.07);color:#fff}
+.vapora-pay-box h3{margin:0 0 7px;font-size:31px;line-height:1.08;letter-spacing:-.035em}
+.vapora-pay-sub{margin:0 0 22px!important;color:#a8afbc!important;font-size:13px!important}
+.vapora-pay-total{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px;margin-bottom:18px;border:1px solid rgba(255,255,255,.09);border-radius:17px;background:rgba(255,255,255,.025)}
+.vapora-pay-total span{font-size:13px;color:#aeb5c1}.vapora-pay-total strong{font-size:24px}.vapora-pay-total small{font-size:11px;color:#929aa8}
+.vapora-pay-options{display:grid;gap:11px}
+.vapora-pay-option{width:100%;display:grid;grid-template-columns:48px 1fr 22px;align-items:center;gap:15px;text-align:left;border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:17px 18px;color:#f7f8fb;background:rgba(255,255,255,.035);cursor:pointer;transition:.18s ease}
+.vapora-pay-option:hover{transform:translateY(-2px);border-color:rgba(210,224,255,.38);background:rgba(255,255,255,.075);box-shadow:0 12px 32px rgba(0,0,0,.24)}
+.vapora-pay-card{background:linear-gradient(135deg,rgba(228,236,252,.16),rgba(255,255,255,.055))}
+.vapora-pay-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
+.vapora-pay-icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.7}
+.vapora-pay-copy strong{display:block;font-size:15px;margin-bottom:3px}.vapora-pay-copy small{display:block;color:#9ca4b1;font-size:11px}.vapora-pay-copy em{display:block;margin-top:7px;color:#e9edf5;font-size:11px;font-style:normal;font-weight:800}
+.vapora-pay-option>b{font-size:25px;font-weight:300}.vapora-pay-secure{margin:18px 0 14px;color:#8f98a8;font-size:10px;text-align:center}
+.vapora-pay-cancel{width:100%;border:1px solid rgba(255,255,255,.13)!important;border-radius:16px!important;padding:13px 16px!important;background:rgba(255,255,255,.025)!important;color:#9fa7b5!important;font-weight:700!important;cursor:pointer!important}
+.vapora-pay-cancel:hover{background:rgba(255,255,255,.06)!important;color:#fff!important}.checkout[disabled]{opacity:.55;cursor:wait}
+@keyframes vaporaPayFade{from{opacity:0}to{opacity:1}}@keyframes vaporaPayPop{from{opacity:0;transform:translateY(12px) scale(.975)}to{opacity:1;transform:none}}
+@media(max-width:560px){.vapora-pay-overlay{padding:12px!important}.vapora-pay-box{border-radius:24px;padding:23px 18px}.vapora-pay-box h3{font-size:26px}.vapora-pay-option{grid-template-columns:44px 1fr 18px;padding:15px 14px}.vapora-pay-icon{width:44px;height:44px}}
+
 </style>
 
 <script>
@@ -2651,7 +2675,7 @@ document.querySelectorAll(".flavor-card").forEach(card=>{
       <strong id="cartTotal">$0.00</strong>
     </div>
     <button class="checkout" id="checkoutButton">Finalizar compra</button>
-    <p class="note">El checkout seguro se conectará a una pasarela compatible.</p>
+    <p class="note">Pago seguro procesado por PayPhone.</p>
   </div>
 </aside>
 
@@ -2754,12 +2778,68 @@ cartButton.addEventListener("click",openCart);
 closeCart.addEventListener("click",closeDrawer);
 overlay.addEventListener("click",closeDrawer);
 
-document.getElementById("checkoutButton").addEventListener("click",()=>{
-  if(!Object.keys(cart).length){
-    alert("Tu carrito está vacío.");
-    return;
+/* ===== CHECKOUT PAYPHONE PREMIUM ===== */
+const checkoutButton=document.getElementById("checkoutButton");
+const VAPORA_PAY_API="https://vapora-payments.dalexmendoza20.workers.dev";
+
+function showPaymentChoice(data){
+  document.querySelectorAll(".vapora-pay-overlay").forEach(n=>n.remove());
+  const amount=(Number(data.amount||0)/100).toLocaleString("en-US",{style:"currency",currency:"USD"});
+  const el=document.createElement("div");
+  el.className="vapora-pay-overlay";
+  el.innerHTML=`
+  <div class="vapora-pay-box" role="dialog" aria-modal="true">
+    <div class="vapora-pay-brand">VAPORA</div>
+    <button class="vapora-pay-close" type="button" aria-label="Cerrar">×</button>
+    <h3>Elige cómo pagar</h3>
+    <p class="vapora-pay-sub">Tu pago será procesado de forma segura por PayPhone.</p>
+    <div class="vapora-pay-total"><span>Total de tu compra</span><strong>${amount}<small> USD</small></strong></div>
+    <div class="vapora-pay-options">
+      <button class="vapora-pay-option vapora-pay-card" type="button">
+        <span class="vapora-pay-icon"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9h19M6 15h3"/></svg></span>
+        <span class="vapora-pay-copy"><strong>Pagar con tarjeta</strong><small>Crédito o débito</small><em>VISA · MASTERCARD · AMEX</em></span><b>›</b>
+      </button>
+      <button class="vapora-pay-option vapora-pay-phone" type="button">
+        <span class="vapora-pay-icon"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 18.5h4"/></svg></span>
+        <span class="vapora-pay-copy"><strong>Pagar con PayPhone</strong><small>Paga desde tu aplicación</small><em>PayPhone</em></span><b>›</b>
+      </button>
+    </div>
+    <div class="vapora-pay-secure">🔒 Pago seguro procesado por PayPhone. Tus datos están protegidos.</div>
+    <button class="vapora-pay-cancel" type="button">Cancelar</button>
+  </div>`;
+  document.body.appendChild(el);
+  const close=()=>el.remove();
+  el.querySelector(".vapora-pay-card").onclick=()=>location.href=data.payWithCard;
+  el.querySelector(".vapora-pay-phone").onclick=()=>location.href=data.payWithPayPhone;
+  el.querySelector(".vapora-pay-close").onclick=close;
+  el.querySelector(".vapora-pay-cancel").onclick=close;
+  el.addEventListener("click",e=>{if(e.target===el)close()});
+}
+
+checkoutButton.addEventListener("click",async()=>{
+  if(!Object.keys(cart).length){alert("Tu carrito está vacío.");return;}
+  checkoutButton.disabled=true;
+  const previous=checkoutButton.textContent;
+  checkoutButton.textContent="Preparando pago…";
+  try{
+    const response=await fetch(VAPORA_PAY_API+"/prepare",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({cart})
+    });
+    const data=await response.json();
+    if(!response.ok||!data.ok)throw new Error(data.error||"No se pudo preparar el pago.");
+    localStorage.setItem("vaporaPendingPayment",JSON.stringify({
+      paymentId:data.paymentId,clientTransactionId:data.clientTransactionId,
+      amount:data.amount,createdAt:Date.now()
+    }));
+    closeDrawer();
+    showPaymentChoice(data);
+  }catch(error){
+    console.error(error);
+    alert("No pudimos preparar el pago. Inténtalo nuevamente.");
+  }finally{
+    checkoutButton.disabled=false;checkoutButton.textContent=previous;
   }
-  alert("El carrito está listo. El siguiente paso es conectar la pasarela de pago.");
 });
 
 /* Control de acceso */
