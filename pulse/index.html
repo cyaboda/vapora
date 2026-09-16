@@ -1653,6 +1653,22 @@ document.addEventListener('click', function(e){
 </script>
 
 
+
+<style id="vapora-payphone-pulse-layer-fix">
+body > .vapora-pay-overlay{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:2147483647 !important;
+  width:100vw !important;
+  height:100dvh !important;
+  isolation:isolate !important;
+}
+body > .vapora-pay-overlay .vapora-pay-box{
+  position:relative !important;
+  z-index:1 !important;
+}
+</style>
+
 <script id="vapora-payphone-checkout">
 (() => {
   const API = "https://vapora-payments.dalexmendoza20.workers.dev";
