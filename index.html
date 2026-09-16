@@ -1,45 +1,2891 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Confirmando pago | VAPORA</title>
-<link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+<link rel="preload" as="image" href="BANNER.webp" fetchpriority="high">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAPORA</title>
+<meta name="description" content="VAPORA - Pulse, Pulse X y Digiflavor. Encuentra tu sabor.">
+
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 25%,#151b2a 0,#07090d 38%,#030406 75%);color:#f7f7f8;font-family:Arial,Helvetica,sans-serif;padding:24px}.box{width:min(560px,100%);padding:34px;border:1px solid rgba(255,255,255,.12);border-radius:26px;background:rgba(10,12,17,.9);box-shadow:0 30px 90px rgba(0,0,0,.45);text-align:center}.logo{width:145px;height:auto;margin-bottom:30px}.icon{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;border:1px solid rgba(255,255,255,.14);font-size:28px}.spin{animation:s 1s linear infinite}@keyframes s{to{transform:rotate(360deg)}}h1{font-size:28px;margin:0 0 10px}p{color:#a8adb6;line-height:1.55;font-size:14px;margin:0 auto 22px}.details{margin:22px 0;padding:16px;border-radius:15px;background:rgba(255,255,255,.04);font-size:12px;color:#c9ccd2;text-align:left;display:none}.btn{display:inline-block;border-radius:999px;background:#fff;color:#07080a;padding:13px 20px;font-weight:800;font-size:12px;text-decoration:none}.small{font-size:10px;color:#6f747d;margin-top:18px}
+:root{
+  --bg:#07080b;
+  --panel:#101217;
+  --panel2:#151820;
+  --text:#f7f7f8;
+  --muted:#aeb2bd;
+  --line:rgba(255,255,255,.10);
+  --purple:#9b82ff;
+  --purple2:#d8ccff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+
+/* HEADER */
+header{
+  height:72px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5vw;
+  background:rgba(7,8,11,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+.logo img{
+  display:block;
+  width:auto;
+  height:34px;
+  max-width:190px;
+  object-fit:contain;
+}
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  font-size:14px;
+  color:#d4d6dc;
+}
+nav a:hover{color:white}
+.cart-button{
+  color:white;
+  background:#12151b;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 15px;
+  cursor:pointer;
+}
+.cart-count{
+  display:inline-grid;
+  place-items:center;
+  min-width:23px;
+  height:23px;
+  margin-left:7px;
+  padding:0 6px;
+  border-radius:999px;
+  background:white;
+  color:black;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* HERO AJUSTADO PARA PARECERSE A LA REFERENCIA */
+.hero{
+  position:relative;
+  min-height:calc(100vh - 72px - 92px);
+  height:calc(100vh - 72px - 92px);
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:#050608;
+}
+
+/* La imagen ocupa el hero completo sin zoom agresivo */
+.hero-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+.hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center right;
+  display:block;
+}
+
+/* Sombra suave solo para asegurar lectura a la izquierda */
+.hero-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,
+      rgba(5,6,8,.98) 0%,
+      rgba(5,6,8,.92) 24%,
+      rgba(5,6,8,.64) 39%,
+      rgba(5,6,8,.20) 52%,
+      rgba(5,6,8,0) 66%);
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:42%;
+  max-width:610px;
+  padding-left:5vw;
+  transform:translateY(-8px);
+}
+
+.eyebrow{
+  margin:0 0 16px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.34em;
+  color:#d7d9df;
+}
+
+.hero h1{
+  margin:0;
+  font-size:clamp(54px,5.7vw,88px);
+  line-height:.89;
+  letter-spacing:-.055em;
+  font-weight:800;
+  max-width:600px;
+  text-shadow:0 10px 28px rgba(0,0,0,.35);
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#f8f7ff 0%,#d7c9ff 46%,#9477ff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero-models{
+  margin:26px 0 0;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.24em;
+  color:#fff;
+}
+
+.hero .btn{
+  margin-top:34px;
+}
+
+.hero-note{
+  margin-top:66px;
+  color:#80838b;
+  font-size:12px;
+  line-height:1.55;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 23px;
+  border-radius:999px;
+  background:white;
+  color:#08090b;
+  font-weight:800;
+  border:0;
+  cursor:pointer;
+}
+
+/* TRUST */
+.trust{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  height:92px;
+  border-bottom:1px solid var(--line);
+}
+.trust-item{
+  min-height:92px;
+  height:92px;
+  padding:18px clamp(22px,3.2vw,52px);
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  gap:18px;
+}
+.trust-item:last-child{border-right:0}
+.trust-icon{
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+  display:grid;
+  place-items:center;
+  color:#f4f4f6;
+}
+.trust-icon svg{
+  width:34px;
+  height:34px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.55;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.trust-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.trust-item strong{
+  font-size:14px;
+  line-height:1.25;
+  white-space:nowrap;
+}
+.trust-item span{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:12px;
+  line-height:1.25;
+  white-space:nowrap;
+}
+
+/* SECTIONS */
+section.content{
+  padding:78px 5vw;
+}
+.section-title{
+  margin-bottom:30px;
+}
+.section-title p{
+  margin:0 0 10px;
+  color:#b9bdc7;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.32em;
+}
+.section-title h2{
+  margin:0;
+  font-size:clamp(34px,4vw,62px);
+  letter-spacing:-.05em;
+}
+
+/* COLLECTIONS */
+.collections{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.collection{
+  position:relative;
+  display:block;
+  text-decoration:none;
+  min-height:270px;
+  overflow:hidden;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#101217;
+  color:white;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+
+.collection:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.24);
+  box-shadow:0 20px 50px rgba(0,0,0,.32);
+}
+
+.collection-image img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transition:transform .45s ease;
+}
+
+.collection:hover img{
+  transform:scale(1.025);
+}
+
+.collection-shade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,
+      rgba(5,6,8,.94) 0%,
+      rgba(5,6,8,.82) 34%,
+      rgba(5,6,8,.42) 58%,
+      rgba(5,6,8,.08) 100%),
+    linear-gradient(0deg,rgba(5,6,8,.32),transparent 55%);
+}
+
+.collection-copy{
+  position:relative;
+  z-index:2;
+  width:58%;
+  min-height:270px;
+  padding:31px 0 27px 27px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+.collection small{
+  display:block;
+  margin-bottom:5px;
+  color:#e6e7eb;
+  letter-spacing:.16em;
+  font-size:11px;
+  font-weight:700;
+}
+
+.collection strong{
+  display:block;
+  margin:0 0 10px;
+  font-size:30px;
+  line-height:1;
+  letter-spacing:-.035em;
+}
+
+.collection p{
+  margin:0;
+  min-height:35px;
+  color:#e2e3e7;
+  font-size:13px;
+  line-height:1.35;
+}
+
+.collection-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:20px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:#fff;
+  color:#08090b;
+  font-size:12px;
+  font-weight:800;
+}
+
+.content#productos{
+  padding-bottom:72px;
+  border-bottom:0;
+}
+
+/* PRODUCTS */
+.products-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:28px;
+}
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.filter{
+  padding:10px 15px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:#d3d5db;
+  cursor:pointer;
+}
+.filter.active{
+  background:white;
+  color:black;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.product{
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#101217;
+}
+.product-visual{
+  height:230px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(155,130,255,.18),transparent 35%),
+    #0b0d11;
+}
+.fake-device{
+  width:92px;
+  height:165px;
+  border-radius:25px;
+  display:grid;
+  place-items:center;
+  padding:10px;
+  text-align:center;
+  color:white;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.07em;
+  box-shadow:0 25px 50px rgba(0,0,0,.45);
+  transform:rotate(-4deg);
+}
+.product-info{padding:18px}
+.product-info h3{
+  margin:0;
+  font-size:16px;
+}
+.product-info .model{
+  margin:6px 0 18px;
+  color:var(--muted);
+  font-size:13px;
+}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.add{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:#1a1d24;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* ABOUT */
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+  padding:78px 5vw;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,rgba(255,255,255,.035),transparent);
+}
+.about h2{
+  margin:0;
+  font-size:clamp(38px,4vw,64px);
+  line-height:1;
+  letter-spacing:-.05em;
+}
+.about h2 span{color:var(--purple)}
+.about>p{
+  color:var(--muted);
+  line-height:1.8;
+  max-width:620px;
+}
+
+/* FOOTER */
+.footer-logo img{
+  display:block;
+  width:auto;
+  height:30px;
+  max-width:180px;
+  object-fit:contain;
+}
+
+footer{
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:30px 5vw;
+  color:#9fa3ad;
+  font-size:13px;
+  border-top:1px solid var(--line);
+}
+
+/* CART */
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:70;
+  background:rgba(0,0,0,.65);
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+.overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:80;
+  width:min(440px,100%);
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding:25px;
+  background:#0c0e12;
+  border-left:1px solid var(--line);
+  transform:translateX(100%);
+  transition:.25s;
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.drawer-head h2{margin:0;font-size:32px}
+.close{
+  border:0;
+  background:none;
+  color:white;
+  font-size:32px;
+  cursor:pointer;
+}
+.cart-items{
+  flex:1;
+  overflow:auto;
+  padding:15px 0;
+}
+.cart-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+.cart-item p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.qty button{
+  width:29px;
+  height:29px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#171a21;
+  color:white;
+  cursor:pointer;
+}
+.drawer-footer{
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.total{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:16px;
+  font-size:18px;
+}
+.checkout{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(90deg,#a58cff,#fff);
+  color:#08090b;
+  font-weight:800;
+  cursor:pointer;
+}
+.note{
+  color:#8f939e;
+  text-align:center;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* AGE MODAL */
+.age-modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.88);
+}
+.age-modal.show{display:grid}
+.age-box{
+  width:min(500px,100%);
+  padding:35px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#0e1015;
+  text-align:center;
+}
+.age-box h2{
+  margin:0 0 15px;
+  font-size:46px;
+}
+.age-box p{
+  color:#aeb2bd;
+  line-height:1.6;
+}
+.age-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+.secondary{
+  padding:14px 22px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:transparent;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  nav{display:none}
+  .hero{
+    min-height:530px;
+    height:auto;
+  }
+  .trust{height:auto}
+  .trust-item{height:auto;min-height:92px}
+  .trust-item strong,.trust-item span{white-space:normal}
+  .hero-content{width:48%}
+  .hero h1{font-size:clamp(52px,6vw,76px)}
+  .hero-note{margin-top:48px}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .collections{grid-template-columns:1fr}
+  .collection,.collection-copy{min-height:235px}
+  .collection-copy{width:62%}
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}
+}
+
+@media(max-width:760px){
+  header{height:64px}
+  .logo img{height:28px;max-width:155px}
+  .hero{
+    min-height:720px;
+    align-items:flex-end;
+  }
+
+  .hero-bg img{
+    object-fit:cover;
+    object-position:72% center;
+  }
+
+  .hero-bg:after{
+    background:linear-gradient(180deg,
+      rgba(5,6,8,.08) 0%,
+      rgba(5,6,8,.22) 38%,
+      rgba(5,6,8,.86) 66%,
+      rgba(5,6,8,1) 100%);
+  }
+
+  .hero-content{
+    width:100%;
+    max-width:none;
+    padding:0 24px 48px;
+    transform:none;
+  }
+
+  .hero h1{
+    font-size:clamp(50px,15vw,78px);
+  }
+
+  .hero-models{
+    font-size:11px;
+  }
+
+  .hero-note{
+    margin-top:34px;
+  }
+
+  .trust{grid-template-columns:1fr}
+  .trust-item{border-right:0;border-bottom:1px solid var(--line)}
+  section.content{padding:60px 24px}
+  .products-head{align-items:flex-start;flex-direction:column}
+  .product-grid{grid-template-columns:1fr}
+  .about{padding:60px 24px}
+  footer{flex-direction:column;align-items:flex-start}
+}
+
+.site-footer{
+  margin-top:0;
+  border-top:1px solid var(--line);
+  background:#050608;
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:1.35fr .8fr .9fr 1.1fr;
+  gap:56px;
+  padding:48px 5vw 42px;
+  align-items:start;
+}
+.footer-brand img{
+  display:block;
+  width:auto;
+  height:31px;
+  max-width:180px;
+  object-fit:contain;
+}
+.footer-brand p{
+  margin:14px 0 0;
+  color:#8e929c;
+  font-size:12px;
+  line-height:1.45;
+}
+.footer-group,
+.footer-legal{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+}
+.footer-title{
+  margin-bottom:4px;
+  color:#707580;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.22em;
+}
+.footer-group a{
+  color:#f0f1f3;
+  text-decoration:none;
+  font-size:12px;
+  line-height:1.3;
+  transition:opacity .2s ease;
+}
+.footer-group a:hover{opacity:.65}
+.footer-legal{
+  color:#8e929c;
+  font-size:11px;
+  line-height:1.45;
+}
+.footer-legal p{
+  margin:0;
+}
+.nicotine-warning{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:20px 5vw 22px;
+  border-top:1px solid var(--line);
+  background:#090a0d;
+}
+.warning-icon{
+  flex:0 0 auto;
+  font-size:15px;
+  line-height:1.45;
+}
+.nicotine-warning p{
+  margin:0;
+  max-width:1300px;
+  color:#969aa4;
+  font-size:10.5px;
+  line-height:1.65;
+}
+.nicotine-warning strong{
+  color:#dfe1e5;
+  font-weight:800;
+}
+@media(max-width:900px){
+  .footer-top{
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:34px;
+  }
+  .footer-legal{
+    grid-column:1/-1;
+    padding-top:6px;
+    flex-direction:row;
+    justify-content:space-between;
+    width:100%;
+  }
+}
+@media(max-width:620px){
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+    gap:28px 22px;
+    padding:36px 24px 30px;
+  }
+  .footer-brand{
+    grid-column:1/-1;
+  }
+  .footer-legal{
+    grid-column:1/-1;
+    flex-direction:column;
+    gap:8px;
+  }
+  .nicotine-warning{
+    padding:18px 24px 20px;
+  }
+  .nicotine-warning p{
+    font-size:10px;
+  }
+}
+
+
+/* ===== VAPORA FOOTER FINAL ===== */
+.vapora-footer{
+  width:100%;
+  border-top:1px solid rgba(255,255,255,.10);
+  background:#050608;
+  color:#fff;
+}
+.vapora-footer-main{
+  max-width:1440px;
+  margin:0 auto;
+  padding:38px 5vw 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:48px;
+}
+.vapora-footer-brand{
+  min-width:220px;
+}
+.vapora-footer-brand img{
+  display:block;
+  height:30px;
+  width:auto;
+  max-width:180px;
+  object-fit:contain;
+}
+.vapora-footer-brand p{
+  margin:11px 0 0;
+  color:#8f949e;
+  font-size:12px;
+  line-height:1.5;
+}
+.vapora-footer-nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:12px 28px;
+}
+.vapora-footer-nav a{
+  color:#dfe1e5;
+  text-decoration:none;
+  font-size:12px;
+  line-height:1;
+}
+.vapora-footer-nav a:hover{
+  color:#fff;
+}
+.vapora-warning{
+  width:100%;
+  padding:18px 5vw;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:#090a0d;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:12px;
+}
+.vapora-warning-icon{
+  flex:0 0 auto;
+  font-size:14px;
+  line-height:1.6;
+}
+.vapora-warning p{
+  margin:0;
+  max-width:1200px;
+  color:#9ea3ad;
+  font-size:10.5px;
+  line-height:1.65;
+  text-align:left;
+}
+.vapora-warning strong{
+  color:#eceef2;
+  font-weight:800;
+}
+.vapora-footer-bottom{
+  max-width:1440px;
+  margin:0 auto;
+  padding:16px 5vw 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#666b75;
+  font-size:10px;
+}
+@media(max-width:760px){
+  .vapora-footer-main{
+    padding:32px 24px 26px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:24px;
+  }
+  .vapora-footer-nav{
+    justify-content:flex-start;
+    gap:14px 22px;
+  }
+  .vapora-warning{
+    padding:18px 24px;
+  }
+  .vapora-footer-bottom{
+    padding:16px 24px 20px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+}
+
+
+/* ===== COMMUNITY MARQUEE ===== */
+.community-strip{
+  width:100%;
+  overflow:hidden;
+  background:#050608;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.community-title-marquee{
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.community-title-track{
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:54px;
+  padding:22px 0;
+  animation:vaporaTitleMove 28s linear infinite;
+}
+.community-title-track span{
+  flex:0 0 auto;
+  color:#f3f3f5;
+  font-size:clamp(18px,1.65vw,28px);
+  font-weight:800;
+  letter-spacing:-.025em;
+  white-space:nowrap;
+}
+.community-title-track span::after{
+  content:"✦";
+  margin-left:54px;
+  color:#8d72ff;
+  font-size:.72em;
+}
+.community-gallery{
+  width:100%;
+  overflow:hidden;
+}
+.community-track{
+  width:max-content;
+  display:flex;
+  will-change:transform;
+  animation:vaporaGalleryMove 42s linear infinite;
+}
+.community-group{
+  flex:0 0 auto;
+  display:flex;
+  gap:0;
+}
+.community-group img{
+  display:block;
+  width:clamp(220px,19vw,310px);
+  height:clamp(220px,19vw,310px);
+  object-fit:cover;
+  flex:0 0 auto;
+  filter:saturate(.98) contrast(1.02);
+}
+.community-gallery:hover .community-track{
+  animation-play-state:paused;
+}
+@keyframes vaporaGalleryMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@keyframes vaporaTitleMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(-25%)}
+}
+@media(max-width:760px){
+  .community-title-track{
+    gap:34px;
+    padding:17px 0;
+  }
+  .community-title-track span::after{
+    margin-left:34px;
+  }
+  .community-group img{
+    width:240px;
+    height:240px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .community-track,
+  .community-title-track{
+    animation:none;
+  }
+}
+
+
+/* ===== FLAVOR EXPLORER ===== */
+.flavor-explorer{
+  padding:58px 5vw 62px;
+  background:
+    radial-gradient(circle at 50% -25%,rgba(122,92,255,.12),transparent 44%),
+    #07080b;
+  border-bottom:1px solid var(--line);
+}
+.flavor-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  margin-bottom:26px;
+}
+.flavor-heading p{
+  margin:0 0 10px;
+  color:#a6a9b2;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.28em;
+}
+.flavor-heading h2{
+  margin:0;
+  color:#f5f5f7;
+  font-size:clamp(36px,4vw,62px);
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+.flavor-all-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding-bottom:7px;
+  border-bottom:1px solid rgba(255,255,255,.28);
+  color:#d7d9df;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.flavor-all-link span{
+  color:#9c84ff;
+  font-size:18px;
+  line-height:1;
+}
+.flavor-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+.flavor-card{
+  position:relative;
+  min-height:208px;
+  padding:16px 14px 18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:16px;
+  background:
+    linear-gradient(180deg,rgba(22,24,30,.96),rgba(11,12,16,.96));
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+.flavor-card::before{
+  content:"";
+  position:absolute;
+  inset:-35% 10% 34%;
+  background:radial-gradient(circle,rgba(122,91,255,.17),transparent 68%);
+  opacity:0;
+  transition:opacity .25s ease;
+}
+.flavor-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(155,128,255,.48);
+  box-shadow:0 20px 45px rgba(0,0,0,.30),0 0 28px rgba(119,83,255,.10);
+}
+.flavor-card:hover::before{
+  opacity:1;
+}
+.flavor-icon-wrap{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:145px;
+  display:grid;
+  place-items:center;
+  margin-bottom:4px;
+}
+.flavor-icon-wrap img{
+  display:block;
+  width:150px;
+  height:150px;
+  max-width:90%;
+  object-fit:contain;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.36));
+  transition:transform .3s ease,filter .3s ease;
+}
+.flavor-card:hover .flavor-icon-wrap img{
+  transform:scale(1.055);
+  filter:drop-shadow(0 14px 22px rgba(76,49,170,.28));
+}
+.flavor-card span{
+  position:relative;
+  z-index:1;
+  color:#f0f1f4;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.20em;
+}
+.flavor-note{
+  margin:18px 0 0;
+  color:#666b75;
+  font-size:10px;
+  letter-spacing:.08em;
+}
+@media(max-width:1000px){
+  .flavor-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(max-width:680px){
+  .flavor-explorer{
+    padding:44px 24px 48px;
+  }
+  .flavor-heading{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:18px;
+  }
+  .flavor-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .flavor-card{
+    min-height:190px;
+  }
+  .flavor-icon-wrap{
+    height:132px;
+  }
+  .flavor-icon-wrap img{
+    width:138px;
+    height:138px;
+  }
+}
+
+
+/* ===== FLAVOR EXPLORER COMPACT ===== */
+.flavor-explorer{
+  padding:34px 2.6vw 38px;
+  background:#07080b;
+  border-bottom:1px solid var(--line);
+}
+.flavor-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:14px;
+}
+.flavor-heading p{
+  margin:0 0 7px;
+  color:#a8abb3;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.30em;
+}
+.flavor-heading h2{
+  margin:0;
+  color:#f4f4f6;
+  font-size:clamp(25px,2.3vw,36px);
+  line-height:1;
+  letter-spacing:.01em;
+  font-weight:600;
+}
+.flavor-all-link{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding-bottom:5px;
+  color:#d7d9df;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.flavor-all-link span{
+  color:#aaa0ff;
+  font-size:16px;
+  line-height:1;
+}
+.flavor-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+}
+.flavor-card{
+  position:relative;
+  height:112px;
+  padding:10px 8px 9px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:7px;
+  background:linear-gradient(180deg,#14161a 0%,#111317 100%);
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.flavor-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.18);
+  background:linear-gradient(180deg,#181a1f 0%,#121419 100%);
+}
+.flavor-icon-wrap{
+  width:100%;
+  height:70px;
+  display:grid;
+  place-items:center;
+  margin:0 0 2px;
+}
+.flavor-icon-wrap img{
+  display:block;
+  width:66px;
+  height:66px;
+  object-fit:contain;
+  filter:none;
+  transition:transform .2s ease;
+}
+.flavor-card:hover .flavor-icon-wrap img{
+  transform:scale(1.04);
+}
+.flavor-card span{
+  color:#f0f1f4;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0;
+}
+.flavor-note{
+  display:none;
+}
+@media(max-width:900px){
+  .flavor-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(max-width:620px){
+  .flavor-explorer{
+    padding:28px 18px 32px;
+  }
+  .flavor-heading{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+  }
+  .flavor-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .flavor-card{
+    height:108px;
+  }
+}
+
+
+/* Ajuste solicitado: 3 líneas primero, categorías inmediatamente debajo */
+.flavor-explorer{padding-top:24px!important;padding-bottom:34px!important;}
+
+
+/* ===== AJUSTE FINAL: CATEGORÍAS COMPACTAS ===== */
+
+/* Menos aire alrededor de las tres tarjetas */
+.content#productos{
+  padding-top:34px !important;
+  padding-bottom:20px !important;
+}
+
+/* Categorías inmediatamente después de las tres líneas */
+.flavor-explorer{
+  padding:14px 2.6vw 28px !important;
+  margin:0 !important;
+}
+
+/* Encabezado compacto, como la referencia */
+.flavor-heading{
+  margin-bottom:12px !important;
+}
+.flavor-heading p{
+  margin-bottom:5px !important;
+  font-size:9px !important;
+}
+.flavor-heading h2{
+  font-size:clamp(25px,2.2vw,34px) !important;
+}
+
+/* Tarjetas bastante más bajas */
+.flavor-grid{
+  gap:10px !important;
+}
+.flavor-card{
+  height:124px !important;
+  min-height:124px !important;
+  padding:8px 8px 10px !important;
+  border-radius:7px !important;
+  justify-content:center !important;
+}
+
+/* Icono protagonista sin agrandar la tarjeta */
+.flavor-icon-wrap{
+  width:100% !important;
+  height:86px !important;
+  margin:0 0 1px !important;
+}
+.flavor-icon-wrap img{
+  width:92px !important;
+  height:92px !important;
+  max-width:none !important;
+  object-fit:contain !important;
+}
+
+/* TODOS es más geométrico, visualmente necesita apenas menos escala */
+.flavor-card[data-category="todos"] .flavor-icon-wrap img{
+  width:78px !important;
+  height:78px !important;
+}
+
+.flavor-card span{
+  font-size:10px !important;
+  letter-spacing:.04em !important;
+}
+
+/* El bloque no debe crear espacio extra debajo */
+.flavor-note{
+  display:none !important;
+}
+
+@media(max-width:900px){
+  .content#productos{
+    padding-bottom:18px !important;
+  }
+  .flavor-explorer{
+    padding-top:12px !important;
+  }
+}
+@media(max-width:620px){
+  .flavor-card{
+    height:118px !important;
+    min-height:118px !important;
+  }
+  .flavor-icon-wrap{
+    height:80px !important;
+  }
+  .flavor-icon-wrap img{
+    width:84px !important;
+    height:84px !important;
+  }
+}
+
+
+/* ===== TIPOGRAFÍA VAPORA ===== */
+:root{
+  --font-display:"Arial Black","Avenir Next Heavy","Helvetica Neue",Arial,sans-serif;
+  --font-editorial:"Trebuchet MS","Avenir Next","Segoe UI",Arial,sans-serif;
+}
+
+/* Hero principal */
+.hero h1{
+  font-family:var(--font-display) !important;
+  font-weight:900 !important;
+  letter-spacing:-.065em !important;
+  line-height:.86 !important;
+  text-transform:uppercase;
+}
+
+/* Título de categorías */
+.flavor-heading h2{
+  font-family:var(--font-editorial) !important;
+  font-weight:700 !important;
+  letter-spacing:-.035em !important;
+}
+
+/* Eyebrows / subtítulos pequeños */
+.hero-kicker,
+.flavor-heading p,
+.content .eyebrow,
+.section-kicker{
+  font-family:var(--font-editorial) !important;
+  font-weight:700 !important;
+  letter-spacing:.24em !important;
+}
+
+
+/* ===== TÍTULO SABORES: ESTILO TRACKED EDITORIAL ===== */
+.flavor-heading h2{
+  font-family:"Avenir Next","Montserrat","Century Gothic","Trebuchet MS",Arial,sans-serif !important;
+  font-size:clamp(20px,1.9vw,29px) !important;
+  font-weight:500 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.22em !important;
+  line-height:1.15 !important;
+  white-space:nowrap;
+}
+
+
+/* ===== HEADER GLASS AL HACER SCROLL ===== */
+header{
+  transition:
+    background-color .32s ease,
+    backdrop-filter .32s ease,
+    -webkit-backdrop-filter .32s ease,
+    border-color .32s ease,
+    box-shadow .32s ease !important;
+}
+
+header.header-scrolled{
+  background:rgba(7,8,11,.66) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(135%);
+  backdrop-filter:blur(18px) saturate(135%);
+  border-bottom-color:rgba(255,255,255,.10) !important;
+  box-shadow:0 10px 32px rgba(0,0,0,.18);
+}
+
+
+/* ===== VAPORA LIQUID GLASS HEADER ===== */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  isolation:isolate;
+  overflow:hidden;
+  background:rgba(5,6,8,.94) !important;
+  border-bottom:1px solid rgba(255,255,255,.07) !important;
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease,
+    transform .35s ease;
+}
+
+header::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  z-index:-2;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(80% 140% at var(--glass-x,50%) -10%,
+      rgba(255,255,255,.22) 0%,
+      rgba(255,255,255,.08) 16%,
+      transparent 45%),
+    linear-gradient(115deg,
+      rgba(155,126,255,.10),
+      rgba(89,222,255,.05) 36%,
+      rgba(255,255,255,.06) 54%,
+      rgba(255,111,207,.06) 72%,
+      transparent 100%);
+  filter:blur(14px);
+  transform:scale(1.03);
+  transition:opacity .35s ease;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.12) 0%,
+      rgba(255,255,255,.025) 18%,
+      rgba(255,255,255,.015) 70%,
+      rgba(255,255,255,.06) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    inset 0 -1px 0 rgba(255,255,255,.06);
+  transition:opacity .35s ease;
+}
+
+header.header-scrolled{
+  background:linear-gradient(
+    180deg,
+    rgba(12,13,17,.56) 0%,
+    rgba(7,8,12,.46) 100%
+  ) !important;
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(165%)
+    contrast(108%);
+  backdrop-filter:
+    blur(24px)
+    saturate(165%)
+    contrast(108%);
+  border-bottom-color:rgba(255,255,255,.14) !important;
+  box-shadow:
+    0 14px 38px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+header.header-scrolled::before,
+header.header-scrolled::after{
+  opacity:1;
+}
+
+header.header-scrolled .logo img,
+header.header-scrolled nav a,
+header.header-scrolled .cart-btn{
+  position:relative;
+  z-index:2;
+}
+
+header.header-scrolled .cart-btn{
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.035)
+  ) !important;
+  border-color:rgba(255,255,255,.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 8px 20px rgba(0,0,0,.14);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+}
+
+/* brillo líquido que cruza sutilmente */
+header .liquid-glass-sheen{
+  position:absolute;
+  top:-35%;
+  left:var(--sheen-left,-18%);
+  width:22%;
+  height:170%;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  transform:rotate(14deg);
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.03) 20%,
+    rgba(255,255,255,.16) 49%,
+    rgba(255,255,255,.035) 78%,
+    transparent 100%
+  );
+  filter:blur(8px);
+  transition:opacity .28s ease;
+}
+
+header.header-scrolled .liquid-glass-sheen{
+  opacity:.65;
+}
+
+@media (prefers-reduced-motion:reduce){
+  header,
+  header::before,
+  header::after,
+  header .liquid-glass-sheen{
+    transition:none !important;
+  }
+}
+
+
+/* ===== VAPORA LIQUID GLASS — EXPERIMENTAL ===== */
+header{
+  --mx:50%;
+  --my:50%;
+  --scroll-glow:.35;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  isolation:isolate;
+  overflow:hidden;
+  background:rgba(5,6,8,.96) !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+  transition:background .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+
+/* Main refractive glass body */
+header.header-scrolled{
+  background:
+    linear-gradient(180deg,rgba(20,22,29,.46),rgba(6,7,11,.34)) !important;
+  -webkit-backdrop-filter:
+    blur(28px)
+    saturate(190%)
+    contrast(112%)
+    brightness(108%);
+  backdrop-filter:
+    blur(28px)
+    saturate(190%)
+    contrast(112%)
+    brightness(108%);
+  border-bottom-color:rgba(255,255,255,.18) !important;
+  box-shadow:
+    0 18px 46px rgba(0,0,0,.24),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -1px 0 rgba(255,255,255,.04);
+}
+
+/* Color caustics / pseudo-refraction */
+header::before{
+  content:"";
+  position:absolute;
+  inset:-35% -8%;
+  z-index:-2;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(circle at var(--mx) 20%,
+      rgba(255,255,255,.20) 0 4%,
+      rgba(190,170,255,.12) 9%,
+      transparent 24%),
+    radial-gradient(circle at calc(var(--mx) + 18%) 65%,
+      rgba(90,225,255,.12),
+      transparent 27%),
+    radial-gradient(circle at calc(var(--mx) - 22%) 58%,
+      rgba(179,104,255,.12),
+      transparent 26%),
+    linear-gradient(115deg,
+      rgba(255,255,255,.03) 0%,
+      rgba(144,112,255,.08) 26%,
+      rgba(91,210,255,.06) 48%,
+      rgba(255,255,255,.05) 58%,
+      rgba(255,110,220,.06) 76%,
+      transparent 100%);
+  filter:url(#vaporaLiquidWarp) blur(10px);
+  transform:scale(1.08);
+  transition:opacity .35s ease;
+}
+
+header.header-scrolled::before{opacity:1}
+
+/* Specular top and bottom edges */
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.20) 0,
+      rgba(255,255,255,.05) 1px,
+      transparent 13%,
+      transparent 72%,
+      rgba(255,255,255,.035) 88%,
+      rgba(255,255,255,.10) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 -1px 0 rgba(255,255,255,.08);
+  transition:opacity .35s ease;
+}
+
+header.header-scrolled::after{opacity:1}
+
+/* Moving highlight */
+header .liquid-glass-sheen{
+  position:absolute;
+  top:-55%;
+  left:calc(var(--mx) - 14%);
+  width:28%;
+  height:210%;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  transform:rotate(13deg);
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,.025) 22%,
+      rgba(255,255,255,.20) 48%,
+      rgba(255,255,255,.055) 64%,
+      transparent 100%);
+  filter:blur(8px);
+  mix-blend-mode:screen;
+  transition:opacity .25s ease,left .12s linear;
+}
+header.header-scrolled .liquid-glass-sheen{opacity:.80}
+
+/* Edge lens highlights */
+header .glass-edge-left,
+header .glass-edge-right{
+  position:absolute;
+  top:8px;
+  bottom:8px;
+  width:44px;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  filter:blur(7px);
+  transition:opacity .3s ease;
+}
+header .glass-edge-left{
+  left:-18px;
+  background:radial-gradient(circle at right,rgba(174,139,255,.16),transparent 66%);
+}
+header .glass-edge-right{
+  right:-18px;
+  background:radial-gradient(circle at left,rgba(100,220,255,.14),transparent 66%);
+}
+header.header-scrolled .glass-edge-left,
+header.header-scrolled .glass-edge-right{opacity:1}
+
+/* Make header controls feel like they sit inside the glass */
+header.header-scrolled nav a{
+  text-shadow:0 1px 14px rgba(255,255,255,.07);
+}
+header.header-scrolled .cart-btn{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.045)) !important;
+  border-color:rgba(255,255,255,.18) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.15),
+    inset 0 -1px 0 rgba(255,255,255,.03),
+    0 8px 22px rgba(0,0,0,.18);
+  -webkit-backdrop-filter:blur(16px) saturate(145%);
+  backdrop-filter:blur(16px) saturate(145%);
+}
+
+/* small breathing effect only while scrolled */
+@keyframes vaporaGlassBreath{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.025)}
+}
+header.header-scrolled{
+  animation:vaporaGlassBreath 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion:reduce){
+  header.header-scrolled{animation:none}
+  header .liquid-glass-sheen{transition:none}
+}
+
+
+/* ===== VAPORA LIQUID GLASS — REFINED / LOW BLUR ===== */
+header{
+  --mx:50%;
+  --my:50%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  isolation:isolate;
+  overflow:hidden;
+  background:rgba(5,6,8,.93) !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+  transition:
+    background .32s ease,
+    border-color .32s ease,
+    box-shadow .32s ease;
+}
+
+/* Much clearer glass: preserve what is behind it */
+header.header-scrolled{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,20,26,.24) 0%,
+      rgba(8,9,13,.18) 100%
+    ) !important;
+  -webkit-backdrop-filter:
+    blur(10px)
+    saturate(155%)
+    contrast(108%)
+    brightness(104%);
+  backdrop-filter:
+    blur(10px)
+    saturate(155%)
+    contrast(108%)
+    brightness(104%);
+  border-bottom-color:rgba(255,255,255,.16) !important;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.035);
+}
+
+/* restrained color refraction */
+header::before{
+  content:"";
+  position:absolute;
+  inset:-24% -5%;
+  z-index:-2;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(circle at var(--mx) 18%,
+      rgba(255,255,255,.15) 0 3%,
+      rgba(178,156,255,.08) 8%,
+      transparent 21%),
+    radial-gradient(circle at calc(var(--mx) + 19%) 62%,
+      rgba(80,210,255,.07),
+      transparent 24%),
+    radial-gradient(circle at calc(var(--mx) - 20%) 60%,
+      rgba(184,94,255,.07),
+      transparent 23%),
+    linear-gradient(115deg,
+      rgba(255,255,255,.02),
+      rgba(142,110,255,.045) 30%,
+      rgba(83,202,255,.035) 50%,
+      rgba(255,255,255,.04) 58%,
+      rgba(255,100,214,.035) 77%,
+      transparent 100%);
+  filter:url(#vaporaLiquidWarpSoft) blur(4px);
+  transform:scale(1.035);
+  transition:opacity .3s ease;
+}
+header.header-scrolled::before{opacity:1}
+
+/* crisp liquid-glass edges */
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.17) 0,
+      rgba(255,255,255,.06) 1px,
+      rgba(255,255,255,.015) 10%,
+      transparent 32%,
+      transparent 74%,
+      rgba(255,255,255,.025) 90%,
+      rgba(255,255,255,.075) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(255,255,255,.07);
+  transition:opacity .3s ease;
+}
+header.header-scrolled::after{opacity:1}
+
+/* narrower, cleaner specular highlight */
+header .liquid-glass-sheen{
+  position:absolute;
+  top:-50%;
+  left:calc(var(--mx) - 9%);
+  width:18%;
+  height:200%;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  transform:rotate(12deg);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,.015) 20%,
+      rgba(255,255,255,.11) 48%,
+      rgba(255,255,255,.035) 66%,
+      transparent 100%
+    );
+  filter:blur(3px);
+  mix-blend-mode:screen;
+  transition:opacity .22s ease,left .1s linear;
+}
+header.header-scrolled .liquid-glass-sheen{opacity:.56}
+
+/* very subtle edge caustics */
+header .glass-edge-left,
+header .glass-edge-right{
+  position:absolute;
+  top:9px;
+  bottom:9px;
+  width:34px;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  filter:blur(4px);
+  transition:opacity .28s ease;
+}
+header .glass-edge-left{
+  left:-15px;
+  background:radial-gradient(circle at right,rgba(165,130,255,.10),transparent 66%);
+}
+header .glass-edge-right{
+  right:-15px;
+  background:radial-gradient(circle at left,rgba(92,217,255,.09),transparent 66%);
+}
+header.header-scrolled .glass-edge-left,
+header.header-scrolled .glass-edge-right{opacity:1}
+
+header.header-scrolled .cart-btn{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.028)
+    ) !important;
+  border-color:rgba(255,255,255,.15) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 7px 18px rgba(0,0,0,.13);
+  -webkit-backdrop-filter:blur(7px) saturate(130%);
+  backdrop-filter:blur(7px) saturate(130%);
+}
+
+@media (prefers-reduced-motion:reduce){
+  header,
+  header::before,
+  header::after,
+  header .liquid-glass-sheen{
+    transition:none !important;
+  }
+}
+
+
+/* ===== VAPORA LIQUID GLASS V3 — CLEAR GLASS ===== */
+/* Prioridad: nitidez + reflejo/refracción. Mucho menos "frosted glass". */
+header.header-scrolled{
+  background:
+    linear-gradient(180deg,
+      rgba(13,14,19,.13) 0%,
+      rgba(6,7,10,.09) 100%) !important;
+  -webkit-backdrop-filter:
+    blur(4px)
+    saturate(128%)
+    contrast(105%)
+    brightness(102%);
+  backdrop-filter:
+    blur(4px)
+    saturate(128%)
+    contrast(105%)
+    brightness(102%);
+  border-bottom-color:rgba(255,255,255,.14) !important;
+  box-shadow:
+    0 9px 24px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.17),
+    inset 0 -1px 0 rgba(255,255,255,.045);
+}
+
+/* Quitamos los halos azul/rojo grandes.
+   Solo queda una caústica blanca muy tenue alrededor del puntero. */
+header.header-scrolled::before{
+  opacity:.52 !important;
+  inset:-12% -3% !important;
+  transform:scale(1.015) !important;
+  background:
+    radial-gradient(ellipse at var(--mx) 5%,
+      rgba(255,255,255,.105) 0%,
+      rgba(255,255,255,.038) 10%,
+      transparent 27%),
+    linear-gradient(110deg,
+      transparent 0%,
+      rgba(255,255,255,.018) 37%,
+      rgba(255,255,255,.045) 50%,
+      rgba(255,255,255,.012) 63%,
+      transparent 100%) !important;
+  filter:url(#vaporaLiquidWarpClear) blur(1px) !important;
+}
+
+/* El "material" ahora se define principalmente por sus bordes. */
+header.header-scrolled::after{
+  opacity:1 !important;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.20) 0,
+      rgba(255,255,255,.065) 1px,
+      rgba(255,255,255,.018) 8%,
+      transparent 27%,
+      transparent 76%,
+      rgba(255,255,255,.018) 91%,
+      rgba(255,255,255,.085) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -1px 0 rgba(255,255,255,.065) !important;
+}
+
+/* Reflejo más fino, menos nube luminosa. */
+header.header-scrolled .liquid-glass-sheen{
+  opacity:.38 !important;
+  width:12% !important;
+  left:calc(var(--mx) - 6%) !important;
+  background:
+    linear-gradient(90deg,
+      transparent,
+      rgba(255,255,255,.018) 30%,
+      rgba(255,255,255,.105) 49%,
+      rgba(255,255,255,.022) 68%,
+      transparent) !important;
+  filter:blur(1.5px) !important;
+}
+
+/* Los halos laterales desaparecen casi por completo. */
+header.header-scrolled .glass-edge-left,
+header.header-scrolled .glass-edge-right{
+  opacity:.18 !important;
+  filter:blur(2px) !important;
+}
+
+/* Botón del carrito también más cristalino y menos frosted. */
+header.header-scrolled .cart-btn{
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.022)) !important;
+  border-color:rgba(255,255,255,.14) !important;
+  -webkit-backdrop-filter:blur(3px) saturate(120%) !important;
+  backdrop-filter:blur(3px) saturate(120%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.11),
+    inset 0 -1px 0 rgba(255,255,255,.025),
+    0 6px 16px rgba(0,0,0,.11) !important;
+}
+
+/* Anula la respiración de brillo de la versión experimental. */
+header.header-scrolled{
+  animation:none !important;
+}
+
+
+/* ===== VAPORA LIQUID GLASS V4 — EDGE LENS / DEPTH ===== */
+header{--mx:50%;}
+header.header-scrolled{
+  background:linear-gradient(180deg,rgba(12,13,18,.105),rgba(5,6,9,.075))!important;
+  -webkit-backdrop-filter:blur(3.5px) saturate(126%) contrast(104%) brightness(102%);
+  backdrop-filter:blur(3.5px) saturate(126%) contrast(104%) brightness(102%);
+  border-bottom-color:rgba(255,255,255,.11)!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.15),inset 0 -1px 0 rgba(255,255,255,.04)!important;
+}
+header.header-scrolled::before{
+  opacity:.68!important;inset:-6px -18px!important;transform:none!important;
+  background:linear-gradient(90deg,rgba(255,255,255,.055),rgba(255,255,255,.015) 2.2%,transparent 7%,transparent 93%,rgba(255,255,255,.015) 97.8%,rgba(255,255,255,.055)),
+  radial-gradient(ellipse 15% 145% at var(--mx) 0%,rgba(255,255,255,.075),rgba(255,255,255,.018) 35%,transparent 72%)!important;
+  filter:url(#vaporaEdgeLens)!important;
+}
+header.header-scrolled::after{
+  opacity:1!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.24) 0,rgba(255,255,255,.085) 1px,rgba(255,255,255,.018) 4px,transparent 10px,transparent calc(100% - 9px),rgba(255,255,255,.018) calc(100% - 4px),rgba(255,255,255,.105) 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.20),inset 0 2px 7px rgba(255,255,255,.025),inset 0 -1px 0 rgba(255,255,255,.085),inset 0 -5px 12px rgba(0,0,0,.035)!important;
+}
+header.header-scrolled .liquid-glass-sheen{
+  opacity:.48!important;width:9%!important;left:calc(var(--mx) - 4.5%)!important;top:-45%!important;height:190%!important;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.012) 30%,rgba(255,255,255,.085) 45%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.045) 57%,transparent)!important;
+  filter:blur(.8px)!important;mix-blend-mode:screen;
+}
+header.header-scrolled .glass-edge-left,header.header-scrolled .glass-edge-right{
+  top:0!important;bottom:0!important;width:28px!important;opacity:.78!important;filter:url(#vaporaEdgeMicroWarp) blur(.4px)!important;mix-blend-mode:screen;
+}
+header.header-scrolled .glass-edge-left{left:-7px!important;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.045) 35%,transparent)!important;}
+header.header-scrolled .glass-edge-right{right:-7px!important;background:linear-gradient(270deg,rgba(255,255,255,.14),rgba(255,255,255,.045) 35%,transparent)!important;}
+header.header-scrolled .cart-btn{
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018))!important;
+  border:1px solid rgba(255,255,255,.17)!important;
+  -webkit-backdrop-filter:blur(2.5px) saturate(118%)!important;backdrop-filter:blur(2.5px) saturate(118%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15),inset 0 -1px 0 rgba(255,255,255,.045),0 5px 14px rgba(0,0,0,.10)!important;
+}
+
+
+/* ===== PRODUCTOS DROPDOWN ===== */
+nav .nav-products{position:relative;display:flex;align-items:center}
+nav .nav-products>a{display:flex;align-items:center;gap:6px}
+nav .nav-products>a::after{content:"⌄";font-size:10px;opacity:.65;transform:translateY(-1px)}
+nav .products-menu{
+  position:absolute;top:calc(100% + 17px);left:50%;transform:translate(-50%,8px);
+  min-width:205px;padding:7px;background:rgba(10,11,15,.90);
+  border:1px solid rgba(255,255,255,.11);border-radius:12px;
+  box-shadow:0 18px 45px rgba(0,0,0,.35);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  opacity:0;visibility:hidden;pointer-events:none;transition:.18s ease;
+}
+nav .nav-products:hover .products-menu,
+nav .nav-products:focus-within .products-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0);
+}
+nav .products-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+nav .products-menu a{
+  display:block;padding:11px 12px;border-radius:8px;color:#cfd1d7!important;
+  font-size:12px!important;white-space:nowrap;
+}
+nav .products-menu a:hover{background:rgba(255,255,255,.075);color:#fff!important}
+nav .products-menu .all-products{color:#fff!important;font-weight:700}
+nav .products-menu .divider{height:1px;background:rgba(255,255,255,.09);margin:5px 7px}
+@media(max-width:760px){nav .products-menu{display:none}}
+
+
+/* ===== FIX DROPDOWN + LIQUID GLASS ===== */
+header{
+  z-index:9999 !important;
+  overflow:visible !important;
+  isolation:isolate;
+}
+header nav{
+  position:relative;
+  z-index:10001 !important;
+  overflow:visible !important;
+}
+header .nav-products{
+  position:relative !important;
+  z-index:10002 !important;
+  overflow:visible !important;
+}
+header .products-menu{
+  z-index:10050 !important;
+  overflow:hidden !important;
+
+  /* Liquid Glass: claro, poco blur, borde tipo lente */
+  background:
+    linear-gradient(180deg,
+      rgba(18,19,25,.30) 0%,
+      rgba(7,8,12,.20) 100%) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+
+  -webkit-backdrop-filter:
+    blur(5px)
+    saturate(135%)
+    contrast(105%)
+    brightness(103%) !important;
+  backdrop-filter:
+    blur(5px)
+    saturate(135%)
+    contrast(105%)
+    brightness(103%) !important;
+
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -1px 0 rgba(255,255,255,.055) !important;
+}
+
+/* reflejo superior del cristal */
+header .products-menu::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.13) 0,
+      rgba(255,255,255,.035) 1px,
+      transparent 13%,
+      transparent 80%,
+      rgba(255,255,255,.035) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(255,255,255,.04);
+}
+
+/* links por encima del reflejo */
+header .products-menu a,
+header .products-menu .divider{
+  position:relative;
+  z-index:2;
+}
+header .products-menu a:hover{
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.105),
+      rgba(255,255,255,.055)) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* El contenido nunca debe competir con el menú */
+.hero,
+main,
+.content,
+.community-strip,
+.flavor-explorer{
+  position:relative;
+  z-index:1;
+}
+
+
+/* ===== FIX PUENTE DE HOVER DEL DROPDOWN ===== */
+/* Crea una zona invisible entre "Productos" y el panel para que
+   el cursor pueda bajar sin perder el estado :hover. */
+header .nav-products::before{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  width:235px;
+  height:24px;
+  background:transparent;
+  pointer-events:auto;
+  z-index:10049;
+}
+
+/* Acercamos ligeramente el panel al enlace. */
+header .nav-products .products-menu{
+  top:calc(100% + 10px) !important;
+}
+
+/* Mantener abierto tanto al pasar por el enlace como por el puente/panel. */
+header .nav-products:hover .products-menu,
+header .nav-products:focus-within .products-menu,
+header .nav-products .products-menu:hover{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  transform:translate(-50%,0) !important;
+}
+
+
+/* ===== DROPDOWN HOVER FIX V2 ===== */
+/* Sin hueco físico: el panel empieza exactamente donde termina Productos. */
+header .nav-products{
+  position:relative !important;
+  padding:18px 0 !important;
+  margin:-18px 0 !important;
+}
+
+header .nav-products .products-menu{
+  top:100% !important;
+  margin-top:0 !important;
+}
+
+/* Zona de tolerancia adicional, ahora dentro del mismo área continua. */
+header .nav-products::before{
+  content:"" !important;
+  position:absolute !important;
+  top:100% !important;
+  left:-55px !important;
+  width:calc(100% + 110px) !important;
+  height:16px !important;
+  transform:none !important;
+  background:transparent !important;
+  pointer-events:auto !important;
+}
+
+/* El menú no se cierra mientras el cursor esté en cualquier parte
+   del bloque Productos + desplegable. */
+header .nav-products:hover > .products-menu,
+header .nav-products:focus-within > .products-menu,
+header .nav-products > .products-menu:hover{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  transform:translate(-50%,0) !important;
+}
+
 </style>
-</head>
-<body>
-<main class="box">
-<img class="logo" src="../LOGO.png" alt="VAPORA">
-<div class="icon spin" id="icon">◌</div>
-<h1 id="title">Confirmando tu pago</h1>
-<p id="message">Estamos verificando la transacción con PayPhone. No cierres esta ventana.</p>
-<div class="details" id="details"></div>
-<a class="btn" id="home" href="../" style="display:none">Volver a VAPORA</a>
-<div class="small">El carrito se elimina únicamente después de una confirmación aprobada.</div>
-</main>
+
 <script>
-(async()=>{
- const API='https://vapora-payments.dalexmendoza20.workers.dev';
- const q=new URLSearchParams(location.search);
- const id=q.get('id'), clientTransactionId=q.get('clientTransactionId');
- const icon=document.getElementById('icon'),title=document.getElementById('title'),message=document.getElementById('message'),details=document.getElementById('details'),home=document.getElementById('home');
- function finish(ok,t,m){icon.classList.remove('spin');icon.textContent=ok?'✓':'!';title.textContent=t;message.textContent=m;home.style.display='inline-block'}
- if(!id||!clientTransactionId){finish(false,'No pudimos verificar el pago','Faltan los datos de confirmación enviados por PayPhone. Tu carrito no fue eliminado.');return}
- try{
-  const r=await fetch(API+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,clientTransactionId})});
-  const d=await r.json();
-  if(!r.ok||!d.ok)throw new Error(d.error||'No fue posible confirmar la transacción.');
-  if(d.approved){
-    localStorage.removeItem('vaporaCart');sessionStorage.removeItem('vaporaPendingPayment');
-    finish(true,'Pago aprobado','Tu pago fue confirmado correctamente. Gracias por comprar en VAPORA.');
-    details.style.display='block';
-    const amount=Number(d.amount||0)/100;
-    details.innerHTML='<strong>Transacción:</strong> '+(d.transactionId||'Confirmada')+'<br><strong>Total:</strong> $'+amount.toFixed(2)+' USD'+(d.authorizationCode?'<br><strong>Autorización:</strong> '+d.authorizationCode:'');
-  }else{finish(false,'Pago no aprobado','PayPhone no confirmó la transacción como aprobada. Tu carrito permanece intacto.');}
- }catch(e){finish(false,'No pudimos confirmar el pago',e.message+' Tu carrito permanece intacto.');}
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  window.addEventListener("pageshow", function () {
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+    }, 0);
+  });
+
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+    }, 0);
+  });
+
+document.querySelectorAll(".flavor-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    document.getElementById("productos")?.scrollIntoView({behavior:"smooth"});
+  });
+});
+
+</script>
+
+</head>
+
+<body>
+<svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
+<filter id="vaporaEdgeLens" x="-8%" y="-30%" width="116%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.045" numOctaves="1" seed="17" result="edgeNoise"/><feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="vaporaEdgeMicroWarp" x="-60%" y="-20%" width="220%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.018 0.06" numOctaves="1" seed="21" result="microNoise"/><feDisplacementMap in="SourceGraphic" in2="microNoise" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+</svg>
+
+<svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
+  <filter id="vaporaLiquidWarpClear" x="-12%" y="-35%" width="124%" height="170%">
+    <feTurbulence type="fractalNoise"
+                  baseFrequency="0.012 0.030"
+                  numOctaves="1"
+                  seed="11"
+                  result="noise">
+      <animate attributeName="baseFrequency"
+               dur="14s"
+               values="0.012 0.030;0.014 0.027;0.012 0.030"
+               repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic"
+                       in2="noise"
+                       scale="5"
+                       xChannelSelector="R"
+                       yChannelSelector="G"/>
+  </filter>
+</svg>
+
+
+<svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
+  <filter id="vaporaLiquidWarpSoft" x="-20%" y="-60%" width="140%" height="220%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.010 0.026" numOctaves="2" seed="7" result="noise">
+      <animate attributeName="baseFrequency"
+               dur="11s"
+               values="0.010 0.026;0.012 0.022;0.010 0.026"
+               repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="9"
+                       xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+
+<svg width="0" height="0" style="position:absolute;visibility:hidden" aria-hidden="true">
+  <filter id="vaporaLiquidWarp" x="-30%" y="-80%" width="160%" height="260%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="7" result="noise">
+      <animate attributeName="baseFrequency"
+               dur="9s"
+               values="0.008 0.03;0.012 0.024;0.008 0.03"
+               repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="18"
+                       xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+
+<header>
+  <a class="logo" href="#inicio" aria-label="VAPORA - Inicio"><img src="LOGO.png" alt="VAPORA" decoding="async"></a>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <div class="nav-products">
+<a href="productos.html">Productos</a>
+<div class="products-menu">
+<a class="all-products" href="productos.html">Todos los productos</a>
+<div class="divider"></div>
+<a href="digiflavor/">Digiflavor</a>
+<a href="pulse/">Geek Bar Pulse</a>
+<a href="pulse-x/">Geek Bar Pulse X</a>
+</div>
+</div>
+    <a href="#sabores">Sabores</a>
+  </nav>
+
+  <button class="cart-button" id="cartButton">
+    Carrito <span class="cart-count" id="cartCount">0</span>
+  </button>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <img src="BANNER.webp" fetchpriority="high" decoding="async" alt="Pulse, Pulse X y Digiflavor">
+  </div>
+
+  <div class="hero-content">
+    <p class="eyebrow">VAPORA</p>
+
+    <h1>
+      ENCUENTRA<br>
+      <span>TU SABOR</span>
+    </h1>
+
+    <p class="hero-models">PULSE &nbsp; | &nbsp; PULSE X &nbsp; | &nbsp; DIGIFLAVOR</p>
+
+    <a class="btn" href="#productos">Elegir dispositivo&nbsp;&nbsp;→</a>
+
+    <p class="hero-note">
+      MISMO PLACER.<br>
+      DIFERENTES VIBES.
+    </p>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-item">
+    <div class="trust-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.6c0 4.6 3.1 7.6 7.5 9.4 4.4-1.8 7.5-4.8 7.5-9.4V6L12 3Z"/><path d="m9.4 12 1.7 1.7 3.6-3.8"/></svg>
+    </div>
+    <div class="trust-copy">
+      <strong>Productos originales</strong>
+      <span>Compra con confianza</span>
+    </div>
+  </div>
+
+  <div class="trust-item">
+    <div class="trust-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M3 6h11v10H3z"/><path d="M14 9h3.8l3.2 3.3V16h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg>
+    </div>
+    <div class="trust-copy">
+      <strong>Envíos a todo Ecuador</strong>
+      <span>Rápido y seguro</span>
+    </div>
+  </div>
+
+  <div class="trust-item">
+    <div class="trust-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M7 15h4"/></svg>
+    </div>
+    <div class="trust-copy">
+      <strong>Múltiples métodos de pago</strong>
+      <span>Transferencia, tarjeta, etc.</span>
+    </div>
+  </div>
+
+  <div class="trust-item">
+    <div class="trust-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 13v-2a7 7 0 0 1 14 0v2"/><path d="M5 12H3v5h3v-5Z"/><path d="M19 12h2v5h-3v2c0 1.1-.9 2-2 2h-2"/><path d="M13 21h2"/></svg>
+    </div>
+    <div class="trust-copy">
+      <strong>Atención personalizada</strong>
+      <span>Te ayudamos a elegir</span>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="content" id="productos">
+  <div class="section-title">
+    
+  </div>
+
+  <div class="collections">
+    <a class="collection collection-image" href="digiflavor/" aria-label="Ver sabores Digiflavor">
+      <img src="DIGIFLAVOR.webp" loading="lazy" decoding="async" alt="Geek Bar Digiflavor">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>DIGIFLAVOR</strong>
+        <p>Una experiencia diferente.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
+    </a>
+
+    <a class="collection collection-image" href="pulse/" aria-label="Ver sabores Geek Bar Pulse">
+      <img src="PULSE.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>PULSE</strong>
+        <p>El clásico que no falla.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
+    </a>
+
+    <a class="collection collection-image" href="pulse-x/" aria-label="Ver sabores Geek Bar Pulse X">
+      <img src="PULSE-X.webp" loading="lazy" decoding="async" alt="Geek Bar Pulse X">
+      <div class="collection-shade"></div>
+      <div class="collection-copy">
+        <small>GEEK BAR</small>
+        <strong>PULSE X</strong>
+        <p>Más pantalla. Más modos. Más Pulse.</p>
+        <span class="collection-cta">Ver sabores&nbsp;&nbsp;→</span>
+      </div>
+    </a>
+  </div>
+</section>
+<section class="flavor-explorer" id="sabores">
+  <div class="flavor-heading">
+    <div>
+      <p>ELIGE POR SABOR</p>
+      <h2>¿Qué se te antoja hoy?</h2>
+    </div>
+    <a class="flavor-all-link" href="productos.html?categoria=todos">Ver todos los sabores <span>→</span></a>
+  </div>
+
+  <div class="flavor-grid">
+    <a class="flavor-card" href="productos.html?categoria=todos" data-category="todos" aria-label="Ver todos los sabores">
+      <div class="flavor-icon-wrap">
+        <img src="TODOS.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>TODOS</span>
+    </a>
+
+    <a class="flavor-card" href="productos.html?categoria=frutales" data-category="frutales" aria-label="Ver sabores frutales">
+      <div class="flavor-icon-wrap">
+        <img src="FRUTALES.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>FRUTALES</span>
+    </a>
+
+    <a class="flavor-card" href="productos.html?categoria=ice" data-category="ice" aria-label="Ver sabores ice">
+      <div class="flavor-icon-wrap">
+        <img src="ICE.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>ICE</span>
+    </a>
+
+    <a class="flavor-card" href="productos.html?categoria=dulces" data-category="dulces" aria-label="Ver sabores dulces">
+      <div class="flavor-icon-wrap">
+        <img src="DULCES.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>DULCES</span>
+    </a>
+
+    <a class="flavor-card" href="productos.html?categoria=postres" data-category="postres" aria-label="Ver sabores de postres">
+      <div class="flavor-icon-wrap">
+        <img src="POSTRES.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <span>POSTRES</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+
+
+<section class="community-strip" aria-label="Comunidad VAPORA">
+  <div class="community-title-marquee" aria-hidden="true">
+    <div class="community-title-track">
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+      <span>ÚNETE A NUESTRA COMUNIDAD</span>
+    </div>
+  </div>
+
+  <div class="community-gallery">
+    <div class="community-track">
+      <div class="community-group">
+        <img src="F1.webp" alt="Comunidad Geek Bar en evento" loading="lazy" decoding="async">
+        <img src="F2.webp" alt="Comunidad Geek Bar" loading="lazy" decoding="async">
+        <img src="F3.webp" alt="Evento Digiflavor" loading="lazy" decoding="async">
+        <img src="F4.webp" alt="Geek Bar en evento nocturno" loading="lazy" decoding="async">
+        <img src="F5.webp" alt="Accesorios Geek Bar" loading="lazy" decoding="async">
+        <img src="F6.webp" alt="Comunidad en evento" loading="lazy" decoding="async">
+        <img src="F7.webp" alt="Geek Bar en festival" loading="lazy" decoding="async">
+        <img src="F8.webp" alt="Comunidad Geek Bar" loading="lazy" decoding="async">
+        <img src="F9.webp" alt="Experiencia Geek Bar" loading="lazy" decoding="async">
+        <img src="F10.webp" alt="Accesorios de la comunidad Geek Bar" loading="lazy" decoding="async">
+      </div>
+      <div class="community-group" aria-hidden="true">
+        <img src="F1.webp" alt="">
+        <img src="F2.webp" alt="">
+        <img src="F3.webp" alt="">
+        <img src="F4.webp" alt="">
+        <img src="F5.webp" alt="">
+        <img src="F6.webp" alt="">
+        <img src="F7.webp" alt="">
+        <img src="F8.webp" alt="">
+        <img src="F9.webp" alt="">
+        <img src="F10.webp" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="vapora-footer">
+  <div class="vapora-footer-main">
+    <div class="vapora-footer-brand">
+      <img src="LOGO.png" alt="VAPORA" decoding="async">
+      <p>Encuentra tu sabor. Elige tu vibe.</p>
+    </div>
+
+    <nav class="vapora-footer-nav" aria-label="Navegación del pie de página">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="digiflavor/">Digiflavor</a>
+      <a href="pulse/">Pulse</a>
+      <a href="pulse-x/">Pulse X</a>
+    </nav>
+  </div>
+
+  <div class="vapora-warning">
+    <span class="vapora-warning-icon" aria-hidden="true">⚠️</span>
+    <p>
+      <strong>ADVERTENCIA:</strong> Este producto contiene nicotina, una sustancia altamente adictiva.
+      Su consumo puede ser perjudicial para la salud y puede implicar la exposición a sustancias tóxicas y cancerígenas.
+      <strong>PROHIBIDA SU VENTA A MENORES DE 18 AÑOS.</strong>
+      Producto destinado exclusivamente para personas adultas. Manténgase fuera del alcance de niños y adolescentes.
+    </p>
+  </div>
+
+  <div class="vapora-footer-bottom">
+    <span>© 2026 VAPORA. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+
+
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div>
+      <p class="eyebrow">TU PEDIDO</p>
+      <h2>Carrito</h2>
+    </div>
+    <button class="close" id="closeCart">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="drawer-footer">
+    <div class="total">
+      <span>Total</span>
+      <strong id="cartTotal">$0.00</strong>
+    </div>
+    <button class="checkout" id="checkoutButton">Finalizar compra</button>
+    <p class="note">El checkout seguro se conectará a una pasarela compatible.</p>
+  </div>
+</aside>
+
+<div class="age-modal" id="ageModal">
+  <div class="age-box">
+    <p class="eyebrow">ACCESO RESTRINGIDO</p>
+    <h2>VAPORA</h2>
+    <p>
+      Confirma que tienes la edad legal requerida para acceder a productos regulados
+      en tu jurisdicción.
+    </p>
+    <div class="age-actions">
+      <button class="btn" id="confirmAge">Confirmar</button>
+      <button class="secondary" id="leaveSite">Salir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const products=[{id:100,name:"Miami Mint",model:"DIGIFLAVOR",price:25.00,stock:6},{id:101,name:"Sky Strawberry Banana",model:"DIGIFLAVOR",price:25.00,stock:4},{id:102,name:"Sour Watermelon Razz Ice",model:"DIGIFLAVOR",price:25.00,stock:6},{id:103,name:"Strawberry Watermelon Coconut",model:"DIGIFLAVOR",price:25.00,stock:2},{id:104,name:"Twisted B Pop",model:"DIGIFLAVOR",price:25.00,stock:4},{id:105,name:"Blackberry Blueberry",model:"PULSE X",price:30.00,stock:4},{id:106,name:"Blue Rancher",model:"PULSE X",price:30.00,stock:6},{id:107,name:"Blue Razz Ice",model:"PULSE X",price:30.00,stock:4},{id:108,name:"Lemon Heads",model:"PULSE X",price:30.00,stock:1},{id:109,name:"Miami Mint",model:"PULSE X",price:30.00,stock:4},{id:110,name:"Orange Fcuking",model:"PULSE X",price:30.00,stock:2},{id:111,name:"Pink & Blue",model:"PULSE X",price:30.00,stock:6},{id:112,name:"Sour Apple Ice",model:"PULSE X",price:30.00,stock:7},{id:113,name:"Strawberry Kiwi Ice",model:"PULSE X",price:30.00,stock:4},{id:114,name:"Banana Taffy Freeze",model:"PULSE X",price:30.00,stock:2},{id:115,name:"Strawberry Watermelon",model:"PULSE X",price:30.00,stock:4},{id:116,name:"Black Cherry",model:"PULSE",price:23.00,stock:2},{id:117,name:"Blue Razz Ice",model:"PULSE",price:23.00,stock:3},{id:118,name:"Cherry Bomb",model:"PULSE",price:23.00,stock:2},{id:119,name:"Frozen Blackberry Fab",model:"PULSE",price:23.00,stock:2},{id:120,name:"Sour Watermelon Drop",model:"PULSE",price:23.00,stock:2},{id:121,name:"Stone Freeze",model:"PULSE",price:23.00,stock:1},{id:122,name:"Watermelon Ice",model:"PULSE",price:23.00,stock:4}]
+
+let cart=JSON.parse(localStorage.getItem("vaporaCart")||"{}");
+
+const cartButton=document.getElementById("cartButton");
+const drawer=document.getElementById("drawer");
+const overlay=document.getElementById("overlay");
+const closeCart=document.getElementById("closeCart");
+const cartItems=document.getElementById("cartItems");
+const cartTotal=document.getElementById("cartTotal");
+const cartCount=document.getElementById("cartCount");
+
+function money(n){
+  return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(n);
+}
+
+function addToCart(id){
+  cart[id]=(cart[id]||0)+1;
+  saveCart();
+  openCart();
+}
+
+function changeQty(id,delta){
+  cart[id]=(cart[id]||0)+delta;
+  if(cart[id]<=0)delete cart[id];
+  saveCart();
+}
+
+function saveCart(){
+  localStorage.setItem("vaporaCart",JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart(){
+  const entries=Object.entries(cart);
+  let total=0;
+  let count=0;
+
+  if(!entries.length){
+    cartItems.innerHTML='<p style="color:#9fa3ad">Tu carrito está vacío.</p>';
+    cartTotal.textContent=money(0);
+    cartCount.textContent="0";
+    return;
+  }
+
+  cartItems.innerHTML=entries.map(([id,qty])=>{
+    const p=products.find(x=>x.id===Number(id));
+    total+=p.price*qty;
+    count+=qty;
+
+    return `
+      <div class="cart-item">
+        <div>
+          <strong>${p.name}</strong>
+          <p>${p.model} · ${money(p.price)}</p>
+        </div>
+        <div class="qty">
+          <button onclick="changeQty(${p.id},-1)">−</button>
+          <span>${qty}</span>
+          <button onclick="changeQty(${p.id},1)">+</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  cartTotal.textContent=money(total);
+  cartCount.textContent=count;
+}
+
+function openCart(){
+  drawer.classList.add("open");
+  overlay.classList.add("show");
+}
+
+function closeDrawer(){
+  drawer.classList.remove("open");
+  overlay.classList.remove("show");
+}
+
+cartButton.addEventListener("click",openCart);
+closeCart.addEventListener("click",closeDrawer);
+overlay.addEventListener("click",closeDrawer);
+
+document.getElementById("checkoutButton").addEventListener("click",()=>{
+  if(!Object.keys(cart).length){
+    alert("Tu carrito está vacío.");
+    return;
+  }
+  alert("El carrito está listo. El siguiente paso es conectar la pasarela de pago.");
+});
+
+/* Control de acceso */
+const ageModal=document.getElementById("ageModal");
+
+if(!localStorage.getItem("vaporaAgeConfirmed")){
+  ageModal.classList.add("show");
+}
+
+document.getElementById("confirmAge").addEventListener("click",()=>{
+  localStorage.setItem("vaporaAgeConfirmed","yes");
+  ageModal.classList.remove("show");
+});
+
+document.getElementById("leaveSite").addEventListener("click",()=>{
+  window.location.href="https://www.google.com";
+});
+
+renderCart();
+
+window.addToCart=addToCart;
+window.changeQty=changeQty;
+</script>
+
+
+<script>
+(function(){
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  function updateGlassHeader(){
+    header.classList.toggle("header-scrolled", window.scrollY > 8);
+  }
+
+  updateGlassHeader();
+  window.addEventListener("scroll", updateGlassHeader, {passive:true});
 })();
 </script>
+
+
+<script>
+(function(){
+  const header = document.querySelector("header");
+  if(!header) return;
+
+  if(!header.querySelector(".liquid-glass-sheen")){
+    const sheen = document.createElement("span");
+    sheen.className = "liquid-glass-sheen";
+    header.appendChild(sheen);
+  }
+
+  const updateHeader = () => {
+    header.classList.toggle("header-scrolled", window.scrollY > 8);
+  };
+
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, {passive:true});
+
+  let raf = null;
+  header.addEventListener("pointermove", (e)=>{
+    if(!header.classList.contains("header-scrolled")) return;
+    if(raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(()=>{
+      const r = header.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      header.style.setProperty("--glass-x", x + "%");
+      header.style.setProperty("--sheen-left", (x - 11) + "%");
+    });
+  });
+
+  header.addEventListener("pointerleave", ()=>{
+    header.style.setProperty("--glass-x","50%");
+    header.style.setProperty("--sheen-left","-18%");
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  const header = document.querySelector("header");
+  if(!header) return;
+
+  if(!header.querySelector(".liquid-glass-sheen")){
+    const sheen = document.createElement("span");
+    sheen.className = "liquid-glass-sheen";
+    header.appendChild(sheen);
+  }
+
+  if(!header.querySelector(".glass-edge-left")){
+    const l = document.createElement("span");
+    l.className = "glass-edge-left";
+    const r = document.createElement("span");
+    r.className = "glass-edge-right";
+    header.appendChild(l);
+    header.appendChild(r);
+  }
+
+  const syncScroll = () => {
+    header.classList.toggle("header-scrolled", window.scrollY > 8);
+    const glow = Math.min(.7, .26 + window.scrollY / 1600);
+    header.style.setProperty("--scroll-glow", glow);
+  };
+
+  syncScroll();
+  window.addEventListener("scroll", syncScroll, {passive:true});
+
+  let raf = 0;
+  header.addEventListener("pointermove", e=>{
+    if(!header.classList.contains("header-scrolled")) return;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(()=>{
+      const rect = header.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      header.style.setProperty("--mx", x + "%");
+      header.style.setProperty("--my", y + "%");
+    });
+  });
+
+  header.addEventListener("pointerleave", ()=>{
+    header.style.setProperty("--mx","50%");
+    header.style.setProperty("--my","50%");
+  });
+})();
+</script>
+
 </body>
 </html>
