@@ -1652,6 +1652,63 @@ document.addEventListener('click', function(e){
 })();
 </script>
 
-\n<script id="vapora-payphone-checkout">\n(() => {\n  const API = "https://vapora-payments.dalexmendoza20.workers.dev";\n  const checkout = document.querySelector('.checkout');\n  if (!checkout) return;\n\n  checkout.removeAttribute('onclick');\n  checkout.type = 'button';\n\n  const style = document.createElement('style');\n  style.textContent = `\n    .vapora-pay-overlay{position:fixed;inset:0;z-index:20000;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px}\n    .vapora-pay-box{width:min(430px,100%);background:#0b0d11;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.55)}\n    .vapora-pay-box h3{margin:0 0 8px;font-size:22px}.vapora-pay-box p{margin:0 0 18px;color:#9da2ac;font-size:12px;line-height:1.5}\n    .vapora-pay-options{display:grid;gap:10px}.vapora-pay-options button{border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 16px;font-weight:800;cursor:pointer}\n    .vapora-pay-card{background:#fff;color:#08090c}.vapora-pay-phone{background:#171a20;color:#fff}.vapora-pay-cancel{margin-top:10px;width:100%;background:transparent!important;color:#858b95!important}\n    .checkout[disabled]{opacity:.55;cursor:wait}\n  `;\n  document.head.appendChild(style);\n\n  function showPaymentChoice(data){\n    const el=document.createElement('div');\n    el.className='vapora-pay-overlay';\n    el.innerHTML=`<div class="vapora-pay-box"><h3>Elige cómo pagar</h3><p>Tu pago será procesado de forma segura por PayPhone.</p><div class="vapora-pay-options"><button class="vapora-pay-card">Pagar con tarjeta</button><button class="vapora-pay-phone">Pagar con PayPhone</button></div><button class="vapora-pay-cancel">Cancelar</button></div>`;\n    document.body.appendChild(el);\n    el.querySelector('.vapora-pay-card').onclick=()=>location.href=data.payWithCard;\n    el.querySelector('.vapora-pay-phone').onclick=()=>location.href=data.payWithPayPhone;\n    el.querySelector('.vapora-pay-cancel').onclick=()=>el.remove();\n    el.addEventListener('click',e=>{if(e.target===el)el.remove()});\n  }\n\n  checkout.addEventListener('click', async () => {\n    const currentCart = JSON.parse(localStorage.getItem('vaporaCart') || '{}');\n    if (!Object.keys(currentCart).length) { alert('Tu carrito está vacío.'); return; }\n    const original = checkout.textContent;\n    checkout.disabled = true;\n    checkout.textContent = 'Preparando pago…';\n    try {\n      const res = await fetch(API + '/prepare', {\n        method:'POST',\n        headers:{'Content-Type':'application/json'},\n        body:JSON.stringify({cart:currentCart})\n      });\n      const data = await res.json();\n      if (!res.ok || !data.ok) throw new Error(data.error || 'No fue posible preparar el pago.');\n      sessionStorage.setItem('vaporaPendingPayment', JSON.stringify({clientTransactionId:data.clientTransactionId,amount:data.amount,createdAt:Date.now()}));\n      showPaymentChoice(data);\n    } catch (err) {\n      alert(err.message || 'No fue posible conectar con el sistema de pagos.');\n    } finally {\n      checkout.disabled = false;\n      checkout.textContent = original;\n    }\n  });\n})();\n</script>\n
+
+<script id="vapora-payphone-checkout">
+(() => {
+  const API = "https://vapora-payments.dalexmendoza20.workers.dev";
+  const checkout = document.querySelector('.checkout');
+  if (!checkout) return;
+
+  checkout.removeAttribute('onclick');
+  checkout.type = 'button';
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .vapora-pay-overlay{position:fixed;inset:0;z-index:20000;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px}
+    .vapora-pay-box{width:min(430px,100%);background:#0b0d11;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+    .vapora-pay-box h3{margin:0 0 8px;font-size:22px}.vapora-pay-box p{margin:0 0 18px;color:#9da2ac;font-size:12px;line-height:1.5}
+    .vapora-pay-options{display:grid;gap:10px}.vapora-pay-options button{border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 16px;font-weight:800;cursor:pointer}
+    .vapora-pay-card{background:#fff;color:#08090c}.vapora-pay-phone{background:#171a20;color:#fff}.vapora-pay-cancel{margin-top:10px;width:100%;background:transparent!important;color:#858b95!important}
+    .checkout[disabled]{opacity:.55;cursor:wait}
+  `;
+  document.head.appendChild(style);
+
+  function showPaymentChoice(data){
+    const el=document.createElement('div');
+    el.className='vapora-pay-overlay';
+    el.innerHTML=`<div class="vapora-pay-box"><h3>Elige cómo pagar</h3><p>Tu pago será procesado de forma segura por PayPhone.</p><div class="vapora-pay-options"><button class="vapora-pay-card">Pagar con tarjeta</button><button class="vapora-pay-phone">Pagar con PayPhone</button></div><button class="vapora-pay-cancel">Cancelar</button></div>`;
+    document.body.appendChild(el);
+    el.querySelector('.vapora-pay-card').onclick=()=>location.href=data.payWithCard;
+    el.querySelector('.vapora-pay-phone').onclick=()=>location.href=data.payWithPayPhone;
+    el.querySelector('.vapora-pay-cancel').onclick=()=>el.remove();
+    el.addEventListener('click',e=>{if(e.target===el)el.remove()});
+  }
+
+  checkout.addEventListener('click', async () => {
+    const currentCart = JSON.parse(localStorage.getItem('vaporaCart') || '{}');
+    if (!Object.keys(currentCart).length) { alert('Tu carrito está vacío.'); return; }
+    const original = checkout.textContent;
+    checkout.disabled = true;
+    checkout.textContent = 'Preparando pago…';
+    try {
+      const res = await fetch(API + '/prepare', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({cart:currentCart})
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'No fue posible preparar el pago.');
+      sessionStorage.setItem('vaporaPendingPayment', JSON.stringify({clientTransactionId:data.clientTransactionId,amount:data.amount,createdAt:Date.now()}));
+      showPaymentChoice(data);
+    } catch (err) {
+      alert(err.message || 'No fue posible conectar con el sistema de pagos.');
+    } finally {
+      checkout.disabled = false;
+      checkout.textContent = original;
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
